@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid HorizontalScroll</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<!--<script type="text/javascript" src="../../../firebug-lite/firebug-lite/content/firebug-lite-dev.js"></script>-->
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+/*#grid3 .grid-cell-remark{
+	border-left: 1px solid #C3D6DD;
+}*/
+</style>
+<script language="JavaScript">
+var grid, grid2, grid3;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		showSummaryBar : true
+		,viewConfig : {horizontalScroll : true}
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'200px',summaryConfig:{html: "合计"}}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'200px', summaryConfig:{calculation:'sum'}}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'200px',summaryConfig:{calculation:'max'}}
+			,{header: "奖金min", dataIndex: 'bonus', width:'200px',summaryConfig:{calculation:'min'}}
+			,{header: "数量count", dataIndex: 'count', width:'100px',summaryConfig:{calculation:'count'}}
+			,{header: "补贴average", dataIndex: 'allowance', width:'200px',summaryConfig:{calculation:'average'}}
+			,{header: "自定义", dataIndex: 'custom', width:'200px',
+				summaryConfig:{calculation:function(value, dataIndex, rowIndex, data){
+					return "自定义";
+				}}
+			 }
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			/*,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C15", common:"1700", allowance:"200"}
+			,{name:"C16", common:"1064", advance:"2363", allowance:"200"}*/
+		]}
+	});
+	
+	grid2 = $('#grid2').grid({
+		showSummaryBar : true
+		,
+		viewConfig : {horizontalScroll : true}
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'200px',
+				summaryConfig:{html: "合计"}}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'200px', summaryConfig:{calculation:'sum'}}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'200px',summaryConfig:{calculation:'max'}}
+			,{header: "奖金min", dataIndex: 'bonus', width:'200px',summaryConfig:{calculation:'min'}}
+			,{header: "数量count", dataIndex: 'count', width:'100px',summaryConfig:{calculation:'count'}}
+			,{header: "补贴average", dataIndex: 'allowance', width:'200px',summaryConfig:{calculation:'average'}}
+			,{header: "自定义", dataIndex: 'custom', width:'200px',
+				summaryConfig:{calculation:function(value, dataIndex, rowIndex, data){
+					return "自定义";
+				}}
+			 }
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+		]}
+	});
+	
+	/*grid3 = $('#grid3').grid({
+		//pageSize : 15
+		viewConfig : {horizontalScroll : true}
+		,sm : new $.uiwidget.CellSelectionModel()
+		,cm : [{header: "名称", dataIndex: 'name', width:'200px'}
+			, {header: "备注", dataIndex: 'remark', width:'300px'}
+			, {header: "备注", dataIndex: 'remark', width:'400px'}
+			]
+		,data : {"totalCount":18, "result":[{id:"1", name : "张三", time:"23:32:22-23:32:22-23:32:22-", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"23:32:22", remark : "2009-01-02"}, {id:"3", name : "王五", time:"23:32:22", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"},{id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}]}
+	});*/
+});
+</script>
+</head>
+<body>
+<h1>Grid HorizontalScroll</h1>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+<div id="grid2" style="height:100%;width:1000px;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+<div id="grid3" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+</body>
+</html>

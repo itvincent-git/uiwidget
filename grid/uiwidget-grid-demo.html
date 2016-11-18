@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid demo </title>
+
+<script type="text/javascript" src="../jquery.min.js"></script>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+#grid .grid-cm-remark{
+	text-align: right;
+}/**/
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [{checkbox : true}, {header: "名称", dataIndex: 'name', width:'20%'}	,{header: "备注", dataIndex: 'remark', title: '备注提示'}]
+		,data : {"totalCount":14, "result":[{id:"1", name : "张三", remark : "2009-01-01" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", remark : "2009-01-02"}, {id:"3", name : "王五", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "ddd", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}]}		
+		//双击触发事件
+		,onRowDblclick : function(e, grid, rowEl){
+			alert(grid.getSelections()[0]['id']);			
+		}
+		//单击触发事件
+		,onRowClick : function(e, grid, rowEl){
+		}
+		,contextMenu : [{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				alert( '修改,选择的ID = ' + selections[0]['id']);
+			}}
+			,'-'
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					alert( '查看数量 = ' + selections.length);
+				}
+				,menu:[{text: '查看-1',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						var selections = grid.getSelections();
+						alert( '查看数量-1 = ' + selections.length);
+					}}
+					,{text: '查看-2',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						var selections = grid.getSelections();
+						alert( '查看数量-2 = ' + selections.length);
+					}}
+					,{text: '查看-3',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						var selections = grid.getSelections();
+						alert( '查看数量-3 = ' + selections.length);
+					}}
+				]
+			}
+			]		
+		//加载完后选中某行
+		/*,afterRender : function(e, grid){
+			var sm = grid.getSelectionModel();
+			sm.select(grid.getRow(1));
+			
+		}*/
+	});
+		
+});
+
+function debugSelectedRow(){
+	if(grid.hasSelected())
+		alert(grid.getSelections()[0]['id']);
+}
+//刷新并插入数据到前面
+function reloadInsertBefore(){	
+	grid.reloadInsertBefore([{id:"2", name : "李四123", remark : "2009-11-11"},{id:"3", name : "王五123", remark : "2009-11-11"}]);
+}
+//插入数据到前面
+function insertRecordsBefore(){
+	grid.insertRecordsBefore([{id:"2", name : "全民公敌", remark : "2009-11-02"}]);
+}
+//删除所选择的行
+function removeSelectedRow(){
+	grid.removeRow(grid.getSelectedRow());
+}
+//修改所选择的行
+function modifySelectedRecords(){
+	grid.modifySelectedRecords([{id:"2$$$", name : "李四$$$$$", remark : "2009-01-02", isUse : false}]);
+}
+//新增,修改,查看,删除
+	function openPage(action){
+		var ss = grid.getSelections();
+		var url, id;
+		if(action == 'add'){
+			url = "/hr/hrmanagement/setprobation.do?method=add";
+			top.windowOpen(url, 'passProbEdit', '新增', 250, 530, true, 'passProbEditIf');
+		}else if(action == 'delete' && ss.length > 0){
+			var ids= ss[0]["id"];
+			for(var i = 1, len=ss.length; i < len ; i++){
+				ids = ids + ';' + ss[i]["id"];
+			}
+			var url= "/hr/hrmanagement/setprobation.do?method=goDeletePage&id="+ids;
+			top.windowOpen(url, 'delete', "提问", 185, 400, true, 'deleteIf')
+		}	
+		else{
+			if(ss.length > 0 ){	
+				if(ss.length > 1){
+					alert("只能选择一条记录！");
+					return;
+				}
+				id = ss[0]["id"];	
+				if(action == 'view'){
+				
+					url = "/hr/hrmanagement/setprobation.do?method=view&id="+id;
+					top.windowOpen(url, 'passProbEdit', '查看', 250, 530, true, 'passProbEditIf');
+					
+				}else if(action == 'edit'){
+					url = "/hr/hrmanagement/setprobation.do?method=edit&id="+id;
+					top.windowOpen(url, 'passProbEdit', '修改', 250, 530, true, 'passProbEditIf');	
+				}
+			}else{
+				alert("请选择一条记录！");
+			}
+		}	
+	}
+//高度	
+function getHeight(){
+	alert(grid.getHeight());
+}
+function setHeight(){
+	grid.setHeight(250);
+}
+//每行高度
+function getLineHeight(){
+	alert(grid.getLineHeight());
+}
+//根据序号取得行，并把该行选中
+function getRowByIndex(){
+	var sm = grid.getSelectionModel();
+	sm.select(grid.getRow(0));	
+}
+//获得选择多行的每行行号
+function getMutiSelectedRowIndex(){
+	var sr = grid.getSelectedRow();
+	if(sr.length>0){
+		for(var i = 0 ; i < sr.length; i++){
+			alert(grid.findRowIndex(sr[i]));
+		}
+	}
+}
+//增加数据
+function appendRow(){
+	grid.appendRow([{id:"1", name : "张三", time:"", remark:"abc"}]); 
+}
+
+//全选
+function selectAllRow(){
+	var sm = grid.getSelectionModel();
+	sm.selectAll();
+}
+
+/**
+ * 覆盖行数据
+ */
+function replaceRow(){
+	grid.replaceRow(0, {id: "1", name : "修改的名字", remark:"修改的备注"});
+}
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">Grid demo</p><p/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><button onclick="grid.reload();">reload</button>
+<button onclick="reloadInsertBefore()">reloadInsertBefore</button>
+<button onclick="insertRecordsBefore()">insertRecordsBefore</button>
+<button onclick="removeSelectedRow()">removeSelectedRow</button>
+<button onclick="grid.loadInit()">loadInit</button>
+<button onclick="modifySelectedRecords()">modifySelectedRecords</button>
+<button onclick="alert(grid.getSelectedRowIndex())">getSelectedRowIndex</button>
+<button onclick="alert(grid.getSelectedRow().length)">getSelectedRow</button>
+<button onclick="getHeight()">getHeight</button>
+<button onclick="setHeight()">setHeight</button>
+<button onclick="getLineHeight()">getLineHeight</button>
+<button onclick="getRowByIndex()">getRowByIndex</button>
+<button onclick="getMutiSelectedRowIndex()">getMutiSelectedRowIndex</button>
+<button onclick="appendRow()">appendRow</button>
+<button onclick="selectAllRow()">全选</button>
+<button onclick="replaceRow()">覆盖第1行数据</button>
+</body>
+</html>

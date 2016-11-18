@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Editor </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-editor.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-editor.js"></script>
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var editor;
+$(document).ready(function(){
+	//$.debug('start');
+	editor = $(document.body).editor({
+		field: '<input type="text"/>'		
+	});
+	
+	$('.editor').click(function(e){
+		editor.startEdit(this);
+	});
+});
+</script>
+</head>
+
+<body>
+<p/><h1>Editor</h1><p/>
+<div class="editor" style="height:20px;width:100px;border:1px solid #ccc; ">123</div>
+<p/>
+<div class="editor" style="height:20px;width:100px;border:1px solid #ccc; ">abc</div>
+<p/>
+</body>
+</html>

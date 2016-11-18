@@ -1,0 +1,61 @@
+2.0.2
+F 修复addContentTab，closeActiveTab方法中引用tab的错误，另外这3个方法是给UI4.0用的交互方法，其它情况不适宜使用
+
+
+==================================================================================================
+2.0.1-SNAPSHOT 2010-07-13
+M 修改closeActiveTab()在IE下如果没有参数下会报错的问题
++ item中增加data,callback参数
+
+2.0.0 2010-07-02
+1.需要升级到jquery1.4.2
+
+2.升级标签栏可滚动：
+	a.支持左右滚动
+	b.支持在菜单中选择滚动到的标签
+	
++ 增加setClosable方法,详细看demo	
+M 修改默认的皮肤样式
+M 修改事件模型
+F 关闭最后一个TAB时，不能跳到前一个TAB的问题
++ addContentTab(item) 新增一个tab
+	1、如果tab已经存在，则激活此tab，如果refresh为true时，则激活时要刷新；如果tab不存在则新增
+ 	2、item中记录recordId
+ 	3、如果多于一个tab则设置为可关闭
++ getActiveContent() 取当前激活的tab content，用于操作content中的元素
++ closeActiveTab() 关闭当前激活的Tab
+	1、如果关闭后只有一个tab，则设置为不可关闭
+	2、如果有parent，则激活parent
+	3、如果refresh为true，则要刷新parent
+
+
+
+1.1.2 2010-03-03
++ 添加getItems取出所有标签项
+M 关闭标签时，同时清除item
+
+1.1.1    2009-9-11
+初始化参数：
++ ajaxLoadPage，为true时标签页使用div用ajax加载页面
+方法：
++ loadTab(item)，刷新item的tab链接
+DEMO：
++ demo-event补充每次变更都刷新页面的例子
+
+
+1.1.0    2009-5-26
+方法：
++ addItem 方法,增加一个标签
+
++ searchItem(tabId) 查看ID查找item
++ getTabId(item) 取得item中定义的ID,如果没有则自动生成一个
++ getActiveTab() 获得激活的TAB	
++ closeTab(tabId) 关闭tab
++ reloadTab(item) 重新刷新tab
++ activeTab(item) 激活tab
+		
+事件：
++ onTabClose 关闭标签的事件
+
+Demo:
++ iframe 自适应高度的例子

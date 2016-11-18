@@ -1,0 +1,160 @@
+@charset "utf-8";
+
+.nav4{
+	margin: 0 0 0 5px;
+	padding: 0;
+	color: #336699;
+}
+
+/*主导航*/
+.nav4 .nav-max {
+	background: #909fab url(../images/bg-left-nav.gif) no-repeat left top;
+	width: 151px;
+}
+
+.nav4 ul,.nav4 li {
+	padding: 0;
+	margin: 0;
+}
+
+.nav4 li,.nav4 div {
+	font-family: "宋体", Arial, Verdana;
+	font-size: 12px;
+}
+
+.nav4 ul,.nav4 li {
+	list-style-type: none;
+}
+
+.nav4 input::-moz-focus-inner {
+	border: 0;
+}
+
+/*导航项*/
+.nav4 .nav-item {
+	width: 100%;
+	cursor: pointer;
+	display: block;
+	line-height: 26px;
+	height: 26px;
+	background: url(../images/bg-left-nav-line.gif) no-repeat center bottom
+		#fff;
+	padding: 2px 0;
+	clear: both;
+}
+
+.nav4 .nav-item .nav-item-icon {
+	border: 0;
+	height: 24px;
+	width: 24px;
+	margin: 0 0 0 3px;
+	vertical-align: middle;
+	cursor: pointer;
+	float: left;
+}
+
+.nav4 .nav-item-text{
+	float:left;
+	text-indent: 6px;
+}
+
+/*有2级菜单*/
+.nav4 .nav-item-group {
+	font-weight: bold;
+	line-height: 26px;
+	background: url(../images/bg-arrow-first.gif) no-repeat 3px 5px;
+	cursor: pointer;
+	color: #555;
+	background-color: #E9EFF4;
+	text-indent: 22px;
+	clear: both;
+}
+
+.nav4 .nav-item-group-folded {
+	font-weight: bold;
+	line-height: 26px;
+	background: url(../images/bg-arrow-first2.gif) no-repeat 3px 5px;
+	cursor: pointer;
+	color: #555;
+	background-color: #E9EFF4;
+	text-indent: 22px;
+	clear: both;
+}
+
+.nav4 .nav-item-group .nav-item {
+	color: #336699;
+	font-weight: normal;
+	background-color: #f6f6f6;
+	line-height: 26px;
+	height: 26px;
+	text-indent: 0px;
+	padding: 2px 0;
+	height: 26px;
+}
+.nav4 .nav-item-group .nav-item input {
+	margin: 0 0 0 10px;
+}
+
+/*选中时*/
+.nav4 .nav-item-on, .nav4 .nav-item-group .nav-item-on {
+	background-color: #60A6D8;
+}
+
+/*鼠标划过时*/
+.nav4 .nav-item-over, .nav4 .nav-item-group .nav-item-over {
+	background-color: #E7E7E7;
+}
+
+/*折叠按钮*/
+.nav4 .fold-button-left {
+	margin: 3px 0 4px 120px;
+	background: url(../images/switch-nav.gif) no-repeat center bottom;
+	border: 0;
+	cursor: pointer;
+	height: 17px;
+	width: 22px;
+}
+
+.nav4 .fold-button-right {
+	margin: 2px 0 5px 16px;
+	background: url(../images/switch-nav2.gif) no-repeat center bottom;
+	border: 0;
+	cursor: pointer;
+	height: 17px;
+	width: 22px;
+}
+
+/*快捷新增*/
+.nav4 .quick-menu {
+	color: #555;
+	float:left
+}
+
+.nav4 .quick-menu-icon {
+	border: 0;
+	height: 24px;
+	width: 10px;
+	float: right;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url(../images/ico-arrow-fast-menu.gif) no-repeat right
+		center;
+}
+
+/*最小化导航*/
+.nav4 .nav-min {
+	width: 43px;
+	background: #909fab url(../images/bg-left-nav.gif) no-repeat left top;
+}
+.nav4 .nav-min li {
+	padding: 0 0 0 1px;
+}
+
+/*导航项的图标*/
+.nav4 .worktable {
+	background: url(../images/ico-desktop.gif) no-repeat center bottom;
+}
+
+.nav4 .quick {
+	background: url(../images/ico-fast.gif) no-repeat center bottom
+}

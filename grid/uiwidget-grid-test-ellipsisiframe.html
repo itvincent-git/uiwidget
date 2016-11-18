@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<!-- 
+-->
+<style type="text/css">
+</style>
+</head>
+
+<body >
+<p/><h1>Grid ellipsis</h1><p/>
+<button onclick="load()">load</button>
+<!--<p/><button onclick="modifySelectedRecords()">modifySelectedRecords</button>
+--><!--<div id="grid" style="height:100px;width:30%;border:1px solid #ccc;float:left;"></div>
+-->
+<div id="inner" style="width:100%">
+<!--
+<iframe src="uiwidget-grid-test-ellipsis.html" width="100%" height="500px"></iframe>
+-->
+</div>
+</body>
+<script language="JavaScript">
+	$.ajaxSetup({cache:false});
+	$(function(){
+		load();
+	});
+	function load(){
+		
+		$('#inner').load('uiwidget-grid-test-ellipsis.html');
+		//$.ajax({type: 'GET', url: 'uiwidget-grid-test-ellipsis.html' });
+	}
+</script>
+</html>

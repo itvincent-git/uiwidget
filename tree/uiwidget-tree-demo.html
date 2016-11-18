@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+#button li{
+    display: inline;    
+}
+</style>
+
+</HEAD>
+<body>
+<div id="tree" style="float: left"></div>
+<div><iframe id="content" name="content" height="100px" width="600px" frameborder="1"></iframe></div>
+	<div id="button" style="clear: both;">
+			<ul>
+			<li><button onclick="tree.expandAll()">expandAll</button></li>
+			<li><button onclick="tree.collapseAll()">collapseAll</button></li>
+			<li><button onclick="getCheckedNode()">getCheckedNode</button></li>
+			<li><button onclick="appendNode()">appendNode</button></li>
+			<li><button onclick="setText()">setText</button></li>
+			<li><button onclick="remove()">remove</button></li>
+			<li><button onclick="getSelectedNode()">getSelectedNode</button></li>
+			<li><button onclick="expandSelectedNode()">expandSelectedNode</button></li>
+			<li><button onclick="collapseSelectedNode()">collapseSelectedNode</button></li>
+			<li><button onclick="selectCheckedNode()">selectCheckedNode</button></li>
+			<li><button onclick="disableSelectedNode()">disable</button></li>
+			<li><button onclick="enableCheckedNode()">enable</button></li>
+			<li><button onclick="reloadSelectedNode()">reloadSelectedNode</button></li>
+			<li><button onclick="getRootNode()">getRootNode</button></li>
+			<li><button onclick="reloadAll()">reloadAll</button></li>
+			<li><button onclick="reloadRoot()">reloadRoot</button></li>
+			<li><input type="button" onclick="selectPath()" value="根据路径选择节点"></input></li>
+			<li><input type="button" onclick="destroy()" value="销毁树"></input></li>
+			<li><input type="button" onclick="rebuild()" value="重建树"></input></li>
+			</ul>
+		</div>
+</body>
+<script LANGUAGE="JavaScript">
+var tree;
+$(document).ready(function(){
+	/*
+	tree的data(数据)，必须的字段有id（节点的ID）, text（节点的文字）, leaf（节点是否叶子节点），
+	可选的字段有href（URL链接）, children（子节点）, disabled（是否为不可选择）, title（鼠标划过提示）
+	此外还可以自定义字段，例如type（节点类型）
+	*/ 
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2", disabled : true, children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list1.html?id=21", title:'负责系统分析与设计'}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list1.html?id=22", title:'负责系统程序的研发和修改'}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list1.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list1.html?id=231"}]}
+				]}
+			,{"id":"3","text":"中企动力深圳分公司", "checked":"true", "leaf":false,"href":"list1.html?id=3", children:
+				[{"id":"31","text":"深圳测试部","leaf":true,"href":"list1.html?id=31"}
+				,{"id":"32","text":"深圳互联网开发部","leaf":false,"href":"list1.html?id=32", children:
+					[{"id":"321","text":"深圳互联网开发1部","leaf":true,"href":"list1.html?id=321"}
+					]}
+				,{"id":"33","text":"深圳管理层","leaf":true,"href":"list1.html?id=33"}
+				]}
+			,{"id":"4","text":"中国大地院线公司","leaf":false,"href":"list1.html?id=4", children:
+				[{"id":"41","text":"广州大地","leaf":true,"href":"list1.html?id=41"}
+				]}
+		
+		]}
+		]
+		,hrefTarget : 'content'
+		,contextMenu : [
+			{text: '新增',icon: 'images/page.gif'
+			,handler: function(e){
+				var node = tree.getSelectedNode();
+				alert( '新增');
+			}}
+			,{text: '修改',icon: 'images/page.gif'
+			,handler: function(e){
+				var node = tree.getSelectedNode();
+				alert( '修改,选择的ID = ' + node.data.id);
+			}}
+			,{text: '查看',icon: 'images/page.gif'
+				,handler: function(e){
+					var node = tree.getSelectedNode();
+					alert( '查看,选择的text = ' + node.data.text);
+				}
+				,menu:[{text: '查看-1',icon: 'images/page.gif'
+					,handler: function(e){
+						var node = tree.getSelectedNode();
+						alert( '查看,选择的text = ' + node.data.text);
+					}}
+					,{text: '查看-2',icon: 'images/page.gif'
+					,handler: function(e){
+						var node = tree.getSelectedNode();
+						alert( '查看,选择的text = ' + node.data.text);
+					}}
+					,{text: '查看-3',icon: 'images/page.gif'
+					,handler: function(e){
+						var node = tree.getSelectedNode();
+						alert( '查看,选择的text = ' + node.data.text);
+					}}
+				]
+			}
+			]
+		//,autoExpandRoot : false//是否展开根节点，默认为true	
+		//,showIcons : false//是否显示节点图标	
+	});
+	
+});
+function reloadRoot(){
+	tree.getContainerNode().reload();
+	tree.expandRoot();
+}
+function getCheckedNode(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		alert(this.data.text);
+	});
+}
+function appendNode(){
+	var node = new $.uiwidget.TreeNode({
+					data : {"id":"41","text":"广州大地","leaf":true,"href":"list1.html?id=41"}
+					,tree : tree
+				});
+	tree.getSelectedNode().appendChild(node);
+	tree.getSelectedNode().expand();
+	
+}
+function setText(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		this.setText('修改的名称');
+	});
+}
+function remove(){
+	tree.getSelectedNode().remove();
+}
+function getSelectedNode(){
+	alert(tree.getSelectedNode().data.text);
+}
+function expandSelectedNode(){
+	tree.getSelectedNode().expand();
+}
+function collapseSelectedNode(){
+	tree.getSelectedNode().collapse();
+}
+function selectCheckedNode(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		this.select();
+	});
+}
+function disableSelectedNode(){
+	tree.getSelectedNode().disable();
+}
+function enableCheckedNode(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		this.enable();
+	});
+}
+function reloadSelectedNode(){
+	tree.getSelectedNode().reload();
+}
+function getRootNode(){
+	alert(tree.getRootNode().length);
+}
+function reloadAll(){
+	tree.getContainerNode().reload();
+	tree.expandRoot();
+}
+
+function selectPath(){
+	tree.selectPath("1/2/22");	
+}
+
+function destroy(){
+	tree.destroy();
+}
+
+function rebuild(){
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2", children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list1.html?id=21", title:'负责系统分析与设计'}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list1.html?id=22", title:'负责系统程序的研发和修改'}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list1.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list1.html?id=231", "disabled":true, "checked":"false"}]}
+				]
+			}
+			]
+		}
+		]
+	});
+}
+</script>
+</HTML>

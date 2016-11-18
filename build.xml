@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uiwidget" default="deploy" basedir=".">
+	<property name="package-dir" value="${basedir}/package/">
+	</property>
+	<tstamp>
+		<format property="myDate" pattern="yyyy-MM-dd-HH.mm" unit="hour" />
+	</tstamp>
+	<target name="package">
+		<zip basedir="${basedir}/" destfile="${package-dir}/uiwidget-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+			<exclude name="validator2" />
+		</zip>
+	</target>
+	<target name="package-grid">
+		<zip basedir="${basedir}/grid/" destfile="${package-dir}/uiwidget-grid-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-grid3">
+			<zip basedir="${basedir}/grid3/" destfile="${package-dir}/uiwidget-grid3-${myDate}.rar" encoding="GBK">
+				<include name="**/*.html" />
+				<include name="**/*.jpg" />
+				<include name="**/*.png" />
+				<include name="**/*.css" />
+				<include name="**/*.gif" />
+				<include name="**/*.min.js" />
+				<include name="**/*.doc" />
+				<include name="**/*.json" />
+				<include name="**/*.txt" />
+
+				<exclude name="**/*.jar" />
+				<exclude name="**/*test*.html" />
+				<exclude name="**/*.xml" />
+				<exclude name="**/*.project" />
+			</zip>
+	</target>
+	<target name="package-tab">
+		<zip basedir="${basedir}/tab/" destfile="${package-dir}/uiwidget-tab-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-editor">
+		<zip basedir="${basedir}/editor/" destfile="${package-dir}/uiwidget-editor-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+
+	<target name="package-tree">
+		<zip basedir="${basedir}/tree/" destfile="${package-dir}/uiwidget-tree-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-menu">
+		<zip basedir="${basedir}/menu/" destfile="${package-dir}/uiwidget-menu-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-messagebox">
+		<zip basedir="${basedir}/messagebox/" destfile="${package-dir}/uiwidget-messagebox-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-page">
+		<zip basedir="${basedir}/page/" destfile="${package-dir}/uiwidget-page-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-tip">
+		<zip basedir="${basedir}/tip/" destfile="${package-dir}/uiwidget-tip-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+	<target name="package-validator2">
+		<zip basedir="${basedir}/validator2/" destfile="${package-dir}/uiwidget-validator2-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+
+	<target name="package-combobox">
+		<zip basedir="${basedir}/combobox/" destfile="${package-dir}/uiwidget-combobox-${myDate}.rar" encoding="GBK">
+			<include name="**/*.html" />
+			<include name="**/*.jpg" />
+			<include name="**/*.png" />
+			<include name="**/*.css" />
+			<include name="**/*.gif" />
+			<include name="**/*.min.js" />
+			<include name="**/*.doc" />
+			<include name="**/*.json" />
+			<include name="**/*.txt" />
+
+			<exclude name="**/*.jar" />
+			<exclude name="**/*test*.html" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.project" />
+		</zip>
+	</target>
+
+	<target name="deploy" depends="undeploy, package">
+	</target>
+	<target name="package-all">
+		<zip basedir="${basedir}/" destfile="${package-dir}/uiwidget-all-${myDate}.rar" encoding="GBK">
+			<include name="**/*.*" />
+			<exclude name="**/*.rar" />
+		</zip>
+	</target>
+	<target name="deploy-all" depends="undeploy-all, package-all">
+	</target>
+	<target name="undeploy">
+		<delete file="${package-dir}/uiwidget-${myDate}.rar" />
+	</target>
+	<target name="undeploy-all">
+		<delete file="${package-dir}/uiwidget-all-${myDate}.rar" />
+	</target>
+
+	<target name="compress-editor">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js editor/uiwidget-editor.js" />
+			<arg line="--js_output_file editor/uiwidget-editor.min.js" />
+		</java>
+	</target>
+
+	<target name="compress-grid">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js grid/uiwidget-grid.js" />
+			<arg line="--js_output_file grid/uiwidget-grid.min.js" />
+		</java>
+	</target>
+	
+	<target name="compress-grid3">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js grid3/uiwidget-grid.js" />
+			<arg line="--js_output_file grid3/uiwidget-grid.min.js" />
+		</java>
+	</target>
+
+	<target name="compress-res-pagetoolbar">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js res-pagetoolbar/res-pagetoolbar.js" />
+			<arg line="--js_output_file res-pagetoolbar/res-pagetoolbar.min.js" />
+		</java>
+	</target>
+
+	<target name="compress-tree">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js tree/uiwidget-tree.js" />
+			<arg line="--js_output_file tree/uiwidget-tree.min.js" />
+		</java>
+	</target>
+
+	<target name="compress-tab">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js tab/uiwidget-tab.js" />
+			<arg line="--js_output_file tab/uiwidget-tab.min.js" />
+		</java>
+	</target>
+
+	<target name="compress-base">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js base/uiwidget-base.js" />
+			<arg line="--js_output_file base/uiwidget-base.min.js" />
+		</java>
+	</target>
+
+	<target name="compress-combobox">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js combobox/uiwidget-combobox.js" />
+			<arg line="--js_output_file combobox/uiwidget-combobox.min.js" />
+		</java>
+	</target>
+	<target name="compress-menu">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js menu/uiwidget-menu.js" />
+			<arg line="--js_output_file menu/uiwidget-menu.min.js" />
+		</java>
+	</target>
+	<target name="compress-page">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js page/uiwidget-page.js" />
+			<arg line="--js_output_file page/uiwidget-page.min.js" />
+		</java>
+	</target>
+	<target name="compress-messagebox">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js messagebox/uiwidget-messagebox.js" />
+			<arg line="--js_output_file messagebox/uiwidget-messagebox.min.js" />
+		</java>
+	</target>
+	<target name="compress-validator">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js validator/uiwidget-validator.js" />
+			<arg line="--js_output_file validator/uiwidget-validator.min.js" />
+		</java>
+	</target>
+	<target name="compress-history">
+		<java jar="compiler.jar" fork="true">
+			<arg line="--js jquery.history/jquery.history.js" />
+			<arg line="--js_output_file jquery.history/jquery.history.min.js" />
+		</java>
+	</target>
+</project>
+

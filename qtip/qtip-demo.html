@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Test </title>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="jquery.qtip-1.0.0-rc3.min.js"></script>
+<script type="text/javascript">
+// Create the tooltips only on document load
+$(document).ready(function() 
+{
+   // Match all link elements with href attributes within the content div
+   /* $('#content a[href]').qtip(
+   {
+      content: 'Some basic content for the tooltip' // Give it some content, in this case a simple string
+   }); */
+   
+   $('#content a[href][title]').qtip({
+	      content: {
+	         text: false // Use each elements title attribute
+	      },
+	      style: 'cream' // Give it some style
+	   });
+});
+</script>
+</head>
+
+<body>
+<div id="content">
+	<a href="" title="demo title">demo</a>
+</div>
+</body>
+</html>

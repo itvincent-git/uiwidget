@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<!--<script type="text/javascript" src="../page/uiwidget-page.js"></script>
+<script type="text/javascript" src="E:/AJAX/firebug-lite-compressed.js"></script>
+--><style type="text/css">
+</style>
+<script LANGUAGE="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+		//默认打开的标签（按序号）
+        initActiveTab: 0
+      	//默认打开的标签（按标签id）
+      	//initActiveTab : 'b'
+        ,height : 300
+        //,ajaxLoadPage : true
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'a'}
+            ,{href:'page.html?name=tab2', text: '客户信息', id:'b', closeable:true,
+            	onActivate : function(e, tab, activateItem, tabHeader, tabContent){
+        			$.debug('activate = '+ activateItem.text);
+        		}
+        	}
+            ,{href:'page.html?name=tab3', text: '其它信息123123123', id:'c', closeable:true,
+            	onDeactivate : function(e, tab, deactivateItem, tabHeader, tabContent){
+            		$.debug('deactivate	=' + deactivateItem.text);
+            	}
+            }
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'d',
+            	beforeActivate : function(e, tab, item, tabHeader, tabContent){
+            		$.debug('beforeActivate	=' + item.text);
+            	}
+            }
+            ,{href:'page.html?name=tab5', text: '其它信息5', id:'e'}
+            ,{href:'page.html?name=tab6', text: '其它信息6', id:'f'}
+            /*,{href:'page.html?name=new1', text: '最新信息1'}
+            ,{href:'page.html?name=new2', text: '最新信息2'}
+            ,{href:'page.html?name=new3', text: '最新信息3'}
+            ,{href:'page.html?name=new4', text: '最新信息4'}
+            ,{href:'page.html?name=new5', text: '最新信息5'}
+            ,{href:'page.html?name=new6', text: '最新信息6'}
+            ,{href:'page.html?name=new7', text: '最新信息7'}
+            ,{href:'page.html?name=new8', text: '最新信息8'}
+            ,{href:'page.html?name=new9', text: '最新信息9'}
+            ,{href:'page.html?name=new10', text: '最新信息10'}
+            ,{href:'page.html?name=new11', text: '最新信息11'}*/
+            
+            /*{html:'1', text: '1', id:'tab1'}
+            ,{html:'2', text: '2', id:'tab2'}
+            ,{html:'3', text: '3', id:'tab3'}*/
+            /*,{href:'http://www.google.cn', text:'google', id:'google'}
+            ,{href:'http://www.baidu.com', text:'baidu', id:'baidu'}
+            ,{href:'http://bugzilla.gzyf.net/ce-bug/index.cgi', text:'bugzilla', id:'bugzilla'}
+            */
+        ]
+        ,onTabChange : function(e, oldItem, newItem, tabHeader, tabContent){
+        	//$.debug('oldItem = '+ oldItem.text);
+        	//$.debug('newItem = '+ newItem.text);
+       	}
+       	,onTabClose : function(e, closeItem){
+       		$.debug('onTabClose = ' +  closeItem.text);
+       	}
+	});	
+});
+
+
+function aa(){
+	var activeItem = tab.getActiveItem();
+	var iframe = tab.getContentIframe(activeItem.id);
+	iframe.resizeIframe();
+	
+}
+
+//新标签（加在'客户信息'后）
+function addItemAfter(){
+	//position可以为before,after，表示加在tab的前或后
+	//id， 表示目标id的标签
+	tab.addItem({text:'新的标签', href:'page.html?name=newTab'}, {position:'after', id:'b'})
+}
+
+//替换标签
+function replaceTab(){
+	tab.addItem({text:'新的标签', href:'page.html?name=newTab'}, {position:'after', id:'c'})
+	tab.closeTab('c');
+}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab</p><p/>
+<div id="tabs"></div>
+<button onclick="tab.addItem({text:'新的标签', href:'page.html?name=newTab'})">新标签</button>
+<button onclick="tab.activeTab({id : 'c'})">激活标签</button>
+<button onclick="aa()">得到"其它信息4"下的iframe</button>
+<button onclick="tab.closeTab('f');$.debug(tab.getItems().length);">关闭'其它信息6'标签</button>
+<button onclick="addItemAfter()">新标签（加在'客户信息'后）</button>
+<button onclick="replaceTab()">替换'其它信息'标签</button>
+<input type="button" onclick="tab.reloadTab('a');" value="刷新房屋信息"/>
+<input type="button" onclick="tab.setClosable('a', true);" value="设置“客户信息”可关闭"/>
+<input type="button" onclick="tab.setClosable('a', false);" value="设置“客户信息”不可关闭"/>
+<input type="button" onclick="tab.addContentTab({id : 'b', href:'page3.html', refresh : true});" value="tab已经存在，则激活此tab,并刷新"/>
+<input type="button" onclick="$.debug(tab.getActiveContent().length)" value="取得激活的tab content"/>
+<input type="button" onclick="tab.closeActiveTab()" value="关闭当前tab"/>
+</body>
+</html>

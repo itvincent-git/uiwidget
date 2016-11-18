@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid EditGrid</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../editor/css/uiwidget-editor.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script type="text/javascript" src="../editor/uiwidget-editor.min.js"></script>
+
+<style type="text/css">
+#grid .grid-cell-remark, #grid .grid-cell-time{
+	border-left: 0px solid #C3D6DD;
+}
+
+.time-select{
+	height:25px;line-height:25px;vertical-align:middle;font-size: 14px;
+}
+
+#grid .grid-cm-remark{text-align: right;}
+
+</style>
+<script language="JavaScript">
+var grid, grid2;
+/*
+ * 编辑器editor支持事件：
+ * startEdit，beforeComplete，onComplete，onCancel
+ */
+$(document).ready(function(){
+	var selectbox = '<select class="time-select"><option value=" ">请选择</option><option value="上午">上午</option><option value="下午">下午</option><option value="晚上">晚上</option></select>';
+	grid = $('#grid').grid({
+		sm : new $.uiwidget.EditCellSelectionModel(),
+		cm : [{checkbox:true}, {header: "类型", dataIndex: 'name', width:'20%'}
+			, {header: "时间", dataIndex: 'time', width:'30%', icon: 'images/ico-edit-grid.gif', editor : {html: selectbox/*'<input type="text"/>'*/}}
+			, {header: "备注", dataIndex: 'remark', icon: 'images/ico-edit-grid.gif', editor : 
+				{html:'<input type="text"/>'
+					,onComplete : function(e, editor)
+					{										
+					}
+			  	}
+			  }
+			]
+		,data : {"totalCount":17, "result":[{id:"1", name : "张三", time:"上午", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"下午", remark : "2009-01-02"}, {id:"3", name : "王五", time:"晚上", remark : ""}, {id:"4", name : "周六", remark : "1"}, {id:"4", name : "周六", remark : "2"}, {id:"4", name : "周六", remark : "3"}, {id:"4", name : "周六", remark : "4"}, {id:"4", name : "周六", remark : "5"}, {id:"4", name : "周六", remark : "6"}, {id:"4", name : "周六", remark : "7"}, {id:"4", name : "周六", remark : "8"}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		]}
+	});
+	
+	grid2 = $('#grid2').grid({
+		sm : new $.uiwidget.EditCellSelectionModel(),
+		cm : [{checkbox:true}, {header: "类型", dataIndex: 'name', width:'20%'}
+			, {header: "时间", dataIndex: 'time', width:'30%', iconCls: 'grid-header-edit-icon',editor : {html: selectbox/*'<input type="text"/>'*/}}
+			, {header: "备注", dataIndex: 'remark', iconCls: 'grid-header-edit-icon', editor : 
+				{html:'<input type="text"/>'
+					,onComplete : function(e, editor)
+					{
+					}
+			  	}
+			  }
+			]
+		,data : {"totalCount":17, "result":[{id:"1", name : "张三", time:"上午", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"下午", remark : "2009-01-02"}, {id:"3", name : "王五", time:"晚上", remark : ""}, {id:"4", name : "周六", remark : "1"}, {id:"4", name : "周六", remark : "2"}, {id:"4", name : "周六", remark : "3"}, {id:"4", name : "周六", remark : "4"}, {id:"4", name : "周六", remark : "5"}, {id:"4", name : "周六", remark : "6"}, {id:"4", name : "周六", remark : "7"}, {id:"4", name : "周六", remark : "8"}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		]}
+		,beforeCellSelect : function(e, grid, cell){
+			alert("beforeCellSelect = " + cell);
+		}
+		,cellSelect : function(e, grid, cell){
+			alert("cellSelect = " + cell);
+		}
+		,cellDblclick : function(e, grid, cell){
+			var selections = grid.sm.getCellSelections();
+			if(selections[0]){
+				alert("数据data=" + selections[0].result);
+				alert("行序号=" + selections[0].rowIndex);
+				alert("列序号=" + selections[0].colIndex);
+				alert("数值=" + selections[0].value);
+			}
+		}
+	});
+});
+
+function getData(){
+	var result = grid.getResult();
+	for(var i = 0; i < result.length ; i++){
+		alert('i = ' + i + ' , time = '  + result[i].time + ', remark = ' + result[i].remark);
+	}
+}
+
+function printSelections(){
+	var ss = grid.getSelections();
+	for(var i = 0; i < ss.length; i++){
+		alert(ss[i].name);
+	}
+}
+</script>
+</head>
+
+<body >
+<p/><h1>Grid EditGrid </h1><p/>
+<div id="grid" style="height:100%;width:80%"></div>
+<p/>
+<input type="button" onclick="grid.appendRow({id:'1', name : '张三', time:'', remark:'abc'});" value="添加一行"/>
+<input type="button" onclick="grid.removeRow(grid.sm.getSelectedIndexs()[0]);" value="删除选择"></input>
+<input type="button" onclick="getData();" value="打印全部数据"></input>
+<input type="button" onclick="grid.sm.selectCell(2,2)" value="选择第3行，第3格"></input>
+<button onclick="grid.sm.selectRow(0)">选择第1行</button>
+<button onclick="grid.sm.deselectRow(0)">取消选择第1行</button>
+<button onclick="grid.sm.selectRow(1, true)">选择第2行（保持原有选择）</button>
+<button onclick="grid.sm.deselectRow(1, true)">取消选择第2行（保持原有选择）</button>
+<button onclick="alert(grid.sm.getSelectedIndexs().length)">所选行的数量</button>
+<button onclick="alert(grid.sm.getSelectedIndexs())">所选行的序号</button>
+<button onclick="alert(grid.sm.hasSelection())">是否已有选择的行</button>
+<input type="button" onclick="grid.reload()" value="刷新"></input>
+<input type="button" onclick="grid.scrollToRow(16)" value="滚动条 17行"></input>
+<input type="button" onclick="grid.scrollToRow(0)" value="滚动条 1行"></input>
+<button onclick="printSelections()">打印所选数据</button>
+
+<p/><h1>Grid EditGrid event</h1>
+<div id="grid2" style="height:100%;width:80%"></div>
+<p/>
+</body>
+</html>

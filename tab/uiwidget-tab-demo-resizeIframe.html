@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab resizeIframe</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.min.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height: 300
+        ,items:[
+        	{href:'page.html?name=tab1', text: '标签1', id:'a'}
+        	,{href:'page2.html', text: '标签2', id :'b'}
+        ]
+       	,onTabChange : function(e, oldItem, newItem, tabHeader, tabContent, tabIframe, tab){
+        	tabIframe.load(function(){
+        		//根据页面内容设置iframe高度,offsetHeight表示在原有内容的高度上再附加的高度
+        		$(this).resizeIframe({offsetHeight:20});
+        	});
+       	}
+	});
+	
+});
+//如果增加了内容,通过下面的方法可以取得iframe并刷新高度
+function resizeIframe(){
+	tab.getIframeById('b').resizeIframe({offsetHeight:20});
+}
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab resizeIframe</p><p/>
+<div id="tabs"></div>
+</body>
+</HTML>

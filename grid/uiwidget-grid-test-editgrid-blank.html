@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid EditGrid</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<link style="text/css" rel="stylesheet" href="../editor/css/uiwidget-editor.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<script type="text/javascript" src="../editor/uiwidget-editor.js"></script>
+
+<style type="text/css">
+#grid .grid-cell-remark, #grid .grid-cell-time{
+	border-left: 1px solid #C3D6DD;
+}
+
+.time-select{
+	height:25px;line-height:25px;vertical-align:middle;font-size: 14px;
+}
+body{
+	margin: 0px;padding: 0px;
+}
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	var selectbox = '<select class="time-select"><option value=" ">请选择</option><option value="上午">上午</option><option value="下午">下午</option><option value="晚上">晚上</option></select>';
+	grid = $('#grid').grid({
+		sm : new $.uiwidget.EditCellSelectionModel()
+		,cm : [{header: "转正类型", dataIndex: 'name', width:'20%'}
+			, {header: "时间", dataIndex: 'time', width:'30%', editor : selectbox}
+			, {header: "备注", dataIndex: 'remark', editor : '<input type="text"/>'}
+			]
+		,data : {"totalCount":15, "result":[]}
+		,onCellDblclick : function(grid, target){
+			var selections = grid.getSelections();
+			$.info(selections[0].value);
+		}
+		,contextMenu : [
+			{text: '新增',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				$.info( '新增列序号 = ' + selections[0].colIndex);
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				$.info( '修改,选择的ID = ' + selections[0].result.id);
+			}}
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					$.info( '查看数量 = ' + selections.length);
+				}
+			}]	
+	});
+});
+
+function appendRow(){
+	grid.appendRow([{id:"1", name : "张三", time:"23:32:22选择选择选择选择选择选择选择选择选择", remark:"abc"}]); 
+}
+function removeRow(){
+	grid.removeRow(grid.getSelectedRow());
+}
+function getData(){
+	var result = grid.getResult();
+	for(var i = 0; i < result.length ; i++){
+		$.debug('i = ' + i + ' | '  + result[i].remark);
+	}
+}
+</script>
+</head>
+
+<body >
+<p/><h1>Grid EditGrid </h1><p/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<p/>
+<button onclick="appendRow();">appendRow</button>
+<button onclick="removeRow();">removeRow</button>
+<button onclick="getData();">getData</button>
+可键盘导航
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid pageSizeList</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+.grid-header-salary span{
+	text-align: center;
+}
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+grid = $('#grid').grid({
+		pageSize : 30
+		,url : 'http://localhost:8080/hr/system/bizLog.do?method=paging'
+		,cm : [{checkbox : true},
+        {
+           	header: "操作人",
+           	dataIndex: 'operator'
+           	,width: '10%'
+        }
+        ,{
+          	header: "操作IP",
+           	dataIndex: 'clientAddress'
+           	,width:'10%'
+        }
+        ,{
+          	header: "业务类型",
+           	dataIndex: 'bizType'
+           	,width:'10%'
+        }
+        ,{
+          	header: "操作内容",
+           	dataIndex: 'bizDescription'
+           	,sortable: false
+           	,width:'20%'
+        }
+        ,{
+          	header: "操作状态",
+           	dataIndex: 'bizOperationResult'
+           	,renderer : function(value, metadata, record, rowIndex, colIndex, store){
+           		if(value =='SUCCESS'){
+           			return '成功';
+           		}
+           		else if(value =='FAILTURE'){
+           			return '失败';
+           		}
+           	}
+           ,width:'10%'
+        }
+        ,{
+          	header: "操作备注",
+           	dataIndex: 'exceptionMessage'
+           	,sortable: false
+           	,width:'20%'
+        }
+        ,{
+          	header: "操作时间",
+           	dataIndex: 'operatingTime'
+           ,width:'20%'
+        }
+        ]
+        ,pageSizeList:[15, 30, 50, 100]
+	});
+});
+</script>
+</head>
+<body>
+<h1>Grid pageSizeList</h1>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+<!---->
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,viewConfig : {horizontalScroll : true}
+		,cm : [{checkbox : true}
+			, {header: "转正类型名称转正类型名称转正类型名称转正类型名称", dataIndex: 'name', width:'100px'}
+			, {header: "时间ab时间ab时间ab时间ab时间ab时间ab时间ab", dataIndex: 'time', width:'100px'}
+			, {header: "remark remark remark remark remark remark r", dataIndex: 'remark', width:'100px'}
+			, {sortable: false, header: "remark remark remark remark k", dataIndex: 'remark', width:'100px'}
+			, {header: "remark", dataIndex: 'remark', width:'100px'}
+			]
+		,data : {"totalCount":2, "result":[{id:"1", name : "张三张三张三张三张三张三张三张三张三张三", time:"23:32:22-23:32:22-23:32:22-", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"23:32:22", remark : "2009-01-02"}, {id:"3", name : "王五", time:"23:32:22", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}]}
+	});
+
+	//var i = '100px'.indexOf('px');
+	//alert(i);
+	//alert('100px'.substring(0,i));
+});
+
+function modifySelectedRecords(){
+	grid.modifySelectedRecords([{id:"2$$$", name : "李四李四李四李四李四李四李四李四李四李四李四李四李四李四", remark : "2009-01-022009-01-022009-01-022009-01-022009-01-022009-01-02"}]);
+}
+</script>
+</head>
+
+<body >
+<p/><h1>Grid ellipsis</h1><p/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<p/><button onclick="modifySelectedRecords()">modifySelectedRecords</button>
+
+<div class="grid-container">
+<div class="grid-main-wrap">
+<div class="grid-mainhead-wrap">
+<div class="grid-mainhead-scroller">
+<table cellspacing="0" cellpadding="0" class="grid-main"><thead><tr><th unselectable="on"><input type="checkbox" class="grid-header-checkbox"></th><td class="grid-cm-name grid-header-name" style="width: 100px;"><span unselectable="on" title="转正类型名称转正类型名称转正类型名称转正类型名称" class="grid-title-line">转正类型名称转正类型名称转正类型名称转正类型名称</span></td><td class="grid-cm-time grid-header-time" style="width: 100px;"><span unselectable="on" title="时间ab时间ab时间ab时间ab时间ab时间ab时间ab" class="grid-title-line">时间ab时间ab时间ab时间ab时间ab时间ab时间ab</span></td><td class="grid-cm-remark grid-header-remark" style="width: 100px;"><span unselectable="on" title="remark remark remark remark remark remark r" class="grid-title-line">remark remark remark remark remark remark r</span></td><td class="grid-cm-remark grid-header-remark" style="width: 100px;"><span unselectable="on" title="remark remark remark remark k" class="grid-title-line">remark remark remark remark k</span></td><td class="grid-cm-remark grid-header-remark" style="width: 100px;"><span unselectable="on" title="remark" class="grid-title-line">remark</span></td></tr></thead></table>
+</div>
+</div>
+</div>
+</div>
+<p/>
+<table cellspacing="0" cellpadding="0" class="grid-main" style="width:500px"><thead><tr><th unselectable="on"><input type="checkbox" class="grid-header-checkbox"></th><td class="grid-cm-name grid-header-name" style="width: 10%;"><span unselectable="on" title="转正类型名称转正类型名称转正类型名称转正类型名称" class="grid-title-line">转正类型名称转正类型名称转正类型名称转正类型名称</span></td><td class="grid-cm-time grid-header-time" style="width: 10%;"><span unselectable="on" title="时间ab时间ab时间ab时间ab时间ab时间ab时间ab" class="grid-title-line">时间ab时间ab时间ab时间ab时间ab时间ab时间ab</span></td><td class="grid-cm-remark grid-header-remark" style="width: 10%;"><span unselectable="on" title="remark remark remark remark remark remark r" class="grid-title-line">remark remark remark remark remark remark r</span></td><td class="grid-cm-remark grid-header-remark" style="width: 10%;"><span unselectable="on" title="remark remark remark remark k" class="grid-title-line">remark remark remark remark k</span></td><td class="grid-cm-remark grid-header-remark" style=""><span unselectable="on" title="remark" class="grid-title-line">remark</span></td></tr></thead></table>
+</body>
+</html>

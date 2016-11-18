@@ -1,0 +1,111 @@
+body {
+	font-size:12px;
+}
+a:active {
+	outline:none;
+blr:expression(this.onFocus = this.blur());
+}
+a:focus {
+	outline:none;
+	-moz-outline:none;
+}
+#wBox {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:100;
+}
+#wBox .wBox_popup {
+	position:relative;
+}
+.wbox {
+	border:none;
+	top:0;
+	left:0;
+	position:relative;
+}
+.wbox-header {
+	height:37px;
+}
+.wbox-header .left, .wbox-header .right {
+	width:10px;
+	height:37px;
+	background: url(../../../images/public/background/window-leftcorners.png) no-repeat 0 0;
+}
+.wbox-header .right {
+	background: url(../../../images/public/background/window-rightcorners.png) no-repeat 0 0;
+}
+.wbox-header .mid {
+	height:37px;
+	color:#fff;
+	background: url(../../../images/public/background/window-topbottom.png) repeat-x top;
+}
+.wbox-header .mid span {
+	font-weight:bold;
+	line-height:37px;
+	text-indent:25px;
+	margin-left:3px;
+	float:left;
+	background: url(../../../images/public/window-logo.gif) no-repeat left center;
+}
+.wbox-header .mid .wBox_close {
+	width:38px;
+	height:30px;
+	position:absolute;
+	top:5px;
+	right:5px;
+	background:url(../../../images/public/window-close.gif) no-repeat 0 0;
+}
+.wbox-header .mid .on {
+	background: url(../../../images/public/window-close-over.gif) no-repeat 0 0;
+}
+.wbox-body .left, .wbox-body .right {
+	width:10px;
+	background:url(../../../images/public/background/window-leftcorners.png) no-repeat 0 -37px;
+}
+.wbox-body .right {
+	background:url(../../../images/public/background/window-rightcorners.png) no-repeat 0 -37px;
+}
+.wbox-bottom .left, .wbox-bottom .right {
+	width:10px;
+	height:13px;
+	background: url(../../../images/public/background/window-leftcorners.png) no-repeat 0 -515px;
+}
+.wbox-bottom .right {
+	background: url(../../../images/public/background/window-rightcorners.png) no-repeat 0 -515px;
+}
+.wbox-bottom .mid {
+	height:13px;
+	background: url(../../../images/public/background/window-topbottom.png) repeat-x 0 -515px;
+}
+#wBox_overlay {
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+#wBox_overlay iframe {
+	display:none;
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	filter:mask();
+	width:100%;
+	height:100%;
+}
+.wBox_overlayBG {
+	background-color:#000;
+	z-index:99;
+}
+.wBox_hide {
+	z-index:-100;
+}
+.processbar {
+	background-color:#eee;
+	overflow:hidden;
+	height:40px;
+	padding-top:10px;
+}

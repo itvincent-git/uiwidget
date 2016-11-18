@@ -1,0 +1,67 @@
+/*菜单*/
+.uiwidget-menu{
+   background-color:#ebf7fb;
+   border:1px solid #8dc7dc;
+   position: absolute;
+   z-index: 100001;
+   display:none;
+}
+span,div{
+	font-family: "宋体", Arial, Verdana;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	text-decoration: none;
+	white-space: normal;
+}
+.uiwidget-menu ul,.uiwidget-menu li{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+.uiwidget-menu ul{
+    padding:1px;
+}
+.uiwidget-menu .uiwidget-menu-item{
+	display:block;
+	cursor: pointer;
+	padding:4px;
+}
+.uiwidget-menu .uiwidget-menu-item-disabled{	
+	-moz-opacity:0.3;
+	opacity:.3;
+	filter:alpha(opacity = 30);
+}
+.uiwidget-menu-item-icon{
+	border: 0 none;
+	height: 16px;
+	padding: 0;
+	vertical-align: middle;
+	width: 16px;
+    background-position:center;
+}
+.uiwidget-menu .uiwidget-menuitem-hover{
+	border:1px solid #FFC740;
+	background-color:#FFEFA7;
+	padding:3px;
+}
+/*分隔线*/
+.uiwidget-menu-line{
+	height:5px;
+	font-size:1px;
+	line-height:5px;
+	padding:0;
+	background:url(../images/bg-drogdown-menu-line.gif) repeat-x center center;
+}
+/*下级箭头*/
+.uiwidget-menu-arrow{
+	background: url(../images/img-arrow-right.gif) no-repeat right center;
+}
+/*遮罩*/
+.uiwidget-menu-ghost{
+   position: absolute;
+   z-index: 100000;
+   display:none;
+}

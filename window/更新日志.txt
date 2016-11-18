@@ -1,0 +1,116 @@
+2007-11-15 1.0beta1
+Div弹出窗口试用
+
+2007-11-17 1.0beta2
+1.修改完善样式表
+2.修正文档中导入文件的说明
+3.加入window.html例子
+
+2007-11-19 1.0beta2修改
+1.修改说明:如果系统是嵌套在<frame>或<iframe>当中的，
+只要在最外层的框架中导入以上的文件，这样在子框架中有
+弹出窗口的页面则只需要导入以下的1个js文件,没有弹出窗
+口的页面不需要导入。
+
+2007-11-20 1.0beta3
+1.增加windowResize方法,改变div弹出窗口大小方法,用于上一步和下一步操作使用
+	/**
+	 * 改变div弹出窗口大小方法,用于上一步和下一步操作使用
+	 * @param winId 要改变大小的窗口id
+	 * @param heigth 窗口高度
+	 * @param width 窗口宽度
+	 */
+	var windowResize = function(winId, height, width){}
+
+2007-11-28 1.0beta4
+1.更正几个css样式的问题
+2.调整了几个js的性能
+3.去掉按esc键关闭窗口的功能,以防误操作
+
+2007-12-10 1.0beta5
+1.解决iframe打开太多引起的潜在问题
+
+2007-12-18 1.1beta1
+重要改动:
+
+此次改变目的是简化使用方法：
+打开窗口:windowOpen('test.html', 'testWin', '标题', 300, 400);
+关闭窗口:windowClose();
+改变窗口大小:windowResize(400,500);
+
+1.弹出的窗口*不需要*再导入window.js
+
+2.原来的windowClose,windowResize方法需要传入winId参数,现在已*不需要*再传入
+
+3.windowOpen方法参数由0-7个,一般简便使用只要*前五个参数*,如:
+windowOpen('test.do',  'testWin', '测试标题', 500, 400)
+此打开窗口默认为模态窗口模式,窗口里嵌套的iframe.id是testWinIfm
+
+4.除了最外层添加几个js之外,其他页面*不要添加*,如有新增、修改按钮的页面可使用top.windowOpen(....)
+来调用最外层框架的方法,在弹出的窗口中再弹出窗口则只需要windowOpen(...)
+
+5.强烈建议更改到最新的API格式,后续版本旧API将不提供支持
+如出现错误,请删除主页面外的页面中引用的本组件js文件：
+使用eclipse> Search >File Search > 搜索条件window.js, 搜索文件*.html, *.jsp
+
+6.文件路径关系请勿变动,请以组件包的方式使用此工具,以免修改路径后发生错误
+
+7.新增forwardAndResize(url, height, width)，作用相当于转跳页面然后改变窗口大小
+
+8.新增backAndResize(height, width),相当于浏览器的history.back()功能然后改变窗口大小
+
+9.新增common.js文件中,有一方法findFrame(需要查找的iframe的名称或id),根据frame的id或name查找frame对象
+
+2007-12-26 1.1beta2
+1.更正了一个提交表单后无法关闭窗口的问题
+
+2008-01-10 1.1rc1
+1.优化了一个弹出页面的方法性能
+2.修正了一个common.js findFrame方法的BUG
+
+2008-01-21 1.1stable1
+1.修正了一个modal判定的错误
+
+2008-01-25 1.1stable2
+1.修正了一个框架中mask无法回收的bug
+2.优化了加载div的性能
+解决长时间大量打开窗口后,导致内存占用过高的问题
+
+2008-01-29 1.1stable3
+1.修正了forwardAndResize,backAndResize两个方法无法改变大小的问题
+
+2008-01-31 1.1patch1
+1.修正了关闭非前面窗口时,导致当前窗口也关闭的错误
+
+2008-7-4 1.2beta1
+1.2第一个beta版
+windowOpen(url,winId,title,heigh,width)的参数改为:
+windowOpen({
+    		url:'newpage.html'
+    		,winId:'newId'
+    		,winTitle:'newTitle'
+    		,winHeight:300
+    		,winWidth:400    		
+    	});
+对原方式保持兼容,但以后新增参数只提供新的方式
+1.加入读取页面时出现加载中的提示
+2.加入showMask(),hideMask()方法,用于页面跳转和保存时显示和隐藏加载中的提示
+3.增加是否可最大化,是否可改变大小,是否可移动的参数
+
+2008-10-8 1.2beta2
+1.处理了ff3下调用iframe对象后不能删除,残留在DOM中导致不能调用新iframe的问题
+2.移除了读取页面时出现加载中的提示
+
+2008-12-12 1.2release1
+1.iframe样式加上position:relative,解决IE上提示下拉位置错误的问题
+
+
+2009-01-19 1.2正式版
+1.修正了FF3下,页面加载两次的问题
+
+2009-01-19 1.2.1
+1.参数resizable默认值修改为false,即默认不可以改变窗口大小
+2.ext-all-co.js名称修改为ext-all.js, window.html作相应修改
+
+2011-1-4 1.2.2
+1.增加beforeClose参数，要关闭窗口前触发事件

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<table width="100%" height="50%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+<td>
+<iframe id="content" name="content" src="" height="100%" width="100%" frameborder="1"></iframe>
+</td>
+</tr>
+</table>
+
+<table width="100%" height="30%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree2"></div>
+<p>
+</td>
+</tr>
+</table>
+
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree, tree2;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		url : 'demo-url.json'
+		,hrefTarget : 'content'
+	});
+	
+	tree2 = $('#tree2').tree({
+		url : 'demo-url2.json'
+		,beforeLoad : function(e, treeNode, tree){
+			/*
+			tree.loadParas 是传给后面的查询数据,如下面例子,url则为tree.do?id=1,后台可通过request.getParameter("id")取得id.
+			除了id,同样可以使用treeNode.data中的其他属性,与返回的树节点数据一致
+			*/			
+			tree.setLoadParas({id : treeNode.data.id});
+		}
+		,hrefTarget : 'content'
+	});
+});
+</script>
+</HTML>

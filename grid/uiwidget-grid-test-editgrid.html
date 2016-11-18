@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid EditGrid</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<link style="text/css" rel="stylesheet" href="../editor/css/uiwidget-editor.css"/>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<script type="text/javascript" src="../editor/uiwidget-editor.js"></script>
+<!--<script type="text/javascript" src="e:/ajax/firebug-lite-compressed.js"></script>
+
+--><style type="text/css">
+#grid .grid-cell-remark, #grid .grid-cell-time{
+	border-left: 1px solid #C3D6DD;
+}
+
+.time-select{
+	height:25px;line-height:25px;vertical-align:middle;font-size: 14px;
+}
+body{
+	margin: 0px;padding: 0px;
+}
+</style>
+<script language="JavaScript"><!--
+var grid;
+/*
+ * 编辑器editor支持事件：
+ * startEdit，beforeComplete，onComplete，onCancel
+ */
+$(document).ready(function(){
+	$.info('start');
+	var selectbox = '<select class="time-select"><option value=" ">请选择</option><option value="上午">上午</option><option value="下午">下午</option><option value="晚上">晚上</option></select>';
+	grid = $('#grid').grid({
+		sm : new $.uiwidget.EditCellSelectionModel()
+		,cm : [{checkbox:true}, {header: "转正类型", dataIndex: 'name', width:'20%'}
+			, {header: "时间", dataIndex: 'time', width:'30%', iconCls: 'grid-header-edit-icon',editor : {html: '<input type="text"/>'}}
+			, {header: "备注", dataIndex: 'remark', iconCls: 'grid-header-edit-icon', editor : 
+				{html:'<input type="text"/>'
+					,onComplete : function(e, editor)
+					{
+						var sm = grid.getSelectionModel();
+						var s = sm.getCellSelections()[0];
+						var r = s.rowIndex, c = s.colIndex;
+						var c1 = grid.cm[0].checkbox ? c - 1 : c;
+							
+						grid.replaceRow(r, {time : "上午"});	
+						var key = e.which;
+						if(key == 13)
+						{
+							if((r+1) < grid.getResult().length)
+							{
+								r++
+								sm.goCells(r, c1, 1);
+								sm.startEditing(r, c);
+							}else{
+								sm.goCells(r, c1, 1);
+							}
+						}else{
+							sm.goCells(r, c1, 1);
+						}						
+					}
+			  	}
+			  }
+			]
+		,data : {"totalCount":17, "result":[{id:"1", name : "张三", time:"上午", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"下午", remark : "2009-01-02"}, {id:"3", name : "王五", time:"晚上", remark : ""}, {id:"4", name : "周六", remark : "1"}, {id:"4", name : "周六", remark : "2"}, {id:"4", name : "周六", remark : "3"}, {id:"4", name : "周六", remark : "4"}, {id:"4", name : "周六", remark : "5"}, {id:"4", name : "周六", remark : "6"}, {id:"4", name : "周六", remark : "7"}, {id:"4", name : "周六", remark : "8"}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}, {id:"4", name : "周六", remark : ""}
+		]}
+		,onCellDblclick : function(grid, target){
+			var selections = grid.getSelections();
+			$.info(selections[0].value);
+		}
+		/*,contextMenu : [
+			{text: '新增',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				$.info( 'getSelections id = ' + selections[0].id);
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelectionModel().getCellSelections();
+				$.info( 'getCellSelections() colIndex = ' + selections[0].colIndex);
+				$.info( 'getCellSelections() value = ' + selections[0].value);
+			}}
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					$.info( '查看数量 = ' + selections.length);
+				}
+			}]*/	
+	});
+	$.info('end');
+});
+
+function appendRow(){
+	grid.appendRow([{id:"1", name : "张三", time:"", remark:"abc"}]); 
+}
+function removeRow(){
+	grid.removeRow(grid.getSelectedRow());
+}
+function getData(){
+	var result = grid.getResult();
+	for(var i = 0; i < result.length ; i++){
+		$.info('i = ' + i + ' | '  + result[i].time);
+	}
+}
+--></script>
+</head>
+
+<body >
+<p/><h1>Grid EditGrid </h1><p/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<p/>
+<input type="button" onclick="appendRow();" value="appendRow"></input>
+<input type="button" onclick="removeRow();" value="removeRow"></input>
+<input type="button" onclick="getData();" value="getData"></input>
+可键盘导航
+<input type="button" onclick="grid.getSelectionModel().selectCell(2,2)" value="selectCell"></input>
+<input type="button" onclick="grid.reload()" value="reload"></input>
+<input type="button" onclick="$.debug(grid.getSelectedRowIndex())" value="getSelectedRowIndex"></input>
+<input type="button" onclick="grid.scrollToRow(15)" value="scrollToRow 15"></input>
+<input type="button" onclick="grid.scrollToRow(0)" value="scrollToRow 0"></input>
+<input type="button" onclick="grid.scrollTo(25)" value="scrollTo(25)"></input>
+</body>
+</html>

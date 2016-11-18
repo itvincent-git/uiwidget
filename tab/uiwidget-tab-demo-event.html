@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab Events</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.min.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height: 300
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'tab1'}
+            ,{href:'page.html?name=tab2', text: '客户信息', closeable:true,
+            	//选择该标签时触发此方法
+        		onActivate : function(e, tab, activateItem, tabHeader, tabContent){
+        			//alert('activate = '+ activateItem.text);
+        		}
+    			//选择该标签前触发此方法
+    			,beforeActivate : function(e, tab, activateItem, tabHeader, tabContent){
+        			return false;//返回false表示不触发选择
+    			}	
+        	}
+            ,{href:'page.html?name=tab3', text: '其它信息',
+            	//离开该标签时触发此方法
+            	onDeactivate : function(e, tab, deactivateItem, tabHeader, tabContent){
+            		alert('deactivate	=' + deactivateItem.text);
+            	}
+            }
+        ]
+        //变更标签时触发此方法
+       	,onTabChange : function(e, oldItem, newItem, tabHeader, tabContent, iframe, tab){
+        	//alert('oldItem = '+ oldItem.text);
+        	//alert('newItem = '+ newItem.text);
+        	
+        	//每次变更都刷新页面
+        	//tab.loadTabContent(newItem, tabContent, true);	
+       	}
+       	//标签关闭时触发此方法
+       	,onTabClose : function(e, closeItem){
+       		alert('onTabClose = ' +  closeItem.text);
+       	}
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab Events</p><p/>
+<div id="tabs"></div>
+</body>
+</HTML>

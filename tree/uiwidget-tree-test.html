@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tree </title>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<!--<script type="text/javascript" src="../../../firebug-lite/firebug-lite/content/firebug-lite-dev.js"></script>-->
+<script type="text/javascript" src="uiwidget-tree.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<style type="text/css">  
+#input li{
+    display: inline;    
+}
+</style>
+</head>
+<body>
+<form>
+<div id="tree" style="width:150px"></div>
+</form>
+<div><iframe id="content" name="content" height="100px"
+	width="600px" frameborder="1"></iframe>
+</div>
+<div id="input" style="clear: both;">
+			<ul>
+			<li><input type="button" onclick="tree.expandAll()" value="expandAll"></input></li>
+			<li><input type="button" onclick="tree.collapseAll()" value="collapseAll"></input></li>
+			<li><input type="button" onclick="getCheckedNode()" value="getCheckedNode"></input></li>
+			<li><input type="button" onclick="appendNode()" value="appendNode"></input></li>
+			<li><input type="button" onclick="setText()" value="setText"></input></li>
+			<li><input type="button" onclick="remove()" value="remove"></input></li>
+			<li><input type="button" onclick="getSelectedNode()" value="getSelectedNode"></input></li>
+			<li><input type="button" onclick="expandSelectedNode()" value="expandSelectedNode"></input></li>
+			<li><input type="button" onclick="collapseSelectedNode()" value="collapseSelectedNode"></input></li>
+			<li><input type="button" onclick="selectCheckedNode()" value="selectCheckedNode"></input></li>
+			<li><input type="button" onclick="disableSelectedNode()" value="disable"></input></li>
+			<li><input type="button" onclick="enableCheckedNode()" value="enable"></input></li>
+			<li><input type="button" onclick="reloadSelectedNode()" value="reloadSelectedNode"></input></li>
+			<li><input type="button" onclick="getRootNode()" value="getRootNode"></input></li>
+			<li><input type="button" onclick="reloadAll()" value="reloadAll"></input></li>
+			<li><input type="button" onclick="changeData()" value="changeData"></input></li>
+			<li><input type="button" onclick="selectPath()" value="根据路径选择节点"></input></li>
+			<li><input type="button" onclick="destroy()" value="销毁树"></input></li>
+			<li><input type="button" onclick="rebuild()" value="重建树"></input></li>
+			</ul>
+		</div>
+		
+<div id="tree2"></div>
+<p/>
+<div id="tree3"></div>
+<p/>
+<div id="tree4"></div>
+</body>
+<script language="JavaScript"><!--
+//$.uiwidget.Log.isDebugEnabled = false;
+function getCheckedNode(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		$.debug(this.data.text);
+	});
+	//$.debug(checkedNode.length);
+	//$.debug(tree.getCheckedNode().get());
+}
+var id = 100;
+function appendNode(){
+	var node = new $.uiwidget.TreeNode({
+					data : {"id":id,"text":"广州大地"+id++,"leaf":true,"href":"list1.html?id=41"}
+					//,tree : tree
+				});
+	tree.getSelectedNode().appendChild(node);
+	tree.getSelectedNode().expand();
+	
+}
+function setText(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		this.setText('修改的名称');
+	});
+}
+function remove(){
+	tree.getSelectedNode().remove();
+}
+function getSelectedNode(){
+	$.debug(tree.getSelectedNode().data.text);
+}
+function expandSelectedNode(){
+	tree.getSelectedNode().expand();
+}
+function collapseSelectedNode(){
+	tree.getSelectedNode().collapse();
+}
+function selectCheckedNode(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		this.select();
+	});
+}
+function disableSelectedNode(){
+	tree.getSelectedNode().disable();
+}
+function enableCheckedNode(){
+	var checkedNode = tree.getCheckedNode();
+	checkedNode.each(function(){
+		this.enable();
+	});
+}
+function reloadSelectedNode(){
+	tree.getSelectedNode().reload();
+}
+function getRootNode(){
+	$.debug(tree.getRootNode().length);
+}
+function reloadAll(){
+	tree.getContainerNode().reload();
+	tree.expandRoot();
+}
+
+function changeData(){
+	//tree.getContainerNode().data = {children:[{"id":"1", "text":"abc","leaf":false,"href":"list1.html?id=1"}]}
+	tree.data = [{"id":"1", "text":"abc","leaf":false,"href":"list1.html?id=1"}];
+	tree.reload();
+}
+
+function selectPath(){
+	tree.selectPath("1/2/22");	
+}
+
+function destroy(){
+	tree.destroy();
+}
+function rebuild(){
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2", children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list1.html?id=21", title:'负责系统分析与设计'}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list1.html?id=22", title:'负责系统程序的研发和修改'}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list1.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list1.html?id=231", "disabled":true, "checked":"false"}]}
+				]
+			}
+			]
+		}
+		]
+	});
+}
+var tree;
+$(document).ready(function(){
+	//var sw = new $.uiwidget.StopWatch();
+	//sw.start();
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2", children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list1.html?id=21", title:'负责系统分析与设计'}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list1.html?id=22", title:'负责系统程序的研发和修改'}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list1.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list1.html?id=231", "disabled":true, "checked":"false"}]}
+				]}
+			,{"id":"3","text":"中企动力深圳分公司", "checked":"true", "leaf":false,"href":"list1.html?id=3", children:
+				[{"id":"31","text":"深圳测试部","leaf":true,"href":"list1.html?id=31"}
+				,{"id":"32","text":"深圳互联网开发部","leaf":false,"href":"list1.html?id=32", children:
+					[{"id":"321","text":"深圳互联网开发1部","leaf":true,"href":"list1.html?id=321"}
+					]}
+				,{"id":"33","text":"深圳管理层","leaf":true,"href":"list1.html?id=33", "disabled":true}
+				]}
+			,{"id":"4","text":"中国大地院线公司","leaf":false,"href":"list1.html?id=4", children:
+				[{"id":"41","text":"广州大地","leaf":true,"href":"list1.html?id=41"}
+				]}
+		
+		]}
+		/*
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2"}
+			,{"id":"3","text":"中企动力深圳分公司", "checked":"true", "leaf":false,"href":"list1.html?id=3"}
+			,{"id":"4","text":"中国大地院线公司","leaf":false,"href":"list1.html?id=4"}]
+		}*/
+		]
+		,hrefTarget : 'content'
+		,height : 300	
+		/*,contextMenu : [{text: '修改',icon: 'images/page.gif'
+			,handler: function(e){
+				var node = tree.getSelectedNode();
+				$.info( '修改,选择的ID = ' + node.data.id);
+			}}
+			,{text: '查看',icon: 'images/page.gif'
+				,handler: function(e){
+					var node = tree.getSelectedNode();
+					$.info( '查看,选择的text = ' + node.data.text);
+				}
+				,menu:[{text: '查看-1',icon: 'images/page.gif'
+					,handler: function(e){
+						var node = tree.getSelectedNode();
+						$.info( '查看,选择的text = ' + node.data.text);
+					}}
+					,{text: '查看-2',icon: 'images/page.gif'
+					,handler: function(e){
+						var node = tree.getSelectedNode();
+						$.info( '查看,选择的text = ' + node.data.text);
+					}}
+					,{text: '查看-3',icon: 'images/page.gif'
+					,handler: function(e){
+						var node = tree.getSelectedNode();
+						$.info( '查看,选择的text = ' + node.data.text);
+					}}
+				]
+			}
+			]*/
+		//,autoExpandRoot : false
+		//,showIcons : false	
+	});
+	
+	/*var tree2 = $('#tree2').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"../organization/structure.do?method=viewCompany&id=2", children : [
+			{"id":"2","text":"中企动力广州分公司","leaf":false,"href":"../organization/structure.do?method=viewCompany&id=2", children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"../organization/structure.do?method=viewDepartment&id=4"}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"../organization/structure.do?method=viewDepartment&id=5"}
+				,{"id":"23","text":"广州管理层","leaf":true,"href":"../organization/structure.do?method=viewDepartment&id=500"}
+				]}
+			,{"id":"3","text":"中企动力深圳分公司","leaf":true,"href":"../organization/structure.do?method=viewCompany&id=3"}
+			,{"id":"4","text":"中国大地院线公司","leaf":true,"href":"../organization/structure.do?method=viewCompany&id=27", children:
+				[{"id":"41","text":"广州大地","leaf":true,"href":"../organization/structure.do?method=viewDepartment&id=4"}
+				]}
+		]}
+		]
+	});
+	
+	var	tree3 = $('#tree3').tree({
+		//url : 'http://localhost:8080/hr/organization/organizationddtree.do?method=list&id=1'
+		data : [{"hrefTarget":"contentFrame","nodeId":1,"text":"某某公司","leaf":false,"type":"root","href":""}]
+		,url : 'http://localhost:8080/hr/organization/organizationddtree.do?method=list'
+		,hrefTarget : 'content'
+		,autoExpandRoot : false
+	});
+	var	tree3 = $('#tree3').tree({
+		hrefTarget : 'content'
+		,data : [{"nodeId":-1,"text":"薪资参数","leaf":false,"type":"root","href":""}]
+		,url : 'http://localhost:8080/hr/salary/salaryParameterTree.do?method=list'
+		//,autoExpandRoot : false
+	});*/
+	
+	//大量数据
+	/*var	tree4 = $('#tree4').tree({
+		showIcons : false,
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司","leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				,{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":true}
+				
+				
+				
+				]}
+			,{"id":"3","text":"中企动力深圳分公司","leaf":true}
+			,{"id":"4","text":"中国大地院线公司","leaf":true}
+		]}
+		]
+		,hrefTarget : 'content'
+	});*/
+	//sw.stop();
+	//$.info(sw);
+});
+--></script>
+</html>

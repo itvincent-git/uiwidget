@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+	<script type="text/javascript" src="../jquery.min.js"></script>
+	
+	<script type="text/javascript" src="multi-upload.min.js"></script>
+
+</head>
+<style>
+	.separator {
+		background: url('separator.gif'); 
+		background-repeat: repeat-x;
+		background-position: bottom;
+		height: 30px;
+	}
+	.title {
+		color: red; 
+		font-size: 14px;
+	}
+	.subtitle {
+		color:gray; 
+		font-weight: bold;
+		font-size: 14px;
+		height: 30px;
+	}
+	.file {
+		width: 100px;
+		vertical-align: top;
+	}
+	.font-red {
+		color:red;
+	}
+</style>
+<body>
+
+<form action="submit">
+<span style="font-size:12px; color: red;">这是表单的例子</span>
+<img id="loading" src="loading.gif" style="display:none;">
+
+<input type="file" id="multi-file" name="multi-file"/></br>
+<div id="container"><!--此处的style为使用它的div元素处在同一行中-->
+</div>
+
+<input type="submit" value="提交表单"/>
+</form>
+<form action="delete">
+<input type="submit" value="删除文件"/>
+</form>
+<p></p>
+
+<table width="900px" align="center" style="font-size: 12px; border: 1px solid buttonface;" >
+	<tr class="title">
+		<td>文件域</td>
+		<td></td>
+		<td>描述</td>
+	</tr>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">定义文件后缀</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file1" name="file1"/></td>
+		<td width="150px" valign="top"></td>
+		<td width="450px">
+		只能上传png, gif, bmp, jpg的文件, <span style="color:red;">accept: "png|gif|bmp|jpg"</span><br>
+		<span class="font-red"><pre>
+$('#file1').multiUpload({
+    accept: "png|gif|bmp|jpg",
+    url: "fileupload"
+});		
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file1').multiUpload({
+				accept: "png|gif|bmp|jpg",
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">后缀不符合时提示</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file2" name="file2"/></td>
+		<td></td>
+		<td>
+		只能上传png, gif, bmp, jpg的文件, <span style="color:red;">accept: "png|gif|bmp|jpg"</span><br>
+		当后缀不符合上面规定的后缀时, 定义: </br>
+		<span class="font-red"><pre>
+$('#file2').multiUpload({
+    accept: "png|gif|bmp|jpg",
+    url: "fileupload",
+    onDenied: function(s, file, suffix) {
+        alert("文件 " + file + " 的后缀为" + suffix + ", 上传失败");
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file2').multiUpload({
+				accept: "png|gif|bmp|jpg",
+				url: "fileupload",
+				onDenied: function(s, file, suffix) {
+					alert("文件 " + file + " 的后缀为" + suffix + ", 上传失败");
+				}
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">定义最大的文件数</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file3" name="file3"/></td>
+		<td></td>
+		<td>
+		定义最大上传的文件数, <span style="color:red;">max: "3"</span></br>
+		<span class="font-red"><pre>
+$('#file3').multiUpload({
+    max: "3",
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file3').multiUpload({
+				max: "3",
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">定义删除文件控制按钮</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file4" name="file4"/></td>
+		<td></td>
+		<td>
+		定义从列表中删除删除文件按钮, <span style="color:red;">remove: "删除控制"</span></br>
+		<span class="font-red"><pre>
+$('#file4').multiUpload({
+    remove: "删除控制", 
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file4').multiUpload({
+				remove: "删除控制", 
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">删除控制按钮的出现位置</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file5" name="file5"/></td>
+		<td></td>
+		<td>
+		删除控制按钮的出现位置在文件名字的左边还是右边, <span style="color:red;">removeSide: "right"</span>
+		<span class="font-red"><pre>
+$('#file5').multiUpload({
+    remove: "删除",
+    removeSide: "right", 
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file5').multiUpload({
+				remove: "删除",
+				removeSide: "right", 
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">文件显示的tips</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file6" name="file6"/></td>
+		<td></td>
+		<td>
+		当鼠标在文件名上时, 显示的内容用selected定义, <span style="color:red;">selected: "你选择的文件是$file"</span>
+		<span class="font-red"><pre>
+$('#file6').multiUpload({
+    selected: "你选择的文件是$file",
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file6').multiUpload({
+                selected: "你选择的文件是$file",
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">上传文件时的加载图片</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file7" name="file7"/></td>
+		<td><img src="File7Loading.gif" id="file7Loading" style="display:none"/></td>
+		<td>
+		当上传文件时, 显示加载的图片, <span style="color:red;">loadingImageId: "file7Loading"</span>
+		<span class="font-red"><pre>
+$('#file7').multiUpload({
+    loadingImageId: "file7Loading",
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file7').multiUpload({
+                loadingImageId: "file7Loading",
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">设置文件列表所在的容器</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file8" name="file8"/></td>
+    	<td style="vertical-align: top;">这是容器: 
+        <div id="container8" ></div>
+        </td>
+		<td>
+		设置文件列表所在的容器, <span style="color:red;">containerId: "container8"</span>
+		<span class="font-red"><pre>
+$('#file8').multiUpload({
+    containerId: "container8",
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file8').multiUpload({
+                containerId: "container8",
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">使文件列表在同一行</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file9" name="file9"/>
+                <div id="container9" style="overflow:hidden;zoom:1;"></div>
+        </td>
+        </td>
+    	<td style="vertical-align: top;">
+		<td>
+		设置文件列表在同一行显示, <span style="color:red;">为容器添加样式, 并向添加属性 fileCSS: "float:left;", 如果需要为每份文件分隔, 则添加属性 fileSeparator: '&nbsp;&nbsp;', 此处引号内容为html代码</span>
+		<span class="font-red"><pre>
+$('#file9').multiUpload({
+    containerId: "container9",
+    fileCSS: "float:left;",
+    fileSeparator: '&nbsp;',
+    url: "fileupload"
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file9').multiUpload({
+                containerId: "container9",
+                fileCSS: "float:left;",
+                fileSeparator: '&nbsp;&nbsp;',
+				url: "fileupload"
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">重复的文件</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file10" name="file10"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		如果已经存在一份文件在列表中, 则提供onDuplicate方法: </span>
+		<span class="font-red"><pre>
+$('#file10').multiUpload({
+    url: "fileupload",
+    onDuplicate: function(s, file, suffix) {
+        alert("文件 " + file + " 已经存在于列表中!");
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file10').multiUpload({
+				url: "fileupload",
+                onDuplicate: function(s, file, suffix) {
+                    alert("文件 " + file + " 已经存在于列表中!");
+                }
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">定制文件名</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file11" name="file11"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		如果需要对文件名进行处理, 例如加上超连接或者加上事件, 则提供getFileHtml方法, 该方法中有两个参数, 第一个为文件名, 第二个为已经上传到服务器的文件访问路径: </span>
+		<span class="font-red"><pre>
+$('#file11').multiUpload({
+    url: "fileupload",
+    getFileHtml: function(file, url) {
+        return '&nbsp;&nbsp;<a href="' + url + '" target="_blank">重新定义的_' + file + '</a>';
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file11').multiUpload({
+				url: "fileupload",
+                getFileHtml: function(file, url) {
+                    var value = '&nbsp;&nbsp;<a href="' + url + '" target="_blank">重新定义的_' + file + '</a>';
+                    return value;
+                }
+			});
+		</script>
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">上传完文件后</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file12" name="file12"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		上传完文件后, 可以定义uploadSuccess方法:  </span>
+		<span class="font-red"><pre>
+$('#file12').multiUpload({
+    url: "fileupload",
+    uploadSuccess: function(data, status) {
+        alert("文件的地址为: " + data.html());
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file12').multiUpload({
+				url: "fileupload",
+                uploadSuccess: function(data, status) {
+                    alert("文件的地址为: " + data.html());
+                }
+			});
+		</script>
+
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">设定文件的大小</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file13" name="file13"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		如果需要设置文件的大小, 可以设置size属性, 并定义fileTooMax方法, fileTooMax方法的第一个参数为文件域的值, 第二个参数为定义的大小, 第三个参数为文件的真实大小, 单位均为k:  </span>
+		<span class="font-red"><pre>
+$('#file13').multiUpload({
+    url: "fileupload",
+    size: "10",
+    fileTooMax: function(fileName, size, realSize) {
+        alert(fileName+";"+size+";"+realSize);
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file13').multiUpload({
+				url: "fileupload",
+                size: "10",
+                fileTooMax: function(fileName, size, realSize) {
+                    alert(fileName+";"+size+";"+realSize);
+                }
+			});
+		</script>
+
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">读取图片出错</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file14" name="file14"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		如果做的是一个图片组件, 那么可以定义fileType: "image", 那么组件将会检查上传的图片, 如果上传的文件不是图片(即将后缀改为图片后缀), 那么将会执行readImageError方法, 该方法有一个fileName参数, fileName为文件的名称: </span>
+		<span class="font-red"><pre>
+$('#file14').multiUpload({
+    url: "fileupload",
+    fileType: "image",
+    readImageError: function(fileName) {
+        alert("读取 " + fileName + " 出错");
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file14').multiUpload({
+				url: "fileupload",
+                fileType: "image",
+                readImageError: function(fileName) {
+                    alert("读取 " + fileName + " 出错");
+                }
+			});
+		</script>
+
+
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">设定图片的大小(长)</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file15" name="file15"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		必须设置fileType: "image"才会检查图片是否符合imageWidth的值(不能超过该值), 如果图片长不符合要求, 执行imageWidthTooMax方法, 该方法有三个参数: fileName, realWidth, imageWidth, 分别为文件名, 图片真实的长, 设定的长</span>
+		<span class="font-red"><pre>
+$('#file15').multiUpload({
+    url: "fileupload",
+    fileType: "image",
+    imageWidth: "10",
+    imageWidthTooMax: function(fileName, realWidth, imageWidth) {
+        alert(fileName+";"+realWidth+";"+imageWidth);
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file15').multiUpload({
+				url: "fileupload",
+                fileType: "image",
+                imageWidth: "10",
+                imageWidthTooMax: function(fileName, realWidth, imageWidth) {
+                    alert(fileName+";"+realWidth+";"+imageWidth);
+                }
+			});
+		</script>
+
+
+<!--    ************************************************************************    -->
+	<tr><td align="center" colspan="3" class="separator"></td></tr>
+	<tr class="subtitle">
+		<td align="center" colspan="3">设定图片的大小(宽)</td>
+	</tr>
+	<tr>
+		<td class="file"><input type="file" id="file16" name="file16"/>
+        </td>
+        </td>
+    	<td style="vertical-align: top;"><td>
+		必须设置fileType: "image"才会检查图片是否符合imageHeight的值(不能超过该值), 如果图片长不符合要求, 执行imageHeightTooMax方法, 该方法有三个参数: fileName, realHeight, imageHeight, 分别为文件名, 图片真实的宽, 设定的宽</span>
+		<span class="font-red"><pre>
+$('#file16').multiUpload({
+    url: "fileupload",
+    fileType: "image",
+    imageHeight: "10",
+    imageHeightTooMax: function(fileName, realHeight, imageHeight) {
+        alert(fileName+";"+realHeight+";"+imageHeight);
+    }
+});
+		</pre></span>
+		</td>
+	</tr>
+		<script>
+			$('#file16').multiUpload({
+				url: "fileupload",
+                fileType: "image",
+                imageHeight: "10",
+                imageHeightTooMax: function(fileName, realHeight, imageHeight) {
+                    alert(fileName+";"+realHeight+";"+imageHeight);
+                }
+			});
+		</script>
+
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<script>
+
+
+	$('#multi-file').multiUpload({
+			accept: "png|gif|bmp",
+			max: "3",
+			fileSeparator: '&nbsp;&nbsp;',
+			fileCSS: "float:left;",//使用所有文件的div的containerId中都处在同一行
+			remove: '<img border="0" src="cancel.gif" height="16" width="16"/>',
+			removeSide: 'right',
+			selected: "$file",//tips显示
+			loadingImageId: "loading",
+			url: "fileupload",
+			fileType: "image", //文件类型, 如果上传的为image, 则会检查长和宽
+			imageHeight: 10000,  //如果文件类型是图片, 这是图片的高
+			imageWidth: 10000,   //如果文件类型是图片, 这是图片的宽
+			containerId: "container",
+            size: "10000", //文件大小, 单位为k
+			onDenied: function(s, file, suffix) {//不符合后缀
+				alert(suffix + " 的文件不能上传!");
+			},
+			onDuplicate: function(s, file, suffix) {//已经存在于文件列表
+				alert(file + " 已经存在!");
+			},
+			uploadSuccess: function(data, status) {
+				
+			},
+			uploadError: function(data, status, e) {//文件上传失败, 未知异常或者地址错误等.
+				alert(e);
+			},
+			ajaxStart: function() {//文件开始上传, 第一个执行的方法
+				
+			},
+			ajaxComplete: function(xml, fileElementId) {
+				
+			},
+			getFileHtml: function(file, data) {//获取显示的文件列表的html
+				return "<a href='" + data + "'>" + file + "</a>&nbsp;";
+			},
+			fileTooMax: function(fileName, size, realSize) {//文件size过大
+				alert("文件 " + fileName + " 的大小为" + realSize + ", 比定义的 " + size + " 大");
+			},
+			imageHeightTooMax: function(fileName, realHeight, imageHeight) {//高不符合imageHeight时
+				alert("图片 " + fileName + " 的高为 " + realHeight + " 比定义的 " + imageHeight + " 大");
+			},
+			imageWidthTooMax: function(fileName, realWidth, imageWidth) {//宽不符合imageWidth时
+				alert("图片 " + fileName + " 的宽为 " + realWidth + " 比定义的 " + imageWidth + " 大");
+			},
+			readImageError: function(fileName) {//读取图片出错
+				alert("读取 " + fileName + " 文件出错!");
+			}	
+	});
+
+</script>
+</body>
+</html>

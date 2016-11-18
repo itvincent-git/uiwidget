@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.min.js"></script>
+<script type="text/javascript" src="../page/uiwidget-page.min.js"></script>
+<style type="text/css">
+body{margin:0}
+</style>
+<script LANGUAGE="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height : 300
+        ,ajaxLoadPage : true
+        ,items:[
+            {href:'page3.html', text: '房屋信息', id:'a', data:{arg0:1, arg1:2}}
+            ,{href:'page4.html', text: '客户信息', id:'b', closeable:true}
+        ]
+	});	
+});
+
+function reloadTab(){
+	tab.reloadTab({id:'a'});
+}
+function resetTabHref(){
+	var item = tab.searchItem('a');
+	item.href = 'page4.html';
+	tab.loadTab(item);
+
+}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab</p><p/>
+<div id="tabs"></div>
+<button onclick="reloadTab()">reloadTab</button>
+<button onclick="resetTabHref()">resetTabHref</button>
+</body>
+</html>

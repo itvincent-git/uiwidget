@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Navigate</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [{header: "转正类型", dataIndex: 'name', width:'20%'}
+			, {header: "备注", dataIndex: 'remark', width:'30%'}
+			, {header: "备注", dataIndex: 'remark'}
+			]
+		,data : {"totalCount":15, "result":[{id:"1", name : "张三", time:"23:32:22-23:32:22-23:32:22-", remark : "a" }, {id:"2", name : "李四", time:"23:32:22", remark : "b"}, {id:"3", name : "王五", time:"23:32:22", remark : "c"}, {id:"41", name : "周六1", remark : "01"}, {id:"42", name : "周六2", remark : "02"}, {id:"43", name : "周六3", remark : "03"}, {id:"44", name : "周六4", remark : "04"}, {id:"45", name : "周六6", remark : "06"}, {id:"47", name : "周六7", remark : "07"}, {id:"48", name : "周六8", remark : "08"}, {id:"49", name : "周六9", remark : "09"}, {id:"410", name : "周六10", remark : "010"}, {id:"411", name : "周六11", remark : "011"}, {id:"412", name : "周六12", remark : "012"}, {id:"413", name : "周六13", remark : "013"}]}
+	});
+});
+
+function getResult(){
+	var result = grid.getResult();
+	for(var i = result.length - 1; i >= 0 ; i--){
+		alert('i = ' + i + ' | '  + result[i].remark);
+	}
+}
+</script>
+</head>
+
+<body>
+<p/><h1>Grid Navigate</h1><p/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<p/>
+<button onclick="grid.moveTop(grid.sm.getSelectedIndexs()[0])">移到顶端</button>
+<button onclick="grid.moveUp(grid.sm.getSelectedIndexs()[0])">向上移</button>
+<button onclick="grid.moveDown(grid.sm.getSelectedIndexs()[0])">向下移</button>
+<button onclick="grid.moveBottom(grid.sm.getSelectedIndexs()[0])">移到末端</button>
+<button onclick="getResult()">getResult</button>
+</body>
+</html>

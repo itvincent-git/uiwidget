@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid EditGrid</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<link style="text/css" rel="stylesheet" href="../editor/css/uiwidget-editor.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<script type="text/javascript" src="../editor/uiwidget-editor.min.js"></script>
+
+<style type="text/css">
+#grid .grid-cell-remark, #grid .grid-cell-time{
+	border-left: 1px solid #C3D6DD;
+}
+body{
+	margin: 0px;padding: 0px;
+}
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		sm : new $.uiwidget.EditCellSelectionModel()
+		,cm : [{checkbox:true},{header: "转正类型", dataIndex: 'name', width:'20%'}
+			, {header: "时间", dataIndex: 'time', width:'30%' ,iconCls: 'grid-header-edit-icon', editor: '<input type="text"/>'}
+			, {header: "备注", dataIndex: 'remark', iconCls: 'grid-header-edit-icon' 
+				  ,editor : {html:'<input type="text"/>'
+					,onComplete : function(e, editor)
+					{
+						var sm = grid.getSelectionModel();
+						var s = sm.getCellSelections()[0];
+						var r = s.rowIndex, c = s.colIndex;
+						var c1 = grid.cm[0].checkbox ? c - 1 : c;
+						var key = e.which;
+						if(key == 13 && r+1 < grid.getResult().length)
+						{
+							sm.startEditing(r + 1, c);
+							sm.goCells(r + 1, c1, 1);
+						}	
+					}
+				 }
+			  }
+			]
+		,data : {"totalCount":15, "result":[{id:"1", name : "张三", time:"上午", remark : "" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"下午", remark : ""}, {id:"3", name : "王五", time:"晚上", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "1"}, {id:"4", name : "周六", remark : "2"}, {id:"4", name : "周六", remark : "3"}, {id:"4", name : "周六", remark : "4"}, {id:"4", name : "周六", remark : "5"}, {id:"4", name : "周六", remark : "6"}, {id:"4", name : "周六", remark : "7"}, {id:"4", name : "周六", remark : "8"}, {id:"4", name : "周六", remark : "9"}]}
+		
+	});
+});
+
+</script>
+</head>
+
+<body >
+<p/><h1>Grid EditGrid </h1><p/>
+<h4>编辑完自动跳到下一格继续编辑</h4>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<p/>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Test </title>
+
+<!--
+-->
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<style type="text/css">
+#grid .grid-cm-remark{
+	text-align: right;
+}/**/
+a{text-decoration:none;color:#0079ff;}
+a:hover{text-decoration:underline;color:#0079ff;}
+</style>
+<script language="JavaScript">
+//$.getScript('http://localhost:8081/uiwidget/menu/uiwidget-menu.js', function(){$.debug('loaded script')});
+
+//$.getScript('../menu/uiwidget-menu.js', function(){$.debug('loaded script')});
+//$.getScript('uiwidget-grid.js', function(){$.debug('loaded script')});
+var grid;
+$(document).ready(function(){
+	//$.debug('start');
+	grid = $('#grid').grid({
+		pageSize : 15
+		//,height : 197//显示7行的高度
+		/*,fields: ['id'
+				,{name:'employee.name', mapping:'employeeName'}
+				,'requestDate'
+				,'effectiveDate'
+				,'passProbationType'
+				,'status']*/
+		//,bottomToolbar : false	
+		,cm : [{checkbox : true}, {header: "转正类型名称", dataIndex: 'name', width:'20%',sortable:false
+			,renderer : function(value, data, rowIndex, colIndex, metadata){
+				//$.debug(data.remark);
+				//return value;
+				return '<img src="images/ico-add.gif"></img>';
+			}}
+			,{header: "备注", dataIndex: 'remark', title: ''}]
+		//,url : 'demo-url.json'
+		,data : {"totalCount":14, "result":[{id:"1", name : "张三", remark : "2009-01-01" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", remark : "2009-01-02"}, {id:"3", name : "王五", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "ddd", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六'123'", remark : "0"}, {id:"4", name : "周六\"12312\"dd", remark : 123}]}
+		//,url : 'http://localhost:8080/hr/hrmanagement/setprobation.do?method=paging'
+		//,data : {"totalCount":0, "result":[]}
+		
+		//,cm : [{checkbox : true}, {header: "date", dataIndex: 'date', width:'33%'}, {header: "number", dataIndex: 'number', width:'33%'}, {header: "totalAmount", dataIndex: 'totalAmount', width:'33%'}]
+		//,data : {"totalCount":2,"result":[{"date":"2009-02-25 11:50:36","id":5,"number":"20090225115036173+0800","totalAmount":7120},{"date":"2009-02-25 11:50:37","id":7,"number":"20090225115037267+0800","totalAmount":0}]}
+		
+		/*,cm : [{checkbox:true}, {header: "转正类型名称", dataIndex: 'name', width:'80%'}
+			,{header: "是否可用", dataIndex: 'isUse', 
+				renderer : function(value, data, rowIndex, colIndex, metadata){
+	           		metadata.css += ' grid-cm-remark';	
+           		if(value){
+           			//return '可用' + '--' + data.name;
+           			return '<img src="images/ico-add.gif"></img>';
+           		}else{	
+           			//return '不可用' + value + rowIndex + ':' + colIndex; 
+           			//href="uiwidget-grid-test-contextmenu.html"
+           			return '<a href="javascript:void(0)" onclick="alert(123)">uiwidget-grid-test-contextmenu.html</a>';
+           		}	
+           	}}]
+		,data : {"totalCount":2, "result":[{id:"1", name : "123", isUse : true }, {id:"2", name : "李四", isUse : false}]}
+		*/
+		,defaultSort: {field:'id', direction: 'DESC'}
+		,baseParams : {}
+		,onRowDblclick : function(e, grid, rowEl){
+			$.info(grid.getSelections()[0]['id']);
+			//openPage("view");
+		}
+		,onRowClick : function(e, grid, rowEl){
+			$.info(grid.getSelections()[0].name);
+		}
+		,contextMenu : [{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				$.info( '修改,选择的ID = ' + selections[0]['id']);
+			}}
+			,'-'
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					$.info( '查看数量 = ' + selections.length);
+				}
+				,menu:[{text: '查看-1',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						var selections = grid.getSelections();
+						$.info( '查看数量-1 = ' + selections.length);
+					}}
+					,{text: '查看-2',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						var selections = grid.getSelections();
+						$.info( '查看数量-2 = ' + selections.length);
+					}}
+					,{text: '查看-3',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						var selections = grid.getSelections();
+						$.info( '查看数量-3 = ' + selections.length);
+					}}
+				]
+			}
+			]
+		,headerCheckboxClick : function(e, grid){
+			$.info('headerCheckboxClick');
+		}
+		//,autoLoad: false
+		,afterRender : function(e, grid){
+			$.info('afterRender : ' + grid.getResult().length);
+		}
+	});
+	/*grid.bind('afterRender', function(e, grid){
+		$.info('afterRender : ' + grid.getResult().length);
+	});
+	grid.load();*/
+	/*grid.afterRender = function(){
+		$('#grid table.grid-main tbody td.grid-cm-name').css('text-align', 'right');
+	};*/ 
+	//$.debug('end');
+	
+});
+//打印所选行
+function debugSelectedRow(){
+	if(grid.hasSelected())
+		$.info(grid.getSelections()[0]['id']);
+}
+//刷新并插入第一行
+function reloadInsertBefore(){
+	//grid.insertRecordsBefore([{"id":10100,"name":"新增记录","remark":"备注"}]);
+	//grid.insertRecordsBefore([{id:"2", name : "李四", remark : "2009-01-02"}]);
+	
+	grid.reloadInsertBefore([{id:"2", name : "李四123", remark : "2009-11-11"},{id:"3", name : "王五123", remark : "2009-11-11"}]);
+	//grid.reloadInsertBefore([{"id":10077,"name":"wr1234","remark":"sdfsd"},{"id":10076,"name":"dd","remark":"1"}]);
+}
+//插入第一行，参数为array
+function insertRecordsBefore(){
+	grid.insertRecordsBefore([{id:"2", name : "全民公敌", remark : "2009-11-02"}]);
+}
+//插入第一行，参数为data
+function insertRecordsBefore2(){
+	grid.insertRecordsBefore({totalCount:1, result:[{id:"2", name : "全民公敌", remark : "2009-11-02"}]});
+}
+//插入第一行，参数为object
+function insertRecordsBefore3(){
+	grid.insertRecordsBefore({id:"2", name : "全民公敌", remark : "2009-11-02"});
+}
+//插入第一行，参数为string
+function insertRecordsBefore_string(){
+	grid.insertRecordsBefore('{id:"2", name : "全民公敌", remark : "2009-11-02"}');
+}
+//删除所选行
+function removeSelectedRow(){
+	grid.removeRow(grid.getSelectedRow());
+}
+//修改行数据
+function modifySelectedRecords(){
+	grid.modifySelectedRecords([{id:"2$$$", name : "李四$$$$$", remark : "2009-01-02", isUse : false}]);
+}
+//新增,修改,查看,删除
+	function openPage(action){
+		var ss = grid.getSelections();
+		var url, id;
+		if(action == 'add'){
+			url = "/hr/hrmanagement/setprobation.do?method=add";
+			top.windowOpen(url, 'passProbEdit', '新增', 250, 530, true, 'passProbEditIf');
+		}else if(action == 'delete' && ss.length > 0){
+			var ids= ss[0]["id"];
+			for(var i = 1, len=ss.length; i < len ; i++){
+				ids = ids + ';' + ss[i]["id"];
+			}
+			var url= "/hr/hrmanagement/setprobation.do?method=goDeletePage&id="+ids;
+			top.windowOpen(url, 'delete', "提问", 185, 400, true, 'deleteIf')
+		}	
+		else{
+			if(ss.length > 0 ){	
+				if(ss.length > 1){
+					alert("只能选择一条记录！");
+					return;
+				}
+				id = ss[0]["id"];	
+				if(action == 'view'){
+				
+					url = "/hr/hrmanagement/setprobation.do?method=view&id="+id;
+					top.windowOpen(url, 'passProbEdit', '查看', 250, 530, true, 'passProbEditIf');
+					
+				}else if(action == 'edit'){
+					url = "/hr/hrmanagement/setprobation.do?method=edit&id="+id;
+					top.windowOpen(url, 'passProbEdit', '修改', 250, 530, true, 'passProbEditIf');	
+				}
+			}else{
+				alert("请选择一条记录！");
+			}
+		}	
+	}
+//获得列表高度	
+function getHeight(){
+	$.info(grid.getHeight());
+}
+//设置行高度
+function setHeight(){
+	grid.setHeight(250);
+}
+//获得行高度
+function getLineHeight(){
+	$.info(grid.getLineHeight());
+}
+//选中某一行
+function getRowByIndex(){
+	var sm = grid.getSelectionModel();
+	sm.select(grid.getRow(1));
+	//$.info(.html());
+} 	
+function appendRow(){
+	grid.appendRow([{id:"1", name : "张三", time:"", remark:"abc"}]); 
+}
+//刷新分页栏
+function updateToolbar(){
+	grid.pageToolbar.updateToolbar();
+	
+}
+//全选
+function selectAllRow(){
+	var sm = grid.getSelectionModel();
+	sm.selectAll();
+}
+/**
+ * 删除全部行
+ */
+function removeAllRow(){
+	grid.removeRow(grid.getAllRow());
+}
+/**
+ * 更新行
+ */
+function replaceRow(){
+	grid.replaceRow(0, {id: "1", name : "修改的名字", remark:"修改的备注"});
+}
+
+function modifyRow(){
+	grid.replaceRow(1, {id: "2", name : "修改的名字"});
+	//$.debug(grid.getResult()[1].name);
+	//$.debug(grid.getResult()[1].remark);
+}
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">Grid Test</p><p/>
+<!-- style="height:100%"
+<input id="name" name="name" type="text" /><button onclick="grid.query({name : $('#name').val()})"></button>
+<div id="grid" style="width:80%;border:1px solid #ccc; "></div>
+-->
+<div id="grid" style="height:100%;width:99%;border:1px solid #ffbbcc; "></div>
+<br/><button onclick="grid.reload();">reload</button>
+<button onclick="reloadInsertBefore()">reloadInsertBefore</button>
+<button onclick="insertRecordsBefore()">insertRecordsBefore</button>
+<button onclick="insertRecordsBefore2()">insertRecordsBefore2</button>
+<button onclick="insertRecordsBefore3()">insertRecordsBefore3</button>
+<button onclick="insertRecordsBefore_string()">insertRecordsBefore_string</button>
+<button onclick="removeSelectedRow()">removeSelectedRow</button>
+<button onclick="grid.loadInit()">loadInit</button>
+<button onclick="modifySelectedRecords()">modifySelectedRecords</button>
+<button onclick="$.debug(grid.getSelectedRowIndex())">getSelectedRowIndex</button>
+<button onclick="$.debug(grid.getSelectedRow().length)">getSelectedRow</button>
+<button onclick="getHeight()">getHeight</button>
+<button onclick="setHeight()">setHeight</button>
+<button onclick="getLineHeight()">getLineHeight</button>
+<button onclick="getRowByIndex()">getRowByIndex</button>
+<button onclick="appendRow()">appendRow</button>
+<button onclick="updateToolbar()">updateToolbar</button>
+<button onclick="selectAllRow()">全选</button>
+<button onclick="removeAllRow()">全删</button>
+<button onclick="replaceRow()">覆盖第1行数据</button>
+<button onclick="modifyRow()">修改第2行数据</button>
+</body>
+</html>

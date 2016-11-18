@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<table width="100%" height="50%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+</tr>
+</table>
+
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力", children : [
+			{"id":"2","text":"中企动力广州分公司",  "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","leaf":true}]}
+				]}
+		]}
+		]
+		,hrefTarget : 'content'
+	});
+	tree.expandAll();
+	
+	//菜单1
+	var menu1 = $.menu({items : 
+		[{text: '点击1节点的右键',
+		handler: function(e){
+			alert('1');
+		}}]
+	});
+	//菜单2
+	var menu2 = $.menu({items : 
+		[{text: '点击2节点的右键',
+		handler: function(e){
+			alert('2');
+		}}]
+	});
+	
+	tree.bind('treeContextMenu', function(e, tree, treeNode){
+		//节点的id
+		var id = treeNode.data.id;
+		//判断备注文字
+		if(id=='1'){
+			menu1.showAt(e.pageX, e.pageY);//菜单1
+		}else if(id=='2'){
+			menu2.showAt(e.pageX, e.pageY);//菜单2
+		}
+	});	
+});
+</script>
+</HTML>

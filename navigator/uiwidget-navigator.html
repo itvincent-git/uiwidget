@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE></TITLE>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-navigator.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-navigator.js"></script>
+<script type="text/javascript" src="uiwidget-navigator-en-US.js"></script>
+
+
+
+<style type="text/css">
+
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+var nav;
+$(document).ready(function(){
+
+	nav = $('#navigator').navigator({
+		hrefTarget : 'main'
+		,data :[{"id":1, "text":"一级菜单1", "href":"level1-1.do", "children":[{"id":12, "text":"二级菜单1", "href":"aa.html", "children":[]}]}
+		,{"id":1, "text":"一级菜单1", "href":"level1-1.do", "children":[{"id":12, "text":"二级菜单1", "href":"level2-1.do", "children":[]}]}
+		,{"id":1, "text":"一级菜单1", "href":"level1-1.do", "children":[{"id":12, "text":"二级菜单1", "href":"level2-1.do", "children":[]}]}
+		,{"id":1, "text":"一级菜单1", "href":"level1-1.do", "children":[{"id":12, "text":"二级菜单1", "href":"level2-1.do", "children":[]}]}
+		,{"id":1, "text":"一级菜单1", "href":"level1-1.do", "children":[{"id":12, "text":"二级菜单1", "href":"level2-1.do", "children":[]}]}
+		,{"id":1, "text":"一级菜单1", "href":"level1-1.do", "children":[{"id":12, "text":"二级菜单1", "href":"level2-1.do", "children":[]}]}]
+	   	,onExit : function(){
+	   	}
+	});
+	$('#p1').click(function(e){
+		nav.show();
+		e.stopPropagation();		
+	});
+});
+</script>
+</HEAD>
+
+<body>
+<p/><p id="p1" align="left" style="font-size: large;">Navigator</p><p/>
+<div id="navigator" style="width:560px; height:240px; display:none;"></div>
+<iframe id="main" name="main" frameborder="1" scrolling="no" width="100%" height="400px"></iframe>
+</body>
+</HTML>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Test </title>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<link type="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<style type="text/css">
+#grid .grid-cm-remark{
+	text-align: right;
+}/**/
+</style>
+<script language="JavaScript" type="text/javascript">
+var grid;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [
+			{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'20%',sortable:false}
+			,{header: "备注", dataIndex: 'remark', title: ''}
+		]
+		,data : {"totalCount":14, "result":[{id:"1", name : "陈一", remark : "2009-01-01" , effectiveDate:"2009-02-21"}, {id:"2", name : "陈二", remark : "2009-01-02"}, {id:"3", name : "陈三", remark : "2009-01-02"}, {id:"4", name : "陈四", remark : "0"}, {id:"4", name : "陈五", remark : "0"}, {id:"4", name : "陈六", remark : "0"}, {id:"4", name : "陈七", remark : "0"}, {id:"4", name : "陈八", remark : "0"}, {id:"4", name : "陈九", remark : "0"}, {id:"4", name : "陈十", remark : "0"}, {id:"4", name : "陈十一", remark : "0"}, {id:"4", name : "陈十二", remark : "0"}, {id:"4", name : "陈'十三'", remark : "0"}, {id:"4", name : "陈十四\"12312\"", remark : 123}]}
+		//,url : 'demo-url.json'
+		//,url : 'http://localhost:8080/demo/index.do?method=paging'
+	});
+	
+});
+//刷新并插入第一行
+function reloadInsertBefore(){
+	//grid.insertRecordsBefore([{"id":10100,"name":"新增记录","remark":"备注"}]);
+	//grid.insertRecordsBefore([{id:"2", name : "李四", remark : "2009-01-02"}]);
+	grid.reloadInsertBefore([{id:"2", name : "李四123", remark : "2009-11-11"},{id:"3", name : "王五123", remark : "2009-11-11"}]);
+	//grid.reloadInsertBefore([{"id":10077,"name":"wr1234","remark":"sdfsd"},{"id":10076,"name":"dd","remark":"1"}]);
+}
+//插入第一行，参数为array
+function insertRecordsBefore(){
+	grid.insertRecordsBefore([{id:"2", name : "全民公敌", remark : "2009-11-02"}]);
+}
+//插入第一行，参数为data
+function insertRecordsBefore2(){
+	grid.insertRecordsBefore({totalCount:1, result:[{id:"2", name : "全民公敌", remark : "2009-11-02"}]});
+}
+//插入第一行，参数为object
+function insertRecordsBefore3(){
+	grid.insertRecordsBefore({id:"2", name : "全民公敌", remark : "2009-11-02"});
+}
+//插入第一行，参数为string
+function insertRecordsBefore_string(){
+	grid.insertRecordsBefore('{id:"2", name : "全民公敌", remark : "2009-11-02"}');
+}
+//删除所选行
+function removeSelectedRow(){
+	grid.removeRow(grid.getSelectedRow());
+}
+//获得列表高度	
+function getHeight(){
+	alert(grid.getHeight());
+}
+//设置行高度
+function setHeight(){
+	grid.setHeight(250);
+}
+//获得行高度
+function getLineHeight(){
+	alert(grid.getLineHeight());
+}
+
+//刷新分页栏
+function updateToolbar(){
+	grid.pageToolbar.updateToolbar();
+	
+}
+
+function printSelections(){
+	var ss = grid.getSelections();
+	for(var i = 0; i < ss.length; i++){
+		$.debug(ss[i].name);
+	}
+}
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">Grid Test</p><p/>
+<div id="grid" style="height:100%;width:99%;border:1px solid #ccc; "></div>
+<br/><button onclick="grid.reload();">reload</button>
+<button onclick="reloadInsertBefore()">reloadInsertBefore</button>
+<button onclick="insertRecordsBefore()">insertRecordsBefore</button>
+<button onclick="insertRecordsBefore2()">insertRecordsBefore2</button>
+<button onclick="insertRecordsBefore3()">insertRecordsBefore3</button>
+<button onclick="insertRecordsBefore_string()">insertRecordsBefore_string</button>
+<button onclick="grid.loadInit()">loadInit</button>
+<button onclick="getHeight()">getHeight</button>
+<button onclick="setHeight()">setHeight</button>
+<button onclick="getLineHeight()">getLineHeight</button>
+<button onclick="updateToolbar()">updateToolbar</button>
+<button onclick="printSelections()">打印所选数据</button>
+</body>
+</html>

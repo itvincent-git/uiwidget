@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<!--<script type="text/javascript" src="../page/uiwidget-page.js"></script>
+-->
+<style type="text/css">
+</style>
+<script LANGUAGE="JavaScript"><!--
+var tab, tab2;
+$(document).ready(function(){
+
+	tab = $('#tab').tab({
+		//默认打开的标签（按序号）
+        initActiveTab: 0
+      	//默认打开的标签（按标签id）
+      	//initActiveTab : 'b'
+        ,height : 300
+        //,ajaxLoadPage : true
+        ,enableTabScroll : true
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'a'}
+            ,{href:'page.html?name=tab2', text: '客户信息', id:'b', closeable:true}
+            ,{href:'page.html?name=tab3', text: '其它信息123123123', id:'c', closeable:true}
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'d'}
+            ,{href:'page.html?name=tab5', text: '其它信息5', id:'e'}
+            ,{href:'page.html?name=tab6', text: '其它信息6', id:'f'}
+            ,{href:'page.html?name=new1', text: '最新信息1'}
+            ,{href:'page.html?name=new2', text: '最新信息2'}
+            ,{href:'page.html?name=new3', text: '最新信息3', id:"new3"}
+        ]
+	});	
+
+	tab2 = $('#tab2').tab({
+		//默认打开的标签（按序号）
+        initActiveTab: 0
+        ,height : 300
+        //,ajaxLoadPage : true
+        ,enableTabScroll : true
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'a'}
+            ,{href:'page.html?name=tab2', text: '客户信息', id:'b', closeable:true}
+            ,{href:'page.html?name=tab3', text: '其它信息123123123', id:'c', closeable:true}
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'d'}
+            ,{href:'page.html?name=tab5', text: '其它信息5', id:'e'}
+            ,{href:'page.html?name=tab6', text: '其它信息6', id:'f'}
+            ,{href:'page.html?name=new1', text: '最新信息1'}
+            ,{href:'page.html?name=new2', text: '最新信息2'}
+            ,{href:'page.html?name=new3', text: '最新信息3'}
+            ,{href:'page.html?name=new4', text: '最新信息4'}
+            ,{href:'page.html?name=new5', text: '最新信息5'}
+            ,{href:'page.html?name=new6', text: '最新信息6'}
+            ,{href:'page.html?name=new7', text: '最新信息7'}
+            ,{href:'page.html?name=new8', text: '最新信息8'}
+            ,{href:'page.html?name=new9', text: '最新信息9'}
+            ,{href:'page.html?name=new10', text: '最新信息10'}
+            ,{href:'page.html?name=new11', text: '最新信息11', id:"new11"}
+        ]
+	});	
+});
+var id = 100;
+function insertTab(){
+	tab.addItem({text:'新的标签', href:'page.html?name=newTab', id:++id});
+}
+
+function activeTab(){
+	tab.activeTab(id+'');
+}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">能滚动标签的Tab</p><p/>
+<div id="tab" style="width:900px"></div>
+<input type="button" value="新标签" onclick="insertTab()" />
+<input type="button" value="激活新的标签" onclick="activeTab()"/>
+<input type="button" value="删除新的标签" onclick="tab.closeTab('100')"/>
+<input type="button" value="激活房屋信息" onclick="tab.activeTab('a')"/>
+<p/>
+<div id="tab2" style="width:900px"></div>
+</body>
+</html>

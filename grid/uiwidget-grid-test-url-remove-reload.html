@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		pageSize : 15
+		,url : 'http://localhost:8080/hr/hrmanagement/setrewpun.do?method=paging'
+		,defaultSort: {field:'id', direction: 'DESC'}
+		 ,cm : [
+		        {
+		           	header: "奖惩类型名称",
+		           	dataIndex: 'name'
+		        }
+		        ,{
+		          	header: "备注",
+		           	dataIndex: 'remark'
+		        }
+		        ]
+	});
+});
+function reload(){
+	grid.reload();
+}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Grid 删除后刷新</p><p/>
+<div id="grid" style="width:100%;border:1px solid #ccc"></div>
+<button onclick="reload();">reload</button>
+</body>
+</html>

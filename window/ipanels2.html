@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>IframePanels [2.0]</title>
+<link rel="stylesheet" type="text/css" href="../../scripts/ext/resources/css/ext-all.css" />
+ 	<script type="text/javascript" src="../../scripts/ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../scripts/ext/ext-all.js"></script>
+    <script type="text/javascript" src="miframe1.1.js"></script>
+    
+
+</head>
+<body>
+<h1>Ext.ux.ManagedIframePanels</h1>
+<input type="button" value="open" onclick="windowOpen()">
+<input type="button" value="close" onclick="win.close()">
+<input type="button" value="load" onclick="load()">
+</body>
+</html>
+<script type="text/javascript">
+
+    var win,iframe;
+      	Ext.BLANK_IMAGE_URL = '../scripts/ext/resources/images/default/s.gif'; 
+    function windowOpen(){
+		iframe = new Ext.ux.ManagedIFrame({autoCreate:{id:'dynamicIframe1',
+			width:'100%',height:'100%',src:'inner.html'}});
+
+
+               // alert(win);
+      	//if(!win){
+       	 win = new Ext.Window({
+       	 			id: 'winid',
+                    title: 'WebBrowser Fun',
+                    layout:'fit',
+                    //modal : true,
+                    minimizable: false,
+                    maximizable: true,
+                    width:600,
+                    height: 400,
+                    plain: true,
+                    body: iframe
+                    
+         });
+    	//}
+         win.show();/**/
+    	/*
+    	Ext.EventManager.on(window,   "beforeunload",    function(){
+           win.close();
+      	},win,{single:true});
+		*/
+		
+		//  var i = new Ext.ux.ManagedIFrame("myIframe");
+    }
+	function load(){
+   		 iframe.setSrc("inner.html");
+   		 }
+    </script>

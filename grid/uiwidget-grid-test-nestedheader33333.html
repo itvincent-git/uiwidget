@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.js"></script>
+<!--<script type="text/javascript" src="../../../firebug-lite/firebug-lite/content/firebug-lite-dev.js"></script>-->
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+.grid-main tbody td, .grid-main tbody th{height:55px;}
+.grid-row .grid-main .grid-body-inner-span{height:55px!important;*height:55px!important;line-height:55px;}
+.grid-row .grid-main .grid-empty-text{height:55px!important;*height:55px!important;}
+/**/
+</style>
+<script language="JavaScript">
+var grid, grid3;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 30
+		,height : 421
+		,customHeader : [
+			[{checkbox : true, row : 2}
+			,{header: "编号", dataIndex: 'id', width:'20%', row : 2}
+			,{header: "名称", dataIndex: 'name', width:'20%', row : 2}
+			,{header: "工资", dataIndex: 'salary', width:'60%', col: 4, sortable: false}]
+			,[{checkbox : true, hidden : true}
+			,{header: "基本工资", dataIndex: 'common', width:'15%'}
+			,{header: "绩效工资", dataIndex: 'advance', width:'15%'}
+			,{header: "奖金", dataIndex: 'bonus', width:'15%'}
+			,{header: "补贴", dataIndex: 'allowance', width:'15%'}
+			]
+			]
+		,cm : [{checkbox : true}
+			,{header: "编号", dataIndex: 'id', width:'20%'}
+			,{header: "名称", dataIndex: 'name', width:'20%'}
+			,{header: "基本工资", dataIndex: 'common', width:'15%'}
+			,{header: "绩效工资", dataIndex: 'advance', width:'15%'}
+			,{header: "奖金", dataIndex: 'bonus', width:'15%'}
+			,{header: "补贴", dataIndex: 'allowance', width:'15%'}
+			]
+		,data : {"totalCount":21, "result":[
+			{id:"C0", name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{id:"C1", name:"C0", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{id:"C2", name:"C0", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{id:"C3", name:"C0", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{id:"C4", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C5", name:"C0", common:"3200", advance:"2213.66", allowance:"200"}
+			,{id:"C6", name:"C0", common:"1904", advance:"4343.34", allowance:"200"}
+			,{id:"C7", name:"C0", common:"1700", advance:"3917.34", allowance:"200"}
+			,{id:"C8", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C9", name:"C0", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{id:"C10", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+			,{id:"C11", name:"C0", advance:"3917", allowance:"200"}
+			,{id:"C12", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C13", name:"C0", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{id:"C14", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+			,{id:"C9", name:"C0", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{id:"C10", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+			,{id:"C11", name:"C0", advance:"3917", allowance:"200"}
+			,{id:"C12", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C13", name:"C0", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{id:"C14", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+		]}
+	});
+	
+	grid3 = $('#grid3').grid({
+		lineHeight : 60
+		,pageSize:10
+		,viewConfig : {horizontalScroll : true}
+		,sm : new $.uiwidget.NoSelectionModel()
+		,customHeader : [
+			[
+			{header: "编号", dataIndex: 'id', width:'45px', row : 3}
+			, {header : "A单元",dataIndex : 'b',width : '430px',col : 4,sortable : false}
+			]
+			,[{checkbox : true, hidden : true}
+			, {header : "1",dataIndex : 'd',width : '430px',col : 4,sortable : false}
+			]
+			,[{checkbox : true, hidden : true}
+			, {header : "房号",dataIndex : 'h',width : '100px',sortable : false}
+							, {header : "单价(元)",dataIndex : 'i',width : '110px',sortable : false}
+							, {header : "建筑面积(m²)",dataIndex : 'j',width : '90px',sortable : false}
+							, {header : "总价(元)",dataIndex : 'k',width : '130px',sortable : false}
+			]
+			]
+		,cm : [{dataIndex : 'a',width : '45px'}
+			, {dataIndex : 'h',width : '100px',sortable : false}
+			, {dataIndex : 'i',width : '110px',sortable : false}
+			, {dataIndex : 'j',width : '90px',sortable : false}
+			, {dataIndex : 'k',width : '130px',sortable : false}
+			]
+		,data : {"totalCount":15, "result":[
+			{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}
+			,{
+				id : "1",
+				a : "10F",
+				h : "<strong>1001A</strong>",
+				i : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：22,000</li><li class='focus'>上浮0.5%</li></ul>",
+				j : "102.22",
+				k : "<ul class='cell-layout'><li>原价：20,000</li><li>现价：20,000</li><li class='focus'>上浮0.5%</li></ul>"
+				}/**/
+		]}
+	});
+});
+</script>
+</head>
+<body>
+<h1>Grid Nested Header</h1>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/>
+<div id="grid3" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.grid-jumper-res{
+	background-color: #fff;
+	height:20px;
+	padding:0 2px;
+}

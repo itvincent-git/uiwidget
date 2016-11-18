@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Summary</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid, grid2, grid3;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		showSummaryBar : true
+		,pageSize : 15		
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'200px',
+				summaryConfig:{html: "合计"}}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'200px', summaryConfig:{calculation:'sum'}, precision:0}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'200px',summaryConfig:{calculation:'max'}, precision:2}
+			,{header: "奖金min", dataIndex: 'bonus', width:'200px',summaryConfig:{calculation:'min'}, precision:2}
+			,{header: "数量count", dataIndex: 'count', width:'100px',summaryConfig:{calculation:'count'}, precision:0}
+			,{header: "补贴average", dataIndex: 'allowance', width:'200px',summaryConfig:{calculation:'average'}, precision:2}
+			,{header: "自定义", dataIndex: 'custom', width:'200px',
+				summaryConfig:{calculation:function(value, dataIndex, rowIndex, data){
+					return "自定义";
+				}}
+			 }
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:5073212.39, advance:3831.00, bonus:200.131232, allowance:600.99}
+			,{name:"C1", common:9.99, advance:2213.10, bonus:200.55555, allowance:600.99}
+			//,{name:"C1", common:10},{name:"C1", common:-10},{name:"C1", common:10},{name:"C1", common:-10}
+			,{name:"C2", common:"9.99", advance:"4343", bonus:"400", allowance:"600.99"}
+			,{name:"C3", common:"9.99", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"9.99", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"9.99", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"9.99", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"9.99", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"9.99", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"9.99", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"9.99", advance:"4343", allowance:"200"}
+			,{name:"C11", common:"9.99", advance:"9.99", allowance:"200"}
+			,{name:"C12", common:"9.99", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"9.99", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"9.99", advance:"4343", allowance:"200"}
+			,{name:"C15", common:"9.99", allowance:"200"}
+			,{name:"C16", common:"9.99", advance:"2363", allowance:"200"}
+		]}
+	});
+	
+	grid2 = $('#grid2').grid({
+		showSummaryBar : true		
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'200px',
+				summaryConfig:{html: "合计"}}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'200px', summaryConfig:{calculation:'sum'}}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'200px',summaryConfig:{calculation:'max'}}
+			,{header: "奖金min", dataIndex: 'bonus', width:'200px',summaryConfig:{calculation:'min'}}
+			,{header: "数量count", dataIndex: 'count', width:'100px',summaryConfig:{calculation:'count'}}
+			,{header: "补贴average", dataIndex: 'allowance', width:'200px',summaryConfig:{calculation:'average'}}
+			,{header: "自定义", dataIndex: 'custom', width:'200px',
+				summaryConfig:{calculation:function(value, dataIndex, rowIndex, data){
+					return "自定义";
+				}}
+			 }
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+		]}
+	});/**/
+
+	grid3 = $('#grid3').grid({
+		showSummaryBar : true
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'15%',
+				summaryConfig:{html: "合计"}}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'15%', summaryConfig:{calculation:'sum'}}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'15%',summaryConfig:{calculation:'max'}}
+			,{header: "奖金min", dataIndex: 'bonus', width:'15%',summaryConfig:{calculation:'min'}}
+			,{header: "数量count", dataIndex: 'count', width:'15%',summaryConfig:{calculation:'count'}}
+			,{header: "补贴average", dataIndex: 'allowance', width:'15%',summaryConfig:{calculation:'average'}}
+			,{header: "自定义", dataIndex: 'custom', width:'200px',
+				summaryConfig:{calculation:function(value, dataIndex, rowIndex, data){
+					return "自定义";
+				}}
+			 }
+			]
+		,data : {"totalCount":14, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+		]}
+	});
+});
+function appendRow(){
+	grid.appendRow([{id:"D0", name : "D0", common:"1000", advance:"500"}]); 
+}
+//更新统计栏
+function update(){
+	appendRow();
+	grid.summaryBar.update(); 
+}
+//取合计值
+function getSummaryData(){
+	//getValue()参数为cm中定义的dataIndex
+	alert(grid.summaryBar.getValue('common'));
+}
+function setSummaryData(){
+	grid.summaryBar.setValue('common', 12345);
+}
+</script>
+</head>
+<body>
+<h1>Grid Summary</h1>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<button onclick="appendRow();">appendRow</button>
+<button onclick="update();">更新统计栏</button>
+<button onclick="getSummaryData();">基本工资合计值</button>
+<button onclick="setSummaryData();">设置基本工资合计值</button>
+<br/><br/><br/>
+<div id="grid2" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+<div id="grid3" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<input type="button" value="增加一行" onclick='grid3.appendRow({id:"D0", name : "D0", common:"1000", advance:"500"});'/>
+<input type="button" value="删除一行" onclick='grid3.removeRow(0);'/>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Menu rightsubmenu</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-menu.js"></script>
+<style type="text/css">
+.displayMenu {
+	background: #ebf7fb;border:1px solid #8dc7dc;height:20px;width:130px;position:absolute; left:200px;top:200px;
+}
+</style>
+<script language="JavaScript">
+var menu;
+$(document).ready(function(){
+	menu = $(document.body).menu({
+		items : [
+			{text: '新增',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				$.info('新增');
+			}}
+			,{text: '没有图片'
+			,handler: function(e){
+				$.info('修改');
+			}}
+			,'-'
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					$.info( '查看');
+				}
+				,menu:[{text: '空白图片',icon: 'images/s.gif'
+					,handler: function(e){
+						$.info( '查看-1');
+					}}
+					,{text: '查看-2',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						$.info( '查看-2');
+					}}
+					,{text: '查看-3',icon: 'images/ico-add.gif'
+					,handler: function(e){
+						$.info( '查看-3');
+					}
+						,menu:[
+							{text: '查看-3-1',icon: 'images/ico-add.gif'
+							,handler: function(e){
+								$.info('查看-3-1');
+							}}
+						]
+					}
+				]
+			}/**/
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				$.info('修改');
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				$.info('修改');
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				$.info('修改');
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				$.info('修改');
+			}}
+			]
+		
+	});
+	
+	$('#m1').click(function(e){
+		menu.showAlignTo(this, 'tl-tr');
+	});
+});
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Menu rightsubmenu</p><p/>
+<div id="m1" class="displayMenu">display menu on click</div>
+</body>
+</html>

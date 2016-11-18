@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>navigator4</title>
+<link style="text/css" rel="stylesheet"	href="css/uiwidget-navigator4.css" />
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../page/uiwidget-page.min.js"></script>
+<script type="text/javascript" src="uiwidget-navigator4.min.js"></script>
+<script language="JavaScript">
+	var nav;
+	$(document).ready(function() {
+		nav = $('#nav').navigator4({
+				autoMax: true
+				,hrefTarget: "page-content"
+				,data: [
+						{id : 1, text : "工作台", iconClass: "worktable", minIconClass : "worktable"}
+						,{id : 2, text : "销售", href : "http://google.com.hk", iconClass: "worktable", minIconClass : "worktable"}
+						,{id : 3, text : "库存", iconClass: "worktable", minIconClass : "worktable", menu : true, children : [
+							{id : 31, text : "仓库管理", href : "nav-1.html", iconClass : "quick", minIconClass : "quick"}]}
+						,{id : 4, text : "客户", href : "nav-first.html", iconClass: "worktable", minIconClass : "worktable", children : [
+							{id : 41, text : "中国客户", href : "nav-2.html", iconClass : "quick", minIconClass : "quick"}
+							,{id : 42, text : "外国客户", href : "nav-3.html", iconClass : "quick", minIconClass : "quick"}
+						]}
+						]
+				//,url: "/navigator4/navData"
+				//,loadParas: "id=1&name=abc"
+			});
+			//参数item为json数据(被点击菜单的数据)
+			nav.bind("itemclick", function(e, item) {
+				//alert(item.id);
+			});
+			nav.bind("resize", function(e) {
+				//alert(nav.getHeight());
+			});
+			selectItem2();
+	});
+
+//外界调用select方法, 改变组件的样式, 并会触发itemClick方法
+function selectItem2() {
+alert(2);
+	nav.select("2");
+}
+</script>
+<style type="text/css">
+.aaa {width:100px}
+</style>
+</head>
+
+<body style="background: gray">
+<p />
+<p align="left" style="font-size: large">UI4.0 导航</p>
+<p />
+
+
+
+<div id="nav" >
+
+</div>
+
+<div id="page-content"></div>
+
+<input type="button" value="点击" onclick="selectItem2()"/>
+</body>
+</html>

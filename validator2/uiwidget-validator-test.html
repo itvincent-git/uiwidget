@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> validator Test </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-validator.css"/>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-validator.js"></script>
+<style type="text/css">
+input{
+	border:1px solid #B7CAD1;
+}
+ul li{
+	list-style:square inside;
+	float:left;
+	margin: 20px;
+}	
+</style>
+<script language="JavaScript">
+$(function(){
+	//v = $('#name').validate({rules:[{validator: 'required', message:'请输入值！'}]});
+	//v = $('#name').validate();
+	var v = $('#tt1').validate();
+	var f = $('#validate-form').validate({immediate:true});
+});
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">validator Test</p><p/>
+<ul>
+<li>
+<form class='required-validate'>
+	required:<input name="t1" id="t1" type="text" class="required" value=""/><br/>
+	minlength:<input name="t2" id="t2" type="text" class="required min-length-3" value=""/><br/>
+	message:<input name="t3" id="t3" type="text" class="minlength-2" message="请最少输入2个字的信息" value=""/><br/>
+	select:<select name="s1" id="s1" class="required"><option value="">请选择</option><option value="bj">北京</option><option value="gz">广州</option></select><br/>
+	checkbox:<input name="c1" value="c1" type="checkbox"/>
+		<input name="c1" class="validate-one-required" value="c1" type="checkbox"/><br/> 
+	radio:<input name="g1"  class="required" value="r1" type="radio"/>
+		<input name="g1"  class="required" value="r2" type="radio"/><br/> 
+		
+	<input name="submit" id="submit" type="submit" value="submit"/>
+	<input name="reset" id="reset" type="reset" value="reset"/>
+	<!--<input type="button" value="validate" onclick="v.validate()"/>
+-->
+</li>
+</form>
+<li>
+	required:<input name="tt1" id="tt1" type="text" class="required" value=""/><br/>
+</li>
+<li>
+	<form id="validate-form">
+	required:<input name="vt1" id="vt1" type="text" class="required" value=""/><br/>
+	</form>
+</li>
+</ul>
+<br style="clear:both"/>
+</body>
+</html>

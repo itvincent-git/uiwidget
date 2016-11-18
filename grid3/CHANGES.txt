@@ -1,0 +1,160 @@
+3.0.0
+M Jquery版本要求1.5.2以上
+M 提升了加载和操作的性能
+D 删除modifySelectedRecords，修改数据请用replaceRow方法
+M 修改列宽度为固定宽度
+M *重写*RowSelectionModel,CellSelectionModel,EditCellSelectionModel,NoSelectionModel.详看uiwidget-grid-demo-rowSelectionModel.html,uiwidget-grid-demo-cellSelectionModel.html,uiwidget-grid-demo-editgrid.html
+D 删除默认右键菜单功能
+M 修改moveTop, moveUp, moveDown, moveBottom的参数为index，demo更新
+A 增加findRowData(row)，用于根据row{JQuery}对象查询数据
+M 原有的默认右键菜单的方式被移除，通过事件可以设置更灵活的右键菜单
+M RowSelectionModel，CellSelectionModel，EditCellSelectionModel的事件已改名，之外加入“不选中”、“行多选框”事件
+M RowSelectionModel，CellSelectionModel，EditCellSelectionModel的选择方法已改名，支持更多的参数
+M grid.sm.getSelectedIndexs() 查询所选行的序号支持多选
+M grid.removeRow 删除行的方法参数修改了
+D 删除了getSelectedRowIndex，hasSelected方法，改为SelectionModel中的新方法实现
+D 删除了addContextMenuItem，改为自定义菜单实现
+D 删除了getSelectedRow，改为SelectionModel中的新方法实现
+M appendRow方法支持传入json对象或者json数组
+A 增加findRowData方法，由row{JQuery Object}查询出对应的数据对象
+A 增加findCellData方法，由cell{JQuery Object}查询出对应的数据对象
+F 修复了在FF中，多表头列表如果文字太长会撑开表头的问题
+
+=====================================================================================
+
+2.0.1-SNAPSHOT
+
++ 增加卡片式GRID Demo：uiwidget-grid-demo-card.html
+M 修改排序按钮实现
++ 添加方法：
+	replaceRow(rowIndex, record)
+	覆盖行，包括行的数据和显示的内容
+	@param rowIndex{Integer} 行号
+	@param record{JsonObject} 数据json对象
+F 修正CellSelectionModel和EditCellSelectionModel	中缺少getSelectedRowIndex方法的错误
+F 修正replaceRow导致renderer出错的问题
++ 增加编辑列表按回车自动向下继续编辑的例子
++ 键盘导航时，如果有滚动条，页面也会跟着滚动
+F 修复横向滚动条的问题
+F 修复editor传入string时，编辑错误的问题
+F 修改在firefox3.6前，编辑列表在切换窗口时会使编辑无法进行的问题
++ cm中增加自定义title，如{header: "备注", dataIndex: 'remark', title: '备注提示'}
+F NoSelectionModel中addRowEvent方法的错误
+F 修复纵向滚动条右边的空白偏移
+M 原tbody td,th样式改为.grid-row-td, .grid-body-checkbox-th
++ 增加uiwidget-grid-test-editgrid-renderer.html，可使编辑内容跟显示内容不同方式显示
+F 修正summary bar在ie中有横向滚动条时位置对不齐的情况
+
+=====================================================================================
+
+2.0.0 2010-03-16
+*****需要升级到jquery1.4.2*****
+M 分页栏变更
+M 修改跳页宽度
+F 修复query()查询时，会丢失排序信息的问题
+
+=====================================================================================
+1.5.2 2010-02-09
+M 编辑列表改动：当滚动列表时，会退出编辑状态
+F 上移下移接口修复数据移动错误
+F 修改统计的数字运算，不使用原来的精确计算方法，改为使用精度处理
+F 统计的数字有负数时，计算错误
+F 修正新增行时，renderer中取得的rowIndex错误
+
++ NoSelectionModel增加rowMouseOver，rowMouseOut，rowClick事件
+
+=====================================================================================
+1.5.1	2009-12-24
+F 修复IE7下滚动条不出现的问题
+F 修复最后一列右对齐的情况下被遮挡的问题
+F 修复表头排序的错误
+
++ 新增selectAll方法，选择所有的行
++ 新增removeAllRow删除全部行的demo
++ summaryBar新增setValue和getValue方法，设置和获取统计栏的值
++ 新增beforeRowClick事件，在行被单击前触发
++ e.triggerEvent方法
++ 新增headerCheckboxClick，表头的全选框被点击时触发
+
+- 删除没有数据时，自动加空格的处理
+
+M 修改summarybar的unselectable="on"
+M summaryBar增加update方法，刷新统计栏
+M summaryBar、编辑列表事件模型重构
+M 扩大了行前的checkbox点击事件的范围，同时也会触发加beforeRowClick事件
+M 修改纵向滚动条为智能判断，如果超出高度出现滚动条就设置scrollOffset,否则就不出现scrollOffset
+
+=====================================================================================
+1.5.0    2009-10-29
+新增
+	1.增加自定义title的功能，详细看demo-renderer
+	2.加入noselect demo，用于不能选择的列表
+	3.summary统计功能加入precision精度控制，详细看demo-summary
+	4.SelectionModel 加：handlerClickRow(rowEl) 选中行
+修复
+	1.列表中有选择框的时候不能全选的问题
+	2.行选择模型，新增行时，没有加上checkbox多选事件
+	3.多表头时宽度问题
+	4.没有数据时异常
+	5.在FF下，当左右滚动条向右边拉动后，表格的颜色有些是没有选中效果
+	6.改了删除分布中最后一条后，分页显示错误的问题
+	7.没有数据时，title为null的判断
+	8.title中有“”导致不能完全显示的问题
+修改
+	1.loadData默认cache属性改为false
+	2.选择分页数时，默认跳回第一页
+	3.如果pageSize等于pageSizeList里的项目，pageSizeList的项目就被选中
+	4.分离toolbar jumper button，用于自定义样式
+	5.优化过宽度判断的性能
+	6.修改了demo
+	7.增加insertRecordsBefore的参数，详细看demo
+	8.分离$.uiwidget.PageToolbar
+=====================================================================================
+1.4.0    2009-07-03
+1.新增方法
+	getPageNumber 取得页码
+	getPageSize 取得分页数
+	PageRowNumberer 支持分页的序号列
+2.新增事件	
+	rowContextMenu 在行上点击右键会触发此事件
+3.其它修改
+	+ validator css
+	M 修正data作为数据时，filter的调用顺序不正确
+	M 分页栏变更
+	+ 没有记录时会在表中显示“没有记录”
+	
+=====================================================================================	
+1.3.0    2009-06-09
+1.新增方法
+	getRow(index)取得行
+	getCell(rowIndex, collIndex)取得单元格
+	findRowIndex(el)取得行的序号
+	findCellIndex(el)取得单元格的序号
+	getAllRow()取得所有行
+	findParentRow(el)取得所属行
+	getFirstRow()取第一行
+	getLastRow()取最后一行
+	findPrevRow(el)取前一行
+	findNextRow(el)取后一行
+2.新增配置参数
+	pageSizeList:[15, 30] 每页显示记录数select选择框
+3.现在能对静态数据进行分页处理了
+4.新增事件
+	beforeRender 数据渲染前
+	afterRender	数据渲染后
+5.新增自适应高度的demo
+6.在列表没有数据时,显示"没有记录"	
+7.更新menu 1.1.0版本,可实现菜单可配置宽度,详细看demo-contextmenu
+8.新增rowexpander demo
+
+=====================================================================================
+1.2.1    2009-5-21
+1. 更新js,css,images
+2. *高度参数更改原来默认高度为397,现修改为375,按列表主体高度计算,如出现滚动条或空白请适当调大或调小高度
+3. 修复表头,表格模型BUG
+4. 增加div.grid-container 宽度为100%
+5. 修正统计精确计算
+6. 修正多表头滚动条不显示问题
+7. 统计值为0或空,结果显示为0
+8. 分页导航不可按时以灰色按钮显示
+9. 增加getHeight setHeight getLineHeight设置高度的方法

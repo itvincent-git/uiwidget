@@ -1,0 +1,81 @@
+
+<html>
+  <head>
+    <title>inner.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="stylesheet" type="text/css" href="css/window.css">
+    <script type="text/javascript" src="../../scripts/ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../scripts/ext/ext-all.js"></script>
+    <script language="javascript" src="window.js"></script>-->
+  </head>
+  
+  <body onunload="/*alert('unload')*/"> 
+    <br>This is my inner HTML page. <br>
+    <form action="inner2.html">
+    name:<input id="text1" type="text" value="">
+    <input type="button" value="submit" onclick="submitForm()">
+    <input type="button" value="Open" onclick="windowOpen('inner2.html', 'in2', 'in2', 200, 300, false, 'ifin2')">
+    <input type="button"  value="windowOpen2" 
+		onclick="winOpen2()"/></input>
+    <input type="button" value="Close" onclick="windowClose()">
+    <input type="button" value="Close2" onclick="winClose2()">
+    <input type="button" value="showMask()" onclick="showMask();">
+    <br/><!-- windowResize('in', 500, 600) windowResize(500, 600);window.location.href='inner2.html'-->
+    <input type="button" value="Next" onclick="forwardAndResize('inner2.html',500,600)">
+    <input type="button" value="Next2" onclick="forward2()">
+    <select name="xx"><option value="xx">xx</option><option value="yy">yy</option></select>
+    <input type="button" value="resizewin" onclick="windowResize(500,600)"> 
+    <input type="button" value="resizewin2" onclick="top.wm.getByWindow(window).resize(500,600)"> 
+    </form>
+     <!--<iframe src="windowOld.html" frameborder="0" name="in1-in" id="in1-in" name="in1-in" scrolling="auto"></iframe>
+    <iframe id='my' name='my' src="inner2.html"></iframe> -->
+  </body>
+  <script type="text/javascript">
+  	function submitForm(){
+  		showMask();
+  		document.forms[0].submit();
+  	}
+  	var win;
+  	function winOpen2(){
+    	win = windowOpen({
+    		url:'inner2.html'
+    		, winId:'in2'
+    		, winTitle:'新建'
+    		, winHeight:200
+    		, winWidth:400
+    		,modal : false
+    	});
+    	/**/
+    }
+    
+    function winClose2(){
+    	//top.Ext.WindowMgr.get('in').close();
+    	top.wm.close(this);
+    }
+    
+    function forward2(){
+    	top.wm.getByWindow(this).forwardAndResize('inner2.html',500,600);
+    }
+  	/*var closeWin = function(){
+  		
+  		if ( window.frames != null ) {
+			for ( i = 0; i< window.frames.length; i++ )
+			window.alert ("子窗口 " +i+ " 的src为 "+window.frames(i).location);
+		}
+		
+		var frm = top.frames;
+  		 if ( frm != null ) {
+			for ( i = 0; i< frm.length; i++ )
+			alert ("子窗口 " +i+ " 的src为 "+ frm(i).location);
+		}
+  		parent.windowClose('in');
+  		//closewin();
+  	}*/
+  	//alert(123);
+  </script>
+</html>

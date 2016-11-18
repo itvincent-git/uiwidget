@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid 纵向滚动条</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+#grid .grid-cm-bonus{
+	text-align: right;
+}
+</style>
+<script language="JavaScript">
+var grid, grid2, grid3, grid4;
+$(document).ready(function(){
+	
+	grid = $('#grid').grid({
+		//viewConfig:{scrollOffset:true}
+		cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'20%'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'20%'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'20%'}
+			,{header: "数量count", dataIndex: 'count'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'20%'}
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C15", common:"1700", allowance:"200"}
+			,{name:"C16", common:"1064", advance:"2363", allowance:"200"}
+		]}
+	});
+
+	grid2 = $('#grid2').grid({
+		//viewConfig:{scrollOffset:true}
+		cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'20%'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'20%'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'20%'}
+			,{header: "数量count", dataIndex: 'count'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'20%'}
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+		]}
+	});
+
+	grid3 = $('#grid3').grid({
+		//viewConfig:{scrollOffset:true}
+		cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'20%'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'20%'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'20%'}
+			,{header: "数量count", dataIndex: 'count'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'20%'}
+			]
+		,data : {"totalCount":0, "result":[]}
+	});
+
+	grid4 = $('#grid4').grid({
+		pageSize:16,
+		cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'20%'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'20%'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'20%'}
+			,{header: "数量count", dataIndex: 'count'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'20%'}
+			]
+		,data : {"totalCount":18, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C15", common:"1700", allowance:"200"}
+			,{name:"C16", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C17", common:"1064", advance:"2363", allowance:"200"}
+		]}
+	});
+});
+
+function appendRow(){
+	grid2.appendRow([{name:"C17", common:"1064", advance:"2363", allowance:"200"}]); 
+}
+function removeRow(){
+	grid2.removeRow(grid2.getRow(0));
+}
+</script>
+</head>
+<body>
+<h1>Grid 纵向滚动条</h1>
+viewConfig:{scrollOffset:true}
+<li>1.解决IE7下滚动条不出现的问题</li>
+<li>2.最后一列右对齐的情况下被遮挡的问题</li>
+<div id="grid4" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+<div id="grid2" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<button onclick="appendRow()">grid2.appendRow</button>
+<button onclick="removeRow()">grid2.removeRow</button>
+<br/><br/><br/>
+<div id="grid3" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+</body>
+</html>

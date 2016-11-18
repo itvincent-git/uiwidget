@@ -1,0 +1,182 @@
+<html>
+<head>
+    <title>Window Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/window.css" />
+    <!--
+    <link rel="stylesheet" type="text/css" href="../../widgets/window/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="../../widgets/window/css/window.css" />
+    <link rel="stylesheet" type="text/css" href="../../scripts/ext/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../scripts/ext/resources/css/window.css" />
+    <link rel="stylesheet" type="text/css" href="../../scripts/ext/resources/css/button.css" />
+    <script type="text/javascript" src="../../scripts/ext/adapter/prototype/prototype.js"></script>
+	<script type="text/javascript" src="../../scripts/ext/adapter/prototype/ext-prototype-adapter.js"></script>
+    <script language="javascript" src="miframe1.1.js"></script>
+    <script language="javascript" src="window1.js"></script>
+    <script language="javascript" src="window2.js"></script>
+    <script language="javascript" src="window-div.js"></script>
+	-->    
+ 	<script type="text/javascript" src="ext-base.js"></script>
+    <script type="text/javascript" src="ext-all.js"></script>
+    <script language="javascript" src="window.js"></script>
+    <script type="text/javascript">
+    //var url = 'http://localhost:8080/hr/attendance/audienceScope.do?method=edit';
+    var url = 'inner.html';
+    
+    function winOpen(){
+    	
+    	windowOpen({
+    		url:'inner.html'
+    		,winId:'in'
+    		,winTitle:'new in'
+    		,winHeight:300
+    		,winWidth:400
+    		//,modal : false
+    		//,draggable:false
+    		//,maximizable:true
+    		//,minimizable:true
+    		//,resizable:true
+			,beforeClose: function(){
+				alert('beforeclose');
+			}
+    	});
+    }
+    
+    function winOpen2(){
+    	var win = new Ext.ux.IFrameWindow({
+    		url:url
+    		, winId:'in'
+    		, winTitle:'新建'
+    		, winHeight:300
+    		, winWidth:400
+    	});
+    	/**/
+    }
+
+	function winOpen3(){
+    	
+    	windowOpen({
+    		url:'inner.html'
+    		,winId:'in'
+    		,winTitle:'new in'
+    		,winHeight:300
+    		,winWidth:400    		
+			,beforeClose: function(){
+				alert('beforeclose');
+			}
+    	});
+    }
+    //
+    </script>
+</head>
+<body>
+<h1>弹出页面</h1>
+
+<input type="button"  value="windowOpen" 
+	onclick="winOpen()"/></input>
+<input type="button"  value="windowOpen2" 
+	onclick="winOpen2()"/></input>
+<input type="button"  value="windowOpen3" 
+	onclick="winOpen3()"/></input>
+<!-- windowOpen(url, 'in', '新建in', 300, 400, true) -->
+<input type="button"  value="kaoList" 
+	onclick="windowOpen('/hr/sample/kao.do',  'winKao', 'winKao', 500, 400, false, 'winIf')"/></input>
+
+<input type="button"  value="abc" 
+	onclick="windowOpen('/hr/hrmanagement/hrreward.do?method=add',  'abc', 'abc', 300, 500)"/></input>
+
+<input type="button" value="组织树" 
+	onclick="windowOpen('../../sample/tree.do', 'tree', '组织结构', 410, 250, true, 'treeIf')"></input>
+
+<input type="button" value="iframe" onclick="alert(window.frames['in'].id)"></input>
+
+<input type="button" value="open100" onclick="open100()"></input>
+
+<input type="button" value="alert" onclick="alert(window.frames.inIfm)"></input>
+<input type="button" value="navigator.userAgent.toLowerCase()" onclick="alert(navigator.userAgent.toLowerCase())"></input>
+
+<br /><br />
+
+select tree id:<input id="id" type="text" ></input><br/>
+select tree text:<input id="text" type="text" ></input><br/>
+select tree type:<input id="type" type="text" ></input><br/>
+parent com serialNumber:<input id="comSerialNumber" type="text" ></input><br/>
+parent com name:<input id="comParentName" type="text" ></input><br/>
+parent dep serialNumber:<input id="depSerialNumber" type="text" ></input><br/>
+parent dep name:<input id="depParentName" type="text" ></input><br/>
+
+<div id="ab" >
+<select name="xx" onchange="document.body.focus()">
+	<option value="xx">xx</option>
+	<option value="yy">yy</option>
+</select>
+</div>
+<div id="debug"></div>
+</body>
+ 
+
+<iframe id="zz" name="zz" src="inner.html"></iframe> 
+<!---->
+<script type="text/javascript">
+<!--
+var onSelectTree = function(node, queryObj){
+	document.getElementById('id').value = node.attributes.nodeId;
+	document.getElementById('text').value = node.attributes.text;
+	document.getElementById('type').value = node.attributes.type;
+	if(queryObj != null){
+	document.getElementById('comParentName').value = queryObj.parentCompanyName;
+	document.getElementById('comSerialNumber').value = queryObj.parentCompanySerialNumber;
+	}
+	
+}
+function change(readyState){
+	if(readyState == 'loading'){
+	var zz = Ext.get('zz');
+	zz.dom.contentWindow.document.body.innerHTML = "sdf";
+	}
+	//alert(readyState);
+}
+function open100(){
+	for(var i = 0, len =10; i< len ; i++){
+		setTimeout("windowOpen(url, "+ i +", '', 300,400,false)", 1000);
+	
+	}
+}
+
+function cb(){
+	return windowOpen(url, 'in', '新建in', 300, 400, true);
+	//alert('cb');
+	
+}
+//hh = hh.createInterceptor(cb);
+function hh(){
+	//for(var a in Function){
+	//	alert(a);
+	//}
+	//alert(123);
+	var a = this;
+	alert(a.id);
+	cb.apply(a);
+}
+//ev();
+function onKeydown(){
+	if (window.addEventListener) {
+         window.document.body.addEventListener("keydown", function(e){
+		 	if(e.keyCode == 8){
+		 		alert('<-');
+		 	}
+		 }, false); 
+	} else if (window.attachEvent) {
+         window.document.body.attachEvent("onkeydown", function(e){
+		 	if(e.keyCode == 8){
+		 		alert('<-');
+		 	}
+		 });    
+    }
+}
+
+//var xx = document.getElementByName("xx");
+//xx.blur();
+//-->
+</script>
+</html>

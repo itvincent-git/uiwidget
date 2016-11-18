@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid customcontextmenu</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [{checkbox:true}
+			,{header: "名称", dataIndex: 'name', width:'50%'}
+		 	,{header: "备注", dataIndex: 'remark'}]		
+		,data : {"totalCount":5, "result":[{id:"1", name : "张三", remark : "1"}
+		, {id:"2", name : "甲", remark : "1"}, {id:"3", name : "乙", remark : "3"}
+		, {id:"4", name : "丙", remark : "2"}, {id:"5", name : "丁", remark : "4"}]}		
+	});
+	
+	//菜单1
+	var menu1 = $.menu({items : 
+		[{text: '1',icon: 'images/ico-add.gif',
+			handler: function(e){
+				alert( '1');
+		}}]
+	});
+	//菜单2
+	var menu2 = $.menu({items : 
+		[{text: '2',icon: 'images/ico-add.gif',
+			handler: function(e){
+				alert( '2');
+		}}]
+	});
+	//行右键事件
+	grid.bind('rowContextMenu', function(e, grid, rowEl){
+		if(grid.getSelections().length > 1){ 
+			alert('多选');
+			return;
+		}
+		//选中行
+		grid.getSelectionModel().handlerClickRow(rowEl);
+		//备注的文字
+		var text = grid.getSelections()[0].remark;
+		//判断备注文字
+		if(text=='1'){
+			menu1.showAt(e.pageX, e.pageY);//菜单1
+		}else if(text=='2'){
+			menu2.showAt(e.pageX, e.pageY);//菜单2
+		}
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Grid 自定义右键菜单</p><p/>
+<div id="grid" style="width:80%;border:1px solid #ccc"></div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Messagebox Demo</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-messagebox.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../dragdrop/uiwidget-drag.min.js"></script>
+<script type="text/javascript" src="uiwidget-messagebox.min.js"></script>
+
+<style type="text/css">
+	body,html{height:100%;width:100%;margin:0}
+</style>
+<script language="JavaScript">
+
+function openAlert(){
+	top.$.messagebox({title:'严重警告',type:'alert', msg:'hello world!'});
+}
+
+function openSuccess(){
+	top.$.messagebox({type:'success', msg:'congratulations!'});
+}
+
+function openError(){
+	top.$.messagebox({type:'error', msg:'error!'});
+}
+
+function openAsk(){
+	top.$.messagebox({type:'ask', msg:'Are you sure?'});
+}
+
+function alertFn(){
+	top.$.messagebox({type:'alert', msg:'hello world!', fn:function(button, msg){
+		alert('button.index = ' + button.index);
+		alert('msg = ' + msg);
+		if(button.index == -1)
+		   alert('关闭窗口');
+	}});
+}
+
+function askFn(){
+	top.$.messagebox({type:'ask', msg:'Are you sure?', fn:function(button, msg){
+		alert('button.index = ' + button.index);
+		alert('msg = ' + msg);
+	}});
+}
+
+function customButton(){
+	top.$.messagebox({type:'ask', msg:'是否保存记录?', buttons: [{text:'保存',iconCls:'ico-btn-order-ok'}, {text:'保存并关闭',iconCls:'ico-btn-order-ok'}, {text:'取消',iconCls:'ico-btn-order-close'}]
+		,fn:function(button, msg){
+			alert('button.index = ' + button.index);
+			alert('msg = ' + msg);
+		}
+	});
+}
+
+function allCustom(){
+	top.$.messagebox({title:'提示记录', msg:'是否保存记录?', iconCls: 'msg-window-ico-prompt', buttons: [{text:'保存', iconCls:'ico-btn-order-ok'}, {text:'保存并关闭',iconCls:'ico-btn-order-ok'}, {text:'取消',iconCls:'ico-btn-order-close'}]
+		,fn:function(button, msg){
+			alert('button.index = ' + button.index);
+			alert('msg = ' + msg);
+		}
+	});
+}
+</script>
+</head>
+<body>
+<h1>Messagebox Demo</h1>
+<p><button onclick="openAlert();">Open Messagebox Alert</button></p>
+<p><button onclick="openSuccess();">Open Messagebox Success</button></p>
+<p><button onclick="openError();">Open Messagebox Error</button></p>
+<p><button onclick="openAsk();">Open Messagebox Ask</button></p>
+<p><button onclick="alertFn();">Open Messagebox Alert with function</button></p>
+<p><button onclick="askFn();">Open Messagebox Ask with function</button></p>
+<p><button onclick="customButton();">四种类型的customButton</button></p>
+<p><button onclick="allCustom();">allCustom</button></p>
+<p><select>
+	<option>--请选择--</option>
+	<option>测试遮照效果</option>
+	</select>
+</p>
+</body>
+</html>

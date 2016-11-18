@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tree </title>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<!--<script type="text/javascript" src="../jquery-1.3.2.js"></script>-->
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tree.js"></script>
+<style type="text/css">  
+</style>
+</head>
+<body>
+<div id="tree"></div>
+<input type="button" value="expand" onclick="expandAll()"/>
+<input type="button" value="expand2" onclick="expandAll2()"/>
+</body>
+<script language="JavaScript"><!--
+
+var data = [{"id":"rootid", "text":"root node", "leaf":false, children:[]}];
+for(var i = 1; i < 10; i++){
+	a = {};
+	a.id = i;
+	a.text = "node" + i;
+	a.leaf = false;
+	a.children = [];
+	for(var j = 0; j < 10; j++){
+		b = {};
+		b.id = "id" +(i*100 + j);
+		b.text = "node" + (i*100 + j);
+		b.leaf = true;
+		a.children.push(b);
+	}
+	data[0].children.push(a);
+}
+
+var tree;
+$(document).ready(function(){
+	var sw = new $.uiwidget.StopWatch();
+	sw.start();
+	tree = $('#tree').tree({
+		data : data
+		,hrefTarget : 'content'
+		//,showIcons : false		
+	});
+	sw.stop();
+	$.info(sw);
+});
+
+function expandAll(){
+	var sw = new $.uiwidget.StopWatch();
+	sw.start();
+	tree.expandAll();
+	sw.stop();
+	$.info(sw);
+}
+
+function expandAll2(){
+	var sw = new $.uiwidget.StopWatch();
+	sw.start();
+	tree.getRootNode()[0].eachChild(function(node){
+		node.expand();
+	});
+	sw.stop();
+	$.info(sw);
+}
+--></script>
+</html>

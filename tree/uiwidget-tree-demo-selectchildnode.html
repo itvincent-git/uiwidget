@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<table width="100%" height="50%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+</tr>
+</table>
+<div id="tree2"></div>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree, tree2;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力", "checked":"false", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false", "leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false", "leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false", "leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false", "leaf":true}]}
+				]}
+		]}
+		]
+		,hrefTarget : 'content'
+	});
+	tree.expandAll();
+	tree.bind('checkchange',function(e, treeNode){
+		//alert('treeNode = ' + treeNode.data.text);
+		//选中所有子节点
+		treeNode.cascade(function(node){
+			node.checkChange(treeNode.data.checked, false);
+		});
+	});
+	
+	
+	tree2 = $('#tree2').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","checked":"false","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false","leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false","leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false","leaf":true}]}
+				]}
+		]}
+		]
+		,hrefTarget : 'content'
+	});
+	//展开所有节点
+	tree2.expandAll();
+	//添加勾选触发的事件
+	tree2.bind('checkchange',function(e, treeNode, checked){
+		//alert('treeNode = ' + treeNode.data.text);
+		//alert('checked = ' + checked);
+		//选中下层子节点
+		treeNode.eachChild(function(node){
+			node.checkChange(treeNode.data.checked, false);
+		});
+	});
+});
+
+</script>
+</HTML>

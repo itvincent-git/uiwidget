@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Menu </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-menu.min.js"></script>
+<style type="text/css">
+.displayMenu {
+	background: yellow;height:200px;width:200px;
+}
+</style>
+<script language="JavaScript">
+var menu1;
+var menu2;
+$(document).ready(function(){
+	menu1 = $.menu({
+		items : [
+			{text: '新增',icon: 'images/ico-add.gif', id:'add'
+			,handler: function(e, item){
+				alert(item.text);
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e, item){
+				alert(item.text);
+			}}
+			,'-'
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e, item){
+					alert(item.text);
+				}
+				,menu:{
+					items:[
+						{text: '查看-1',icon: 'images/ico-add.gif'
+							,handler: function(e, item){
+								alert( item.text);
+							}
+						}
+						,{text: '查看-2',icon: 'images/ico-add.gif'
+							,handler: function(e, item){
+								alert( item.text);
+							}
+						}
+						,{text: '查看-3',icon: 'images/ico-add.gif'
+							,handler: function(e, item){
+								alert( item.text);
+							}
+						}
+						]
+				}		
+			}
+			]
+		
+	});
+	
+	$('#m1').click(function(e){
+		e.preventDefault();
+		menu1.showAt(e.pageX, e.pageY);
+	});
+	
+	menu2 = $.menu({
+		items :[
+			{text: '新增',icon: 'images/ico-add.gif', id:'add'
+			,handler: function(e, item){
+				alert(item.text);
+			}}
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e, item){
+					alert(item.text);
+				}
+				,menu:{
+					width: 150
+					,items:[
+						{text: '查看-1',icon: 'images/ico-add.gif'
+							,handler: function(e, item){
+								alert( item.text);
+							}
+						}
+						,{text: '查看-2',icon: 'images/ico-add.gif'
+							,handler: function(e, item){
+								alert( item.text);
+							}
+						}
+						,{text: '查看-3',icon: 'images/ico-add.gif'
+							,handler: function(e, item){
+								alert( item.text);
+							}
+						}
+						]
+				}		
+			}
+			]
+		
+	});
+	$('#m2').bind('contextmenu', function(e){
+		e.preventDefault();
+		menu2.showAt(e.pageX, e.pageY);
+	});
+});
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Menu</p><p/>
+<div id="m1" class="displayMenu">display menu on click</div>
+<p/>
+<div id="m2" class="displayMenu">display menu on right click</div>
+</body>
+</html>

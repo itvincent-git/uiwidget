@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.min.js"></script>
+<style type="text/css">
+
+</style>
+<script LANGUAGE="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+		//默认打开的标签（按序号）
+        initActiveTab: 0
+      	//默认打开的标签（按标签id）
+      	//initActiveTab : 'other'
+        ,height : 300
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息'}
+            ,{href:'page.html?name=tab2', text: '客户信息', closeable:true, id:'custom'}
+            ,{href:'page.html?name=tab3', text: '其它信息', closeable:true, id:'other'}
+        ]       
+	});	
+});
+
+//新标签（加在'客户信息'后）
+function addItemAfter(){
+	//position可以为before,after，表示加在tab的前或后
+	//id， 表示目标id的标签
+	tab.addItem({text:'新的标签', href:'page.html?name=newTab'}, {position:'after', id:'custom'})
+}
+
+//替换标签
+function replaceTab(){
+	tab.addItem({text:'新的标签', href:'page.html?name=newTab'}, {position:'after', id:'other'})
+	tab.closeTab('other');
+}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab</p><p/>
+<div id="tabs"></div>
+<button onclick="tab.addItem({text:'新的标签', href:'page.html?name=newTab'})">添加标签</button>
+<button onclick="tab.activeTab({id : 'other'})">激活标签</button>
+<button onclick="tab.closeTab('other')">关闭'其它信息'标签</button>
+<button onclick="addItemAfter()">新标签（加在'客户信息'后）</button>
+<button onclick="replaceTab()">替换'其它信息'标签</button>
+<input type="button" onclick="tab.setClosable('custom', true);" value="设置“客户信息”可关闭"/>
+<input type="button" onclick="tab.setClosable('custom', false);" value="设置“客户信息”不可关闭"/>
+
+</body>
+</HTML>

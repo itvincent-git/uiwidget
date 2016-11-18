@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<table width="100%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+</tr>
+</table>
+<div id="tree2"></div>
+<button onclick="tree2.containerNode.childNodes[0].checkChange(true)">checkChange true, but not trigger checkchange event</button><br/>
+<button onclick="tree2.containerNode.childNodes[0].checkChange(false, true)">checkChange false, and trigger checkchange event</button><br/>
+<button onclick="each()">each</button>
+<button onclick="cascade()">cascade</button>
+<p/>
+双击事件
+<div id="tree3"></div>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree, tree2, tree3;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力", children : [
+			{"id":"2","text":"中企动力广州分公司",  "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","leaf":true}]}
+				]}
+		]}
+		]
+		,hrefTarget : 'content'
+	});
+	tree.expandAll();
+	tree.bind('nodeClick',function(e, treeNode){
+		alert('treeNode = ' + treeNode.data.text);
+	});
+	
+	
+	tree2 = $('#tree2').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","checked":"false","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false","leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false","leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false","leaf":true}]}
+				]}
+		]}
+		]
+		,hrefTarget : 'content'
+	});
+	//展开所有节点
+	tree2.expandAll();
+	//添加勾选触发的事件
+	tree2.bind('checkchange',function(e, treeNode, checked){
+		alert('treeNode = ' + treeNode.data.text);
+		alert('checked = ' + checked);
+	});
+
+	tree3 = $('#tree3').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","checked":"false","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false","leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false","leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false","leaf":true}]}
+				]}
+		]}
+		]
+	});
+	tree3.bind('nodeDblclick', function(e, treeNode){
+		//e为event, treeNode为双击的节点
+		alert('双击了节点：' + treeNode.data.text);
+	});
+});
+function each(){
+	//把tree2第一个根节点下的第一个子节点的下一层节点勾选上
+	tree2.getRootNode()[0].childNodes[0].eachChild(function(node){
+		//alert(node.data.text);
+		node.checkChange(true, false);
+	});
+}
+function cascade(){
+	//把tree2第一个根节点下的所有子节点勾选上
+	tree2.getRootNode()[0].cascade(function(node){
+		node.checkChange(true, false);
+	});
+}
+</script>
+</HTML>

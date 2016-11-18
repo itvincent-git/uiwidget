@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Test </title>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<link type="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+</head>
+<body >
+<p/><p align="left" style="font-size: large">Grid Test</p><p/>
+<div id="grid" style="height:100%;width:99%;border:1px solid #ccc; "></div>
+<ul>
+	<li id="1">1</li>
+	<li id="2">2</li>
+	<li id="3">3</li>
+</ul>
+<br/>
+<script language="JavaScript" type="text/javascript">
+var c = new $.uiwidget.Collection();
+c.add($('#1')[0]);
+c.add($('#2')[0]);
+c.add($('#3')[0]);
+c.remove($('#2')[0]);
+
+c.each(function(item){
+	$.debug("each item= " + item.id)
+});
+$.debug("count =" + c.getCount());
+</script>
+</body>
+</html>

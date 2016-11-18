@@ -1,0 +1,25 @@
+.tree{overflow:auto;}
+.tree input{outline:0;zoom:1;background:#f2f2f2;}    
+.tree input::-moz-focus-inner{border-color:transparent!important;} 
+.tree .tree-node-text, .tree .tree-node, .tree-indent{white-space: nowrap;}
+.tree ul, .tree li{list-style-type: none;list-style-position: outside;}
+.tree .tree-expand-icon, .tree .tree-node-icon, .tree .tree-blank{line-height: 18px;border:0px; vertical-align:middle; height:18px; width:18px; outline:none; -moz-outline-style:none;}
+.tree .tree-elbow-plus, .tree .tree-elbow-end-plus, .tree .tree-elbow-minus, .tree .tree-elbow-end-minus, .tree .tree-node-icon, .tree .tree-node-text, .tree .tree-node-checkbox{cursor:pointer}
+.tree .tree-node{line-height:18px;_line-height: 16px;}
+.tree .tree-node-selected{background-color:#FEEC8C}
+.tree .tree-node-leaf{background:url(../images/page.gif) center no-repeat;}
+.tree .tree-node-folder{background:url(../images/folder.gif) center no-repeat;}
+.tree .tree-node-folderopen{background:url(../images/folderopen.gif) center no-repeat;}
+.tree .tree-node-ct{display:none;}
+.tree .tree-blank{background:url(../images/s.gif) center no-repeat}
+.tree .tree-line{background:url(../images/line.gif) center no-repeat;}
+.tree .tree-elbow{background:url(../images/join.gif) center no-repeat;}
+.tree .tree-elbow-end{background:url(../images/joinbottom.gif) center no-repeat;}
+.tree .tree-elbow-plus{background:url(../images/plus.gif) center no-repeat;}
+.tree .tree-elbow-end-plus{background:url(../images/plusbottom.gif) center no-repeat;}
+.tree .tree-elbow-minus{background:url(../images/minus.gif) center no-repeat;}
+.tree .tree-elbow-end-minus{background:url(../images/minusbottom.gif) center no-repeat;}
+.tree .tree-node-checkbox{vertical-align:middle; height:14px; width:14px;border: 0;margin:3px 0 1px 0 ;padding:0;}
+.tree .tree-node-text{font-size:12px;vertical-align:middle;-moz-user-select:none;line-height:18px;_line-height:16px; _height:16px;_padding-top:2px;}
+.tree .tree-node-disabled .tree-node-text{color:gray;}
+.tree .tree-node-disabled .tree-node-icon{-moz-opacity:0.5; opacity:0.5; filter:alpha(opacity = 50)}

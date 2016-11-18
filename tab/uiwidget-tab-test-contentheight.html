@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab ContentHeight</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<!--<script type="text/javascript" src="E:/AJAX/firebug-lite-compressed.js"></script>
+--><style type="text/css">
+
+</style>
+<script language="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height: 450
+        ,items:[
+            /**/{href:'page.html?name=tab1', text: '房屋信息', id:'a', height:100}
+            ,{href:'page.html?name=tab2', text: '客户信息', id:'b', height:200}
+            ,{href:'page.html?name=tab3', text: '其它信息', id:'c', height:300}
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'d', height:400}
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'e'}
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'f'}
+        ]
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab ContentHeight</p><p/>
+<div id="tabs"></div>
+<button onclick="tab.addItem({text:'新的标签', href:'page.html?name=newTab'})">addTab</button>
+</body>
+</HTML>

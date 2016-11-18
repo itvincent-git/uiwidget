@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tree.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<table width="100%" height="30%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+<td>
+<iframe id="content" name="content" src="" height="100%" width="100%" frameborder="1"></iframe>
+</td>
+</tr>
+</table>
+
+<table width="100%" height="30%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree2"></div>
+<p>
+</td>
+<td>
+<iframe id="content2" name="content2" src="" height="100%" width="100%" frameborder="1"></iframe>
+</td>
+</tr>
+</table>
+
+<table width="100%" height="30%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree3"></div>
+<p>
+</td>
+<td>
+<iframe id="content3" name="content3" src="" height="100%" width="100%" frameborder="1"></iframe>
+</td>
+</tr>
+</table>
+<!---->
+<button onclick="reloadRoot()">tree reloadRoot</button>
+<button onclick="reloadRoot2()">tree2 reloadRoot</button>
+<button onclick="reloadRoot3()">tree3 reloadRoot</button>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree, tree2, tree3;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		url : 'demo-url.json'
+		/*data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2",  children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list1.html?id=21", title:'负责系统分析与设计'}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list1.html?id=22", title:'负责系统程序的研发和修改'}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list1.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list1.html?id=231"}]}
+				]}
+			,{"id":"3","text":"中企动力深圳分公司", "checked":"true", "leaf":false,"href":"list1.html?id=3", children:
+				[{"id":"31","text":"深圳测试部","leaf":true,"href":"list1.html?id=31"}
+				,{"id":"32","text":"深圳互联网开发部","leaf":false,"href":"list1.html?id=32", children:
+					[{"id":"321","text":"深圳互联网开发1部","leaf":true,"href":"list1.html?id=321"}
+					]}
+				,{"id":"33","text":"深圳管理层","leaf":true,"href":"list1.html?id=33"}
+				]}
+			,{"id":"4","text":"中国大地院线公司","leaf":false,"href":"list1.html?id=4", children:
+				[{"id":"41","text":"广州大地","leaf":true,"href":"list1.html?id=41"}
+				]}
+		
+		]}		
+		]*/
+		,hrefTarget : 'content'
+	});
+	
+	tree2 = $('#tree2').tree({
+		//url : 'http://localhost:8080/HttpClient/tree-json2.jsp'
+		url : 'http://localhost:8080/HttpClient/tree-json.jsp'
+		//url : 'demo-url2.json'
+		,hrefTarget : 'content2'
+		,beforeLoad : function(e, treeNode, tree){
+			
+			//tree.loadParas 是传给后面的查询数据,如下面例子,url则为tree.do?id=1,后台可通过request.getParameter("id")取得id.
+			//除了id,同样可以使用treeNode.data中的其他属性,与返回的树节点数据一致
+			//if(treeNode)
+			tree.setLoadParas({id : treeNode.data.id});
+		}
+	});
+	/*
+	tree3 = $('#tree3').tree({
+		url : 'http://localhost:8080/HttpClient/tree-json.jsp'
+		//url : 'demo-url2.json'
+		,hrefTarget : 'content3'
+		,beforeLoad : function(e, treeNode, tree){
+			
+			//tree.loadParas 是传给后面的查询数据,如下面例子,url则为tree.do?id=1,后台可通过request.getParameter("id")取得id.
+			//除了id,同样可以使用treeNode.data中的其他属性,与返回的树节点数据一致
+				$.debug('beforeLoad paras = '+ treeNode.data.id);
+			//if(treeNode){
+				tree.setLoadParas({id : treeNode.data.id});
+			//}
+		}
+	});*/
+});
+function reloadRoot(){
+	tree.reload();
+	tree.expandRoot();
+}
+function reloadRoot2(){
+	tree2.reload();
+	//tree2.expandRoot();
+}
+function reloadRoot3(){
+	tree3.reload();
+	//tree3.expandRoot();
+}
+</script>
+</HTML>

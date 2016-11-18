@@ -1,0 +1,28 @@
+/**
+ * jQuery Validation Plugin 1.8.1
+ *
+ * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+ * http://docs.jquery.com/Plugins/Validation
+ *
+ * Copyright (c) 2006 - 2011 Jörn Zaefferer
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ */
+/**
+ * jQuery Form Plugin
+ * version: 2.77 (23-MAY-2011)
+ * @requires jQuery v1.3.2 or later
+ *
+ * Examples and documentation at: http://malsup.com/jquery/form/
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ */
+/**
+ * 修改错误信息在title显示
+ */
+ /**
+ * jquery.form validate方法增加enableUpload参数，默认不开启input file上传功能，把此参数设置为true后开启
+ * */

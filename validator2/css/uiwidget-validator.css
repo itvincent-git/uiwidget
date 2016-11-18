@@ -1,0 +1,14 @@
+td,th,li,p,span,input,textarea,div{
+	font-family: "宋体", Arial, Verdana;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	text-decoration: none;
+	white-space: normal;
+}
+.validate-error{
+	border:1px dotted red;	
+}	
+

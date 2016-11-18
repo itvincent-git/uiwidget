@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid renderer </title>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [{checkbox:true}
+			,{header: "转正类型名称", dataIndex: 'name', width:'80%'
+				,renderer : function(value, data, rowIndex, colIndex, metadata){
+	           		return "<input  value='" + name + "' type='text' class='name-input' onclick='return false'/>";	
+	           	}
+	         }	
+			,{header: "是否可用", dataIndex: 'isUse'}
+			]
+		,data : {"totalCount":2, "result":[{id:"1", name : "张3", isUse : true }, {id:"2", name : "李四", isUse : false}]}
+		,beforeRowClick : function(e, grid, rowEl){
+			$.debug('beforeRowClick');
+			//triggerTarget是触发事件时实际的元素
+			//return !$(e.triggerTarget).hasClass('name-input');
+			if(!$(e.triggerTarget).is(':checkbox')){
+				var sm = grid.getSelectionModel();
+				sm.select(rowEl);
+				return false;
+			}else{
+				return true;
+			}
+		}
+	});
+});
+
+function select(){
+	var sm = grid.getSelectionModel();
+	sm.select(grid.getRow(0));
+}
+</script>
+</head>
+<body >
+<p/><p align="left" style="font-size: large">Grid列表中有输入框</p><p/>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><button onclick="grid.reload();">reload</button>
+<button onclick="select();">select</button>
+</body>
+</html>

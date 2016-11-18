@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		pageSize : 15
+		,url : 'http://localhost:8080/hr/system/bizLog.do?method=paging'
+        ,defaultSort: {field:'operatingTime', direction: 'DESC'}
+        ,cm : [{checkbox : true},
+        {
+           	header: "操作人",
+           	dataIndex: 'operator'
+           	,width: '10%'
+        }
+        ,{
+          	header: "操作IP",
+           	dataIndex: 'clientAddress'
+           	,width:'10%'
+        }
+        ,{
+          	header: "业务类型",
+           	dataIndex: 'bizType'
+           	,width:'10%'
+        }
+        ,{
+          	header: "操作内容",
+           	dataIndex: 'bizDescription'
+           	,sortable: false
+           	,width:'20%'
+        }
+        ,{
+          	header: "操作状态",
+           	dataIndex: 'bizOperationResult'
+           	,renderer : function(value, metadata, record, rowIndex, colIndex, store){
+           		if(value =='SUCCESS'){
+           			return '成功';
+           		}
+           		else if(value =='FAILTURE'){
+           			return '失败';
+           		}
+           	}
+           ,width:'10%'
+        }
+        ,{
+          	header: "操作备注",
+           	dataIndex: 'exceptionMessage'
+           	,sortable: false
+           	,width:'20%'
+        }
+        ,{
+          	header: "操作时间",
+           	dataIndex: 'operatingTime'
+           ,width:'20%'
+        }
+        ]
+       
+	});
+});
+function query(){
+	grid.query({queryBizDataType : $('#queryBizDataType').val()});
+}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Grid</p><p/>
+<select id="queryBizDataType" name="queryBizDataType" style="width: 125px;">
+	<option value="" selected>全部</option>
+	<option value="用户登录">用户登录</option>
+	<option value="组织架构">组织架构</option>
+	<option value="人事管理设置">人事管理设置</option>
+	<option value="会计期间设置">会计期间设置</option>
+	<option value="薪资管理设置">薪资管理设置</option>
+	<option value="用户管理设置">用户管理设置</option>
+	<option value="删除日志设置">删除日志设置</option>
+</select>
+<input type="button" onclick="query();" value="query"/>
+<div id="grid" style="width:100%;border:1px solid #ccc"></div>
+</body>
+</html>

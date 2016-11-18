@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> combobox Test </title>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-combobox.css"/>
+<script type="text/javascript" src="uiwidget-combobox.min.js"></script>
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var data = [{"text":"广州"},{"text":"深圳"},{"text":"东莞"},{"text":"香港"},{"text":"北京"}];
+var data2 = [{"text":"广州"},{"text":"深圳"},{"text":"东莞"},{"text":"香港"},{"text":"北京"},{"text":"上海"},{"text":"天津"},{"text":"厦门"},{"text":"长沙"},{"text":"长春"},{"text":"重庆"},{"text":"武汉123123123123123123aaaaaaaaaaaaaaaa"}];
+var data3 = [{"text":"Alabama"},{"text":"Alaska"},{"text":"Arizona"},{"text":"Arkansas"},
+             {"text":"California"},{"text":"Colorado"},{"text":"Connecticut"},{"text":"Delaware"},
+             {"text":"Florida"},{"text":"Georgia"},{"text":"Hawaii"},{"text":"Idaho"},{"text":"Illinois"},
+             {"text":"Indiana"},{"text":"Iowa"},{"text":"Kansas"}];
+var combobox, combobox2, combobox3, combobox4, combobox5;
+$(document).ready(function(){
+	combobox = $('#combobox').combobox({
+		data : data
+	});
+
+	combobox2 = $('#combobox2').combobox({
+		data : data
+		,value : '深圳'
+	});
+
+	combobox3 = $('#combobox3').combobox({
+		data : data2
+		,maxHeight : 100	
+	});
+
+	combobox4 = $('#combobox4').combobox({
+		data : data3
+		,maxHeight : 100	
+	});
+
+	combobox5 = $('#combobox5').combobox({
+		url : "demo-url.json"
+		,maxHeight : 100	
+	});
+});
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">combobox</p><p/>
+可定义宽度
+<input id="combobox" name="combobox" type="text" value="" size="30"/>
+<hr /><p/>
+可设置初始化值
+<input id="combobox2" name="combobox2" type="text" value=""/>
+<hr /><p/>
+数据较多，出现滚动，maxHeight设置最大滚动高度
+<input id="combobox3" name="combobox3" type="text" value="重庆"/>
+重置初始化值
+<input type="button" value="reset" onclick="combobox3.reset()"/>
+<hr /><p/>
+自动完成功能
+<input id="combobox4" name="combobox4" type="text" value=""/>
+<hr /><p/>
+使用URL查询数据，后台可以获得url中传递的参数值，参数名为"combobox"，参数值为输入框中的值；
+也可以通过queryName设置参数名
+<input id="combobox5" name="combobox5" type="text" value=""/>
+</body>
+</html>

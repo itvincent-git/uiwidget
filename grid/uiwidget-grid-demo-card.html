@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>  </title>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	var customGridRowBuilder = $.uiwidget.Class.create({
+		buildRow : function(rowIndex, result){
+			var btd = [];
+			btd.push('<div style="width:31%;float:left;margin:1%;"><ul style="height:100px;border:1px solid #888;">');
+			btd.push('<li>名称:');
+			btd.push(result[this.grid.cm[0].dataIndex]);
+			btd.push('</li>');
+
+			btd.push('<li>数量:');
+			btd.push(result[this.grid.cm[1].dataIndex]);
+			btd.push('</li>');
+
+			btd.push('<li>单位:');
+			btd.push(result[this.grid.cm[2].dataIndex]);
+			btd.push('</li>');
+			btd.push('</ul></div>');
+			return btd;
+		}
+	});
+	grid = $('#grid').grid({
+		pageSize : 9
+		,rowBuilder : new customGridRowBuilder()
+		,displayHeader : false
+		,data : {"totalCount":21, "result":[
+		    {id:"1", name : "苹果", quantity : "100", unit:"斤" }, {id:"2", name : "西瓜", quantity : "20", unit:"个"}, {id:"3", name : "香蕉", quantity : "300", unit:"斤"}
+			,{id:"4", name : "橘子", quantity : "140", unit:"斤" }, {id:"5", name : "百香果 ", quantity : "40", unit:"斤"}, {id:"6", name : "蓝莓", quantity : "30", unit:"斤"}
+			,{id:"7", name : "甘蔗", quantity : "140", unit:"斤" }, {id:"8", name : "石榴", quantity : "40", unit:"斤"}, {id:"9", name : "柚子", quantity : "30", unit:"个"}
+			,{id:"10", name : "桃金娘", quantity : "140", unit:"斤" }, {id:"11", name : "山竹", quantity : "40", unit:"个"}, {id:"12", name : "菠萝 ", quantity : "30", unit:"斤"}
+			,{id:"13", name : "柿子", quantity : "140", unit:"斤" }, {id:"14", name : "桑椹", quantity : "40", unit:"斤"}, {id:"15", name : "蜜桃", quantity : "30", unit:"斤"}
+			,{id:"16", name : "人参果", quantity : "140", unit:"斤" }, {id:"17", name : "哈密瓜", quantity : "40", unit:"个"}, {id:"18", name : "木瓜", quantity : "30", unit:"斤"}
+			,{id:"19", name : "椰子", quantity : "140", unit:"个" }, {id:"20", name : "奇异果", quantity : "40", unit:"个"}, {id:"21", name : "荔枝", quantity : "30", unit:"斤"}
+			]}
+		,cm : [{header: "名称", dataIndex: 'name'}
+			,{header: "数量", dataIndex: 'quantity'}
+			,{header: "单位", dataIndex: 'unit'}
+           	]
+		
+	});
+});
+
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">卡片式列表</p><p/>
+<div id="grid" style="height:100%;width:100%;border:1px solid #ccc;"></div>
+<br/>
+</body>
+</html>

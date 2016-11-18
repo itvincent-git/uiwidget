@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Grid 横纵双向滚动条</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+#grid .grid-cm-bonus{
+	text-align: right;
+}
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	
+	grid = $('#grid').grid({
+		viewConfig : {horizontalScroll : true}
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'100px'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'100px'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'100px'}
+			,{header: "数量count", dataIndex: 'count', width:'100px'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'100px'}
+			,{header: "名称", dataIndex: 'name', width:'100px'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'100px'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'100px'}
+			,{header: "数量count", dataIndex: 'count', width:'100px'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'100px'}
+			,{header: "名称", dataIndex: 'name', width:'100px'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'100px'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'100px'}
+			,{header: "数量count", dataIndex: 'count', width:'100px'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'100px'}
+			]
+		,data : {"totalCount":17, "result":[
+			{name:"C0", common:"1200000188888231200000", advance:"3831123388833123123123123123", bonus:"20012312388888123123", allowance:"1001231231231"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C15", common:"1700", allowance:"200"}
+			,{name:"C16", common:"1064", advance:"2363", allowance:"200"}
+		]}
+	});
+
+	/*grid = $('#grid2').grid({
+		pageSize : 15,
+		viewConfig : {horizontalScroll : true},	
+		cm : [
+		{checkbox : true},
+		{header: "会员卡号", dataIndex: 'cardNum', width:'100px',sortable:false}
+		,{header: "姓名", dataIndex: 'name', width:'100px',sortable:false}
+		,{header: "性别", dataIndex: 'sex', width:'100px',sortable:false,renderer : function(value, data, rowIndex, colIndex, metadata){
+				if(value=="1"){
+					return "女";
+				}else if(value=="0"){
+				  return "男"}
+				  }
+		}
+		,{header: "手机号码", dataIndex: 'mobileNum', width:'100px',sortable:false}
+		,{header: "身份证号", dataIndex: 'creditNum',width:'100px',sortable:false}
+		,{header: "开卡日期", dataIndex: 'startOpenDate', width:'100px',sortable:false}
+		,{header: "批次号", dataIndex: 'batchNum', width:'100px',sortable:false}
+		,{header: "预充值金额", dataIndex: 'preChargeAmount', width:'100px',sortable:false}
+		,{header: "充值总额", dataIndex: 'chargeSum', width:'100px',sortable:false}
+		,{header: "消费总额", dataIndex: 'consumeSum', width:'100px',sortable:false}
+		,{header: "预充值退款", dataIndex: 'prechargeRefundSum', width:'100px',sortable:false}
+		,{header: "充值退款", dataIndex: 'chargeRefundSum', width:'100px',sortable:false}
+		,{header: "消费退款", dataIndex: 'consumeRefundSum', width:'100px',sortable:false}
+		,{header: "账户余额", dataIndex: 'balance', width:'100px',sortable:false}
+		,{header: "影院名称", dataIndex: 'cinemaName', width:'100px',sortable:false}
+		]
+		//,url:"${ctx}/cardAction.do?method=page"
+		,data:{"totalCount":468,"result":[{"amount":0,"balance":600,"batchNum":"020002","birthday":"1983-01-03","cardNum":"0200022899","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":0,"creditNum":"","endOpenDate":"2011-03-08","expireDate":"2012-09-08","id":896,"mobileNum":"15285958288","name":"马俊芳","passwd":"a6297e693728b8f1d27bb5d671283bb4","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-03-08","validPeriod":18},{"amount":0,"balance":0,"batchNum":"020002","birthday":"1976-12-09","cardNum":"0200022867","cardStatus":"2","chargeRefundSum":0,"chargeSum":880,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":880,"creditNum":"","endOpenDate":"2011-03-07","expireDate":"2012-09-07","id":864,"mobileNum":"13809416099","name":"陈华飞","passwd":"f92b00f35a189533c072abcc24af1b65","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-03-07","validPeriod":18},{"amount":0,"balance":600,"batchNum":"020002","birthday":"1973-12-06","cardNum":"0200022865","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":0,"creditNum":"","endOpenDate":"2011-03-06","expireDate":"2012-09-06","id":862,"mobileNum":"13984302237","name":"袁建琦","passwd":"b8d544ecf9ee5c5aaf90e10a4355d1b9","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-03-06","validPeriod":18},{"amount":0,"balance":1000,"batchNum":"020002","birthday":"1974-04-30","cardNum":"0200022868","cardStatus":"2","chargeRefundSum":0,"chargeSum":1000,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":0,"creditNum":"","endOpenDate":"2011-03-03","expireDate":"2012-09-03","id":865,"mobileNum":"13985730186","name":"冯颖燕","passwd":"39f78525b3efe63fe2c1ba461008fafb","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-03-03","validPeriod":18},{"amount":0,"balance":530,"batchNum":"020002","birthday":"1973-08-17","cardNum":"0200022869","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":70,"creditNum":"","endOpenDate":"2011-02-26","expireDate":"2012-08-26","id":866,"mobileNum":"13985527138","name":"梁永松","passwd":"b5c11f4633eae7f7bb7d0c0230ef9e0e","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-02-26","validPeriod":18},{"amount":0,"balance":420,"batchNum":"020002","birthday":"1977-12-27","cardNum":"0200022880","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":180,"creditNum":"","endOpenDate":"2011-02-26","expireDate":"2012-08-26","id":877,"mobileNum":"13985027762","name":"马俊","passwd":"76fc6dac75cf94a65df4b1aa247eb691","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-02-26","validPeriod":18},{"amount":0,"balance":565,"batchNum":"020002","birthday":"1977-05-07","cardNum":"0200022872","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":35,"creditNum":"","endOpenDate":"2011-02-21","expireDate":"2012-08-21","id":869,"mobileNum":"15985006288","name":"王妮娜","passwd":"f926f8e1f98019678257f76e78f9c248","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-02-21","validPeriod":18},{"amount":0,"balance":540,"batchNum":"020002","birthday":"1979-01-25","cardNum":"0200022870","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":60,"creditNum":"","endOpenDate":"2011-02-19","expireDate":"2012-08-19","id":867,"mobileNum":"13984175207","name":"饶亮","passwd":"e96c4a1a0c3e6092c82592ccdec09346","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-02-19","validPeriod":18},{"amount":0,"balance":600,"batchNum":"020002","birthday":"1981-07-03","cardNum":"0200022858","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":0,"creditNum":"522601198107037612","endOpenDate":"2011-02-18","expireDate":"2012-08-18","id":855,"mobileNum":"13765061799","name":"王明祥","passwd":"424f2f9af17e9b2bd23a7586c2921837","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-02-18","validPeriod":18},{"amount":0,"balance":390,"batchNum":"020002","birthday":"1974-01-25","cardNum":"0200022879","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":210,"creditNum":"","endOpenDate":"2011-02-16","expireDate":"2012-08-16","id":876,"mobileNum":"18685127333","name":"徐波","passwd":"f1c5c03f77712d4e684050b34bde8d00","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-02-16","validPeriod":18},{"amount":0,"balance":600,"batchNum":"020002","birthday":"1966-09-24","cardNum":"0200022859","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":0,"creditNum":"","endOpenDate":"2011-02-15","expireDate":"2012-08-15","id":856,"mobileNum":"13985442346","name":"孙卫卫","passwd":"b8d8c76e1ca9810c344d16d8092d5aeb","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-02-15","validPeriod":18},{"amount":0,"balance":460,"batchNum":"020002","birthday":"1985-04-05","cardNum":"0200022856","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":140,"creditNum":"","endOpenDate":"2011-02-14","expireDate":"2012-08-14","id":853,"mobileNum":"15185146301","name":"张玮","passwd":"beca7fc197812d7687c080e903097118","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-02-14","validPeriod":18},{"amount":0,"balance":530,"batchNum":"020002","birthday":"1982-03-02","cardNum":"0200022860","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":70,"creditNum":"","endOpenDate":"2011-02-14","expireDate":"2012-08-14","id":857,"mobileNum":"13595112240","name":"袁涛","passwd":"c4acd36dae091c5b2b6f95ada4ba56f5","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-02-14","validPeriod":18},{"amount":0,"balance":530,"batchNum":"020002","birthday":"1984-01-28","cardNum":"0200022873","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":70,"creditNum":"520102198401285817","endOpenDate":"2011-02-14","expireDate":"2012-08-14","id":870,"mobileNum":"13765040995","name":"朱子斌","passwd":"7397b3570b6b54479ea1ced3b6c0ab7e","preChargeAmount":0,"prechargeRefundSum":0,"sex":"0","startOpenDate":"2011-02-14","validPeriod":18},{"amount":0,"balance":470,"batchNum":"020002","birthday":"1970-10-08","cardNum":"0200022877","cardStatus":"2","chargeRefundSum":0,"chargeSum":600,"cinemaChianId":0,"cinemaChianName":"加盟院线","cinemaName":"加盟影院","consumeRefundSum":0,"consumeSum":130,"creditNum":"","endOpenDate":"2011-02-14","expireDate":"2012-08-14","id":874,"mobileNum":"13688506903","name":"安晓霞","passwd":"e627dc466d36f2bddddde02e76b086bf","preChargeAmount":0,"prechargeRefundSum":0,"sex":"1","startOpenDate":"2011-02-14","validPeriod":18}]}
+	});*/
+
+});
+
+</script>
+</head>
+<body>
+<h1>Grid 横纵双向滚动条</h1>
+
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+
+</body>
+</html>

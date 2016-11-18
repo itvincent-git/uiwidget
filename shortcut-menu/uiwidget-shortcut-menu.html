@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> ShortcutMenu </TITLE>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-shortcut-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-shortcut-menu.js"></script>
+<script type="text/javascript" src="uiwidget-shortcut-menu-en_US.js"></script>
+
+<style type="text/css">
+img { border: 0; }
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+var shortcutMenu;
+$(document).ready(function(){
+	
+	shortcutMenu = $('#shortcutMenu').shortcutMenu({
+		hrefTarget : 'main'//item项链接的iframe
+		,data:[{text:'房间管理1', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理2', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理3', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理4', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理5', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理6', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理7', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理8', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理9', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理10', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理11', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理12', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理13', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理14', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理15', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理16', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理17', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理16', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理17', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理16', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理17', href:'index.html', icon:'images/ico-house.gif'}
+			,{text:'房间管理16', href:'index.html', icon:'images/ico-house.gif'}
+			]//item数据
+		,onAddMenuItem : function(){
+			//弹出新增快捷菜单页面
+			alert('新增快捷菜单');
+		}
+		,changeBgColor : function(t){
+			alert("改变背景颜色");
+		}
+	});
+		
+});
+
+</script>
+</HEAD>
+
+<body>
+<p/><p align="left" style="font-size: large">ShortcutMenu</p><p/>
+<div id="shortcutMenu" style="height: 32px; width:60%;"></div>
+<iframe id="main" name="main" frameborder="1" scrolling="no" width="100%" height="400px"></iframe>
+</body>
+</HTML>

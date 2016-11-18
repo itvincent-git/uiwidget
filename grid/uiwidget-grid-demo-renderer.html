@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid,grid2;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		pageSize : 15
+		//,height : 197//显示7行的高度
+		,cm : [{checkbox:true}
+			,{header: "名称", dataIndex: 'name', width:'50%',
+			renderer : function(value, data, rowIndex, colIndex, metadata){
+				return value + data.id;
+			}}
+		 	,{header: "备注", dataIndex: 'remark'}]		
+		,data : {"totalCount":5, "result":[{id:"1", name : "张三", remark : "2009-01-01"}
+		, {id:"2", name : "甲", remark : "2009-01-22"}, {id:"3", name : "乙", remark : "2009-01-23"}
+		, {id:"4", name : "丙", remark : "2009-01-04"}, {id:"5", name : "丁", remark : "2009-01-12"}]}		
+		
+	});	
+
+	grid2 = $('#grid2').grid({
+		pageSize : 15
+		,cm : [{checkbox:true}
+			,{header: "名称", dataIndex: 'name', width:'50%',
+			renderer : function(value, data, rowIndex, colIndex, metadata){
+				return '<a href="http://www.baidu.com">'+ value+ '</a>';
+			}}
+		 	,{header: "备注", dataIndex: 'remark',
+		 		renderer : function(value, data, rowIndex, colIndex, metadata){
+		 			metadata.css += ' customCss';	
+           			metadata.title = '自定义title';
+					return '<img src="images/ico-page-next.gif"></img>'+value;
+				}
+			 }]		
+		,data : {"totalCount":5, "result":[{id:"1", name : "张三", remark : "2009-01-01"}
+		, {id:"2", name : "甲", remark : "2009-01-22"}, {id:"3", name : "乙", remark : "2009-01-23"}
+		, {id:"4", name : "丙", remark : "2009-01-04"}, {id:"5", name : "丁", remark : "2009-01-12"}]}		
+		
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Grid</p><p/>
+自定义显示的数据
+<div id="grid" style="width:80%;border:1px solid #ccc"></div>
+<p/>
+带页面链接和图片
+<div id="grid2" style="width:80%;border:1px solid #ccc"></div>
+</body>
+</html>

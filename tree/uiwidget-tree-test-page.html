@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tree </title>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tree.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<script type="text/javascript" src="../page/uiwidget-page.js"></script>
+<style type="text/css">  
+#button li{
+    display: inline;    
+}
+</style>
+</head>
+<body>
+
+<div id="tree" style="float: left"></div>
+<div id="content" style="height:200px;width:500px;float: left;border:1px solid gray;"></div>
+		<div id="button" style="clear: both;">
+			<ul>
+			<li><button onclick="tree.expandAll()">expandAll</button></li>
+			<li><button onclick="tree.collapseAll()">collapseAll</button></li>
+			</ul>
+		</div>
+</body>
+<script language="JavaScript">
+//$.uiwidget.Log.isDebugEnabled = false;
+var tree;
+$(document).ready(function(){
+	$.info('begin');
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list2.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list2.html?id=2", children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list2.html?id=21"}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list2.html?id=22"}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list2.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list2.html?id=231"}]}
+				]}
+			,{"id":"3","text":"中企动力深圳分公司", "checked":"true", "leaf":false,"href":"list2.html?id=3", children:
+				[{"id":"31","text":"深圳测试部","leaf":true,"href":"list2.html?id=31"}
+				,{"id":"32","text":"深圳互联网开发部","leaf":false,"href":"list2.html?id=32", children:
+					[{"id":"321","text":"深圳互联网开发1部","leaf":true,"href":"list2.html?id=321"}
+					]}
+				,{"id":"33","text":"深圳管理层","leaf":true,"href":"list2.html?id=33"}
+				]}
+			,{"id":"4","text":"中国大地院线公司","leaf":false,"href":"list2.html?id=4", children:
+				[{"id":"41","text":"广州大地","leaf":true,"href":"list2.html?id=41"}
+				]}
+		]}
+		]
+		,hrefTarget : '#content'
+		,ajaxLoadPage : true
+	});
+	$.info('end');
+});
+</script>
+</html>

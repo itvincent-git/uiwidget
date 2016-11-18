@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid RowSelectionModel </title>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link type="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+#grid .grid-cm-remark{
+	text-align: right;
+}
+</style>
+<script language="JavaScript" type="text/javascript">
+var grid, grid2;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,height : 200
+		,cm : [{checkbox : true}
+			,{header: "名称", dataIndex: 'name', width:'20%',sortable:false}
+			,{header: "备注", dataIndex: 'remark', title: ''}]
+		,data : {"totalCount":14, "result":[{id:"1", name : "陈一", remark : "2009-01-01" , effectiveDate:"2009-02-21"}, {id:"2", name : "陈二", remark : "2009-01-02"}, {id:"3", name : "陈三", remark : "2009-01-02"}, {id:"4", name : "陈四", remark : "0"}, {id:"4", name : "陈五", remark : "0"}, {id:"4", name : "陈六", remark : "0"}, {id:"4", name : "陈七", remark : "0"}, {id:"4", name : "陈八", remark : "0"}, {id:"4", name : "陈九", remark : "0"}, {id:"4", name : "陈十", remark : "0"}, {id:"4", name : "陈十一", remark : "0"}, {id:"4", name : "陈十二", remark : "0"}, {id:"4", name : "陈'十三'", remark : "0"}, {id:"4", name : "陈十四\"12312\"", remark : 123}]}
+		
+	});
+	
+	var menu = $.menu({
+		items : [
+			{text: '新增',icon: 'images/ico-add.gif', id:'add'
+				,handler: function(e, item){
+					alert(item.text);
+				}
+			}
+			,{text: '修改',icon: 'images/ico-add.gif'
+				,handler: function(e, item){
+					alert(item.text);
+				}
+			}
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e, item){
+					alert(item.text);
+				}
+			}
+		]
+	});
+				
+	grid2 = $('#grid2').grid({
+		pageSize : 15
+		,height : 200
+		,cm : [{checkbox:true}
+			,{header: "名称", dataIndex: 'name', width:'50%'}
+		 	,{header: "备注", dataIndex: 'remark'}]		
+		,data : {"totalCount":5, "result":[{id:"1", name : "张三", remark : "2009-01-01"}
+		, {id:"2", name : "甲", remark : "2009-01-22"}, {id:"3", name : "乙", remark : "2009-01-23"}
+		, {id:"4", name : "丙", remark : "2009-01-04"}, {id:"5", name : "丁", remark : "2009-01-12"}]}		
+		,rowDblclick : function(e, grid, row){
+			alert("rowDblclick" + grid.findRowData(row).name);			
+		}
+		,rowSelect : function(e, grid, row){
+			alert('rowSelect' + grid.findRowData(row).name);		
+		}
+		,rowDeselect : function(e, grid, row){
+			alert('rowDeselect' + grid.findRowData(row).name);		
+		}
+		,beforeRowSelect : function(e, grid, row){
+			alert('beforeRowSelect = ' + row);
+			return true;//返回false则取消执行选择任务
+		}
+		,rowCheckboxClick : function(e, grid, row, checkbox){
+			alert('rowCheckboxClick = ' + checkbox);	
+		}
+		,headerCheckboxClick : function(e, grid, checkbox){
+			alert('headerCheckboxClick = ' + checkbox.attr('checked'));
+		}
+		,rowmouseenter : function(e, grid, rowEl){
+			//alert('rowmouseenter' + rowEl[0].id);
+		}
+		,rowmouseleave : function(e, grid, rowEl){
+			//alert('rowmouseleave')
+		}
+		,rowContextMenu : function(e, grid, rowEl){
+			alert('rowContextMenu');
+			grid.sm.selectRow(grid.findRowIndex(rowEl));
+			menu.showAt(e.pageX, e.pageY);
+		}
+		,afterRender : function(e, grid){
+			alert('afterRender');
+		}
+	});	
+
+	
+});
+
+function printSelections(){
+	var ss = grid.getSelections();
+	for(var i = 0; i < ss.length; i++){
+		alert(ss[i].name);
+	}
+}
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">Grid RowSelectionModel</p><p/>
+<div id="grid" style="height:100%;width:99%;border:1px solid #ccc; "></div>
+<br/>
+<button onclick="grid.reload();">刷新</button>
+<button onclick="grid.sm.selectRow(0)">选择第1行</button>
+<button onclick="grid.sm.deselectRow(0)">取消选择第1行</button>
+<button onclick="grid.sm.selectRow(1, true)">选择第2行（保持原有选择）</button>
+<button onclick="grid.sm.deselectRow(1, true)">取消选择第2行（保持原有选择）</button>
+<button onclick="alert(grid.sm.getSelections().length)">所选行的数量</button>
+<button onclick="alert(grid.sm.getSelectedIndexs())">所选行的序号</button>
+<button onclick="alert(grid.sm.hasSelection())">是否已有选择的行</button>
+<button onclick="grid.appendRow({name:'小陈', remark:'备注'})">增加一行</button>
+<button onclick="grid.sm.selectAll()">全选</button>
+<button onclick="grid.removeRow(grid.sm.getSelectedIndexs()[0])">删除所选第一行</button>
+<button onclick="grid.removeRow(1)">删除第二行</button>
+<button onclick="grid.replaceRow(0, {id: '100', name : '修改的名字', remark:'修改的备注'})">覆盖第1行数据</button>
+<button onclick="grid.replaceRow(1, {id: '2', name : '新的名字'})">修改第2行数据</button>
+<button onclick="printSelections()">打印所选数据</button>
+
+<p/><p align="left" style="font-size: large">Grid RowSelectionModel Event</p><p/>
+<div id="grid2" style="height:100%;width:99%;border:1px solid #ccc; "></div>
+</body>
+</html>

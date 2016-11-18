@@ -1,0 +1,87 @@
+
+<html>
+  <head>
+    <title>inner.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">
+    <script language="javascript" src="window.js"></script>-->
+  </head>
+  
+  <body>
+    This is my inner2 HTML page. <br>
+    <form action="index.html">
+     <input type="button" value="Open" onclick="windowOpen('inner3.html', 'in3', 'in3', 200, 300, false, 'ifin3')">
+        <input type="button" value="Close" onclick="windowClose()">
+        <input type="button" value="Close2" onclick="top.wm.close(window);">
+        <input type="button" value="CloseParent2" onclick="top.wm.getById('in').close();">
+        <input type="button" value="CloseAll" onclick="windowClose('in');windowClose('in2');">
+        <input type="button" value="CloseAll2" onclick="windowClose('in');windowClose('in2');">
+        <!-- windowResize(300, 400); history.go(-1);windowResize(300, 400);-->
+        <input type="button" value="back" onclick="backAndResize(300,400)">
+        <input type="button" value="in2-in" onclick="alert(findFrame('in2-in').document.getElementById('aa').value)">
+        <input type="button" value="设置父窗口属性" onclick="setParentAtt()">
+    </form>
+     <!-- iframe src="windowOld.html" frameborder="0" name="in2-in" id="in2-in" name="in2-in" scrolling="auto"></iframe-->
+  </body>
+    <script type="text/javascript">
+    //windowClose();
+  	var closeWin = function(){
+  		var topFrm = top.frames['ifin'];
+  		//if(topFrm != undefined){
+  			var text = topFrm.document.getElementById('text1')
+  			if(text != undefined) text.value = 'haha';
+  		//}
+  		/*var frm = top.frames;
+  		 if ( frm != null ) {
+			for ( i = 0; i< frm.length; i++ )
+			alert ("子窗口 " +i+ " 的src为 "+ frm(i).location);
+		}*/
+  		parent.windowClose('in2');
+  	}
+  	
+  	function setIn2(){
+  		var aa = top.frames['ifin'].frames['in2-in'].document.getElementById('aa');
+  		alert(aa.value);
+  	}
+  	
+  	function findFrame(name, inputFrm)
+  	{
+  		if(inputFrm == null) {
+  			//document.write(' <br> id :' + inputFrm.id + ' name:' + inputFrm.name + '  null ');
+  			inputFrm = top;
+  		}
+  		if(inputFrm.frames.length > 0)
+  		{
+  			//document.write(' <br> length = ' + inputFrm.frames.length);
+	  		var queryFrm = inputFrm.frames[name];
+	  		if (queryFrm == null)
+	  		{
+	  			//document.write(' <br> queryFrm not found');
+	  			for(i = 0, len =inputFrm.frames.length; i< len; i++)
+	  			{
+	  				if(inputFrm.frames[i] == null) {document.write('<br> inputFrm.frames['+ i +'] null');continue;}
+	  				//document.write(' <br> find child Frame ' + 'id :' + inputFrm.frames[i].id + ' name:' + inputFrm.frames[i].name );
+	  				var inFrm = findFrame(name, inputFrm.frames[i]);
+	  				if( inFrm != null)
+	  				{
+	  					return inFrm; 
+	  				}
+	  			}
+	  		}
+	  		else
+	  		{
+	  			return queryFrm;
+	  		}
+  		}
+  		
+  	}
+  	function setParentAtt(){
+  		//alert(top.window.frames['inIfm'].document);
+  		top.window.frames['inIfm'].document.getElementById('text1').value="inner2设置的";
+  	}
+  </script>
+</html>

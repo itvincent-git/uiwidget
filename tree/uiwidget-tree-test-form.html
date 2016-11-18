@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" media="screen" href="../validator/css/screen.css" />
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tree.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<script type="text/javascript" src="../validator/uiwidget-validator.min.js"></script>
+<script type="text/javascript" src="../validator/uiwidget-validator_zh_CN.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<form id="form1">
+<input type="text" id="name">
+</form>
+<table width="100%" height="50%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+</tr>
+</table>
+
+
+<button onclick="tree.containerNode.childNodes[0].checkChange(true)">checkChange true, but not trigger checkchange event</button><br/>
+<button onclick="tree.containerNode.childNodes[0].checkChange(false, true)">checkChange false, and trigger checkchange event</button><br/>
+<button onclick="each()">each</button>
+<button onclick="cascade()">cascade</button>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","checked":"false","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false","leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false","leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false","leaf":true}]}
+				]}
+		]}
+		]
+		,hrefTarget : 'content'
+	});
+	tree.expandAll();
+	/*tree.bind('checkchange',function(e, treeNode, checked){
+		$.debug('treeNode = ' + treeNode.data.text);
+		$.debug('checked = ' + checked);
+		$.debug(' data = ' + treeNode.data.checked);
+	});*/
+
+	$("#form1").validate({
+		rules: {
+			name: "required"
+		},
+		messages: {
+			name: "Please enter your firstname"
+		}
+	});	/**/
+			
+});
+function each(){
+	tree.getRootNode()[0].childNodes[0].eachChild(function(node){
+		$.debug(node.data.text);
+	});
+}
+function cascade(){
+	tree.getRootNode()[0].cascade(function(node){
+		$.debug(node.data.text);
+		node.checkChange(true, false);
+	});
+}
+</script>
+</HTML>

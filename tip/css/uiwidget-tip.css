@@ -1,0 +1,18 @@
+.tip{
+	font-family: "宋体", Arial, Verdana;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	text-decoration: none;
+	white-space: normal;
+
+	position: absolute;
+	left:-100px;
+	top:-100px;
+	background-color:#ebf7fb;
+	border:1px solid #8dc7dc;
+	z-index: 100;
+	padding: 3px;	
+}	

@@ -1,0 +1,42 @@
+﻿
+ul,li,p,span,td{font-size:12px;margin:0;padding:0;}
+ul,li{list-style-type:none;}
+.msg-window-wrap{width:345px;display:block;position:absolute;text-align:center;}
+/*header*/
+.msg-window-header{width:100%;height:32px;}
+.msg-window-header-left, .msg-window-header-right{width:6px;height:32px;float:left;background: url(../images/bg-msg/bg-window-leftcorners.gif) no-repeat 0 0;}
+.msg-window-header-right{background: url(../images/bg-msg/bg-window-rightcorners.gif) no-repeat 0 0;float:right;}
+.msg-window-header-content{width:333px;height:32px;background: url(../images/bg-msg/bg-window-topbottom.gif) repeat-x top;float:left;}
+.msg-window-header-content span{text-size:left;font-weight:bold;line-height:32px;float:left;background:url(../images/ico-msg/popwidow-logo.gif) no-repeat left center;padding-left:20px;}
+//.btn-msg-window-close{width:16px;height:16px;background: url(../../../images/default/background/btn-window-close.gif) no-repeat;position:absolute;cursor:pointer;top: 7px; right: 5px;display:block;}
+.btn-msg-window-close-noraml, .btn-msg-window-close-over{width:15px;height:15px;position:absolute;right:5px;top:8px;display:block;cursor:pointer;background: url(../images/ico-msg/ico-msg-window-close.gif) no-repeat 0 0px;}
+.btn-msg-window-close-over{background: url(../images/ico-msg/ico-msg-window-close.gif) no-repeat -15px 0px;}
+/*content*/
+.msg-window-container{width:100%;background-color:#f2f2f2;overflow:hidden;text-align:center;display:block;}
+.msg-window-body-left, .msg-window-body-right, .msg-window-body-center{height:139px;}
+.msg-window-body-left{width:6px;background: url(../images/bg-msg/bg-window-leftright.gif) repeat-y 0 0;float:left;}
+.msg-window-body-right{width:6px;background: url(../images/bg-msg/bg-window-leftright.gif) repeat-y -6px 0;float:right;}
+.msg-window-body-center{width:333px;float:left;background-color:#fff;}
+.msg-window-msg-content{width:255px;height:60px;margin-top:20px;overflow-y:auto;overflow-x:hidden;}
+.msg-window-msg-content table {float:left;}
+.msg-window-msg-content table td{height:60px;text-align:left;}
+/*maessage icon*/
+.msg-window-ico-prompt, .msg-window-ico-error, .msg-window-ico-success, .msg-window-ico-warning{width:48px;height:48px;background: url(../images/ico-msg/ico-prompt.gif) no-repeat center center;float:left;margin:25px 10px 0 10px;*margin:25px 5px 0 8px;}
+.msg-window-ico-error{background: url(../images/ico-msg/ico-error.gif) no-repeat center center;}
+.msg-window-ico-success{background: url(../images/ico-msg/ico-success.gif) no-repeat center center;}
+.msg-window-ico-warning{background: url(../images/ico-msg/ico-warning.gif) no-repeat center center;}
+/*button*/
+.msg-window-button {width:100%;position:absolute;left:50%;top:80%;_top:75%;margin-left:-170px;display:block;text-align:center;*width:auto;*left:auto;_margin:auto;}
+.msg-window-button input{display:inline-block;*position:relative;*float:left;*left:-50%;}
+.btn{boder:1px solid #99b1bb;background: url(../images/bg-msg/bg-btn.gif) repeat-x center;height:20px;margin-right:4px;padding:0 8px 0 28px;*padding:0 0 0 20px;-moz-outline-style: none;outline:none;}
+/*button icon*/
+.ico-btn-order-ok{background: url(../images/ico-msg/ico-ok.gif) no-repeat 8px center;margin-right:5px;}
+.ico-btn-order-close{background: url(../images/ico-msg/ico-cancel.gif) no-repeat 8px center;margin-right:5px;}
+/*bottom*/
+.msg-window-bottom{width:100%;height:6px;}
+.msg-window-bottom-left, .msg-window-bottom-right{width:6px;height:6px;background: url(../images/bg-msg/bg-window-leftcorners.gif) no-repeat 0 -260px;float:left;}
+.msg-window-bottom-right{background: url(../images/bg-msg/bg-window-rightcorners.gif) no-repeat 0 -260px;float:right;}
+.msg-window-bottom-middle{width:333px;height:6px;background: url(../images/bg-msg/bg-window-topbottom.gif) repeat-x 0 -260px;float:left;}
+/*mark*/
+.mask{z-index:20000;position:absolute;top:0;left:0;-moz-opacity:0.5;opacity:.50;filter:alpha(opacity=50);background-color:#CCC;width:100%;height:100%;zoom:1;}
+.mask iframe{position:absolute; z-index: -1; width:100%; height:100%; top:0; left:0; filter:alpha(opacity=0); -moz-opacity:0; opacity:0;}

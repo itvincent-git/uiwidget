@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Hello World Window Example</title>
+    <link rel="stylesheet" type="text/css" href="../../scripts/ext/resources/css/ext-all.css" />
+    
+ 	<!--script type="text/javascript" src="../../scripts/ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../scripts/ext/ext-all-debug.js"></script>
+    <script language="javascript" src="window.js"></script-->
+
+    <style type="text/css">
+    .x-panel-body p {
+        margin:10px;
+        font-size:12px;
+    }
+    
+    .ext-el-mask{z-index:20000;position:absolute;top:0;left:0;-moz-opacity:0.5;opacity:.50;filter:alpha(opacity=50);background-color:#ccc;width:100%;height:100%;zoom:1;}
+    
+    
+    </style>
+</head>
+<body>
+<h1>弹出页面</h1>
+<input type="button" id="show-btn" value="Window" /><br /><br />
+
+<div id="hello-win" class="x-hidden" style="height:400;width:500;border:none">
+    <div class="x-window-header">Hello Dialog</div>
+    
+    <div id="panel">
+   
+    <!-- <iframe src="inner.html" frameborder=0 scrolling=auto  style="height: 400;width: 450;border: none"></iframe>
+     -->
+    </div>
+</div>
+
+<input type="text" id="dataField"/>
+
+<input id="aa" type="button" value="aa" onclick="aa();">
+
+<select name="xx"><option value="xx">xx</option><option value="yy">yy</option></select>
+</body>
+</html>

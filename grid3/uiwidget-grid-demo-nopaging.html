@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.min.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		data : {"totalCount":46, "result":[{"depName":"管理部","id":8,"name":"管理员","serialNumber":"EMP001"},{"depName":"yy1","id":10053,"name":"h0001","serialNumber":"h0001"},{"depName":"yy2","id":10054,"name":"h0002","serialNumber":"h0002"},{"depName":"yy3","id":10055,"name":"h0003","serialNumber":"h0003"},{"depName":"yy4","id":10056,"name":"h0004","serialNumber":"h0004"},{"depName":"yy5","id":10057,"name":"h0005","serialNumber":"h0005"},{"depName":"yy6","id":10058,"name":"h0006","serialNumber":"h0006"},{"depName":"yy7","id":10059,"name":"h0007","serialNumber":"h0007"},{"depName":"yy8","id":10060,"name":"h0008","serialNumber":"h0008"},{"depName":"yy9","id":10061,"name":"h0009","serialNumber":"h0009"},{"depName":"yy10","id":10062,"name":"h0010","serialNumber":"h0010"},{"depName":"yy11","id":10063,"name":"h0011","serialNumber":"h0011"},{"depName":"yy12","id":10064,"name":"h0012","serialNumber":"h0012"},{"depName":"yy13","id":10065,"name":"h0013","serialNumber":"h0013"},{"depName":"yy14","id":10066,"name":"h0014","serialNumber":"h0014"},{"depName":"yy15","id":10067,"name":"h0015","serialNumber":"h0015"},{"depName":"yy16","id":10068,"name":"h0016","serialNumber":"h0016"},{"depName":"yy17","id":10069,"name":"h0017","serialNumber":"h0017"},{"depName":"yy18","id":10070,"name":"h0018","serialNumber":"h0018"},{"depName":"yy19","id":10071,"name":"h0019","serialNumber":"h0019"},{"depName":"yy20","id":10072,"name":"h0020","serialNumber":"h0020"},{"depName":"yy21","id":10073,"name":"h0021","serialNumber":"h0021"},{"depName":"yy22","id":10074,"name":"h0022","serialNumber":"h0022"},{"depName":"yy23","id":10075,"name":"h0023","serialNumber":"h0023"},{"depName":"yy24","id":10076,"name":"h0024","serialNumber":"h0024"},{"depName":"yy25","id":10077,"name":"h0025","serialNumber":"h0025"},{"depName":"yy26","id":10078,"name":"h0026","serialNumber":"h0026"},{"depName":"yy27","id":10079,"name":"h0027","serialNumber":"h0027"},{"depName":"yy28","id":10080,"name":"h0028","serialNumber":"h0028"},{"depName":"yy29","id":10081,"name":"h0029","serialNumber":"h0029"},{"depName":"yy30","id":10082,"name":"h0030","serialNumber":"h0030"},{"depName":"yy31","id":10083,"name":"h0031","serialNumber":"h0031"},{"depName":"yy32","id":10085,"name":"h0032","serialNumber":"h0032"},{"depName":"yy33","id":10086,"name":"h0033","serialNumber":"h0033"},{"depName":"yy34","id":10087,"name":"h0034","serialNumber":"h0034"},{"depName":"yy35","id":10088,"name":"h0035","serialNumber":"h0035"},{"depName":"yy36","id":10089,"name":"h0036","serialNumber":"h0036"},{"depName":"yy37","id":10090,"name":"h0037","serialNumber":"h0037"},{"depName":"yy38","id":10091,"name":"h0038","serialNumber":"h0038"},{"depName":"yy39","id":10092,"name":"h0039","serialNumber":"h0039"},{"depName":"yy40","id":10093,"name":"h0040","serialNumber":"h0040"},{"depName":"yy41","id":10094,"name":"h0041","serialNumber":"h0041"},{"depName":"yy42","id":10095,"name":"h0042","serialNumber":"h0042"},{"depName":"yy43","id":10096,"name":"h0043","serialNumber":"h0043"},{"depName":"yy44","id":10097,"name":"h0044","serialNumber":"h0044"},{"depName":"yy45","id":10098,"name":"h0045","serialNumber":"h0045"}]}
+		,defaultSort: {field:'serialNumber', direction: 'ASC'}
+        ,cm : [{checkbox : true},{
+		           	header: '员工编号'
+		           	,dataIndex: 'serialNumber'
+		           	,width:'33%'
+		        }
+		        ,{
+		           	header: '员工姓名'
+		           	,dataIndex: 'name'
+		           	,width:'33%'
+		        }
+		        ,{
+		           	header: '部门'
+		           	,dataIndex: 'depName'
+		           	,width:'33%'
+		        }]
+       
+	});
+});
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">无分页的Grid</p><p/>
+<div id="grid" style="width:100%;border:1px solid #ccc"></div>
+</body>
+</html>

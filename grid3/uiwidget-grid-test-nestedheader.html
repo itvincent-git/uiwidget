@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Nested Header </title>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+/*.grid-cm-common{width:150px}
+.grid-cm-common grid-title-line{width:145px}*/
+</style>
+<script language="JavaScript">
+var grid, grid2, grid3;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,height : 421
+		,customHeader : 
+			[
+				[
+				{checkbox : true, row : 2}
+				,{header: "编号", dataIndex: 'id', row : 2}
+				,{header: "名称", dataIndex: 'name', row : 2}
+				,{header: "工资", dataIndex: 'salary', col: 4, sortable: false}
+				]
+				,
+				[
+				{checkbox : true, hidden : true}
+				,{header: "基本工资", dataIndex: 'common'}
+				,{header: "绩效工资", dataIndex: 'advance'}
+				,{header: "奖金", dataIndex: 'bonus'}
+				,{header: "补贴", dataIndex: 'allowance'}
+				]
+			]
+		,cm : 
+			[
+			{checkbox : true}
+			,{header: "编号", dataIndex: 'id', width:'20%'}
+			,{header: "名称", dataIndex: 'name', width:'20%'}
+			,{header: "基本工资", dataIndex: 'common', width:'15%'}
+			,{header: "绩效工资", dataIndex: 'advance', width:'15%'}
+			,{header: "奖金", dataIndex: 'bonus', width:'15%'}
+			,{header: "补贴", dataIndex: 'allowance'}
+			]
+		,data : {"totalCount":15, "result":[
+			{id:"C04654654c65s4csdvsdvsdv65as4c", name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{id:"C1", name:"C0", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{id:"C2", name:"C0", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{id:"C3", name:"C0", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{id:"C4", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C5", name:"C0", common:"3200", advance:"2213.66", allowance:"200"}
+			,{id:"C6", name:"C0", common:"1904", advance:"4343.34", allowance:"200"}
+			,{id:"C7", name:"C0", common:"1700", advance:"3917.34", allowance:"200"}
+			,{id:"C8", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C9", name:"C0", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{id:"C10", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+			,{id:"C11", name:"C0", advance:"3917", allowance:"200"}
+			,{id:"C12", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C13", name:"C0", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{id:"C14", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+		]}
+	});
+	
+	grid2 = $('#grid2').grid({
+		pageSize : 15
+		,height : 438
+		,customHeader : 
+			[
+				[
+				{checkbox : true, row : 2}
+				,{header: "编号", dataIndex: 'id', row : 2}
+				,{header: "名称", dataIndex: 'name', row : 2}
+				,{header: "工资", dataIndex: 'salary', col: 4, sortable: false}
+				]
+			,	[
+				{checkbox : true, hidden : true}
+				,{header: "基本工资(A101)", dataIndex: 'common'}
+				,{header: "绩效工资", dataIndex: 'advance'}
+				,{header: "奖金", dataIndex: 'bonus'}
+				,{header: "补贴", dataIndex: 'allowance'}
+				]
+			]
+		,cm : [{checkbox : true}
+			,{header: "编号", dataIndex: 'id', width:'100px'}
+			,{header: "名称", dataIndex: 'name', width:'100px'}
+			,{header: "基本工资(A101)", dataIndex: 'common', width:'50px'}
+			,{header: "绩效工资", dataIndex: 'advance', width:'100px'}
+			,{header: "奖金", dataIndex: 'bonus', width:'150px'}
+			,{header: "补贴", dataIndex: 'allowance', width:'250px'}
+			]
+		,data : {"totalCount":15, "result":[
+			{id:"C04654654c65s4sdvsdvc65as4c", name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{id:"C1", name:"C0", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{id:"C2", name:"C0", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{id:"C3", name:"C0", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{id:"C4", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C5", name:"C0", common:"3200", advance:"2213.66", allowance:"200"}
+			,{id:"C6", name:"C0", common:"1904", advance:"4343.34", allowance:"200"}
+			,{id:"C7", name:"C0", common:"1700", advance:"3917.34", allowance:"200"}
+			,{id:"C8", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C9", name:"C0", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{id:"C10", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+			,{id:"C11", name:"C0", advance:"3917", allowance:"200"}
+			,{id:"C12", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C13", name:"C0", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{id:"C14", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+		]}
+	});
+	
+	grid3 = $('#grid3').grid({
+		pageSize : 15
+		,height : 444
+		,customHeader : [
+			[{checkbox : true, row : 3}
+			,{header: "编号", dataIndex: 'id', row : 3}
+			,{header: "名称", dataIndex: 'name', row : 3}
+			,{header: "工资", dataIndex: 'salary', col: 4, sortable: false}
+			]
+			,[{checkbox : true, hidden : true}
+			,{header: "基础工资", dataIndex: 'base', col: 2, sortable: false}
+			,{header: "其它", dataIndex: 'other',col: 2, sortable: false}
+			]
+			,[{checkbox : true, hidden : true}
+			,{header: "基本工资", dataIndex: 'common'}
+			,{header: "绩效工资", dataIndex: 'advance'}
+			,{header: "奖金", dataIndex: 'bonus'}
+			,{header: "补贴", dataIndex: 'allowance'}
+			]
+			]
+		,cm : [{checkbox : true}
+			,{header: "编号", dataIndex: 'id', width:'20%'}
+			,{header: "名称", dataIndex: 'name', width:'20%'}
+			,{header: "基本工资", dataIndex: 'common', width:'15%'}
+			,{header: "绩效工资", dataIndex: 'advance', width:'15%'}
+			,{header: "奖金", dataIndex: 'bonus', width:'15%'}
+			,{header: "补贴", dataIndex: 'allowance'}
+			]
+		,data : {"totalCount":15, "result":[
+			{id:"C0", name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{id:"C1", name:"C0", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{id:"C2", name:"C0", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{id:"C3", name:"C0", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{id:"C4", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C5", name:"C0", common:"3200", advance:"2213.66", allowance:"200"}
+			,{id:"C6", name:"C0", common:"1904", advance:"4343.34", allowance:"200"}
+			,{id:"C7", name:"C0", common:"1700", advance:"3917.34", allowance:"200"}
+			,{id:"C8", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C9", name:"C0", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{id:"C10", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+			,{id:"C11", name:"C0", advance:"3917", allowance:"200"}
+			,{id:"C12", name:"C0", common:"1064", advance:"2363", allowance:"200"}
+			,{id:"C13", name:"C0", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{id:"C14", name:"C0", common:"1904", advance:"4343", allowance:"200"}
+		]}
+	});
+});
+</script>
+</head>
+<body>
+<h1>Grid Nested Header</h1>
+<div id="grid" style="height:100%;width:700px;border:1px solid #ccc; "></div>
+<br/><br/>
+<div id="grid2" style="height:100%;width:700px;border:1px solid #ccc; "></div>
+<br/><br/>
+<div id="grid3" style="height:100%;width:700px;border:1px solid #ccc; "></div>
+</body>
+</html>

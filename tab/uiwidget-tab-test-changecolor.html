@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<style type="text/css">
+.tab-header-red {
+	background: url(images/default/background/bg-tab-red.gif) repeat-x left bottom;
+}
+.tab-header-red .left{	
+	background: url(../images/default/background/bg-tab-lr.gif) no-repeat 0 0;
+}
+.tab-header-red .middle {
+	color: #446166;
+	background: url(../images/default/background/bg-tab-middle.gif) repeat-x 0 0;	
+}
+.tab-header-red .right {
+	background: url(../images/default/background/bg-tab-lr.gif) no-repeat 0 -24px;
+}
+
+	
+</style>
+<script LANGUAGE="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height : 300
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'tab1'
+            	,onActivate : function(item){
+        			$('#tabs .tab-header2').removeClass('tab-header-red');
+        		}
+            }
+            ,{href:'page.html?name=tab2', text: '客户信息', 
+            	onActivate : function(item){
+        			$.debug('activate = '+ item.text);
+        			$('#tabs .tab-header').addClass('tab-header-red');
+        		}
+        	}
+            ,{href:'page.html?name=tab3', text: '其它信息',
+            	onDeactivate : function(item){
+            		$.debug('deactivate	=' + item.text);
+            	}
+            }
+        ]
+        ,onTabChange : function(oldItem, newItem){
+        	//$.debug('oldItem = '+ oldItem.text);
+        	//$.debug('newItem = '+ newItem.text);
+       	}
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab</p><p/>
+<div id="tabs"></div>
+</body>
+</HTML>

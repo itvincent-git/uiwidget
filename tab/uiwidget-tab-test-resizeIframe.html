@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab Iframe</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<!--<script type="text/javascript" src="E:/AJAX/firebug-lite-compressed.js"></script>
+--><style type="text/css">
+
+</style>
+<script LANGUAGE="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        height : 300
+        ,initActiveTab: 0
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'a' ,closeable:true}
+            /*,{href:'page.html?name=tab2', text: '客户信息', id:'b', closeable:true,
+            	onActivate : function(e, tab, activateItem, tabHeader, tabContent){
+        			$.debug('activate = '+ activateItem.text);
+        		}
+        	}
+            ,{href:'page.html?name=tab3', text: '其它信息', id:'c', closeable:true,
+            	onDeactivate : function(e, tab, deactivateItem, tabHeader, tabContent){
+            		$.debug('deactivate	=' + deactivateItem.text);
+            	}
+            }
+            ,{href:'page.html?name=tab4', text: '其它信息4', id:'d',
+            	beforeActivate : function(e, tab, item, tabHeader, tabContent){
+            		$.debug('beforeActivate	=' + item.text);
+            	}
+            }
+            ,{href:'page.html?name=tab5', text: '其它信息5', id:'e'}
+            ,{href:'page.html?name=tab6', text: '其它信息6', id:'f'}
+            ,{href:'http://www.google.cn', text:'google', id:'google'}
+            ,{href:'http://www.baidu.com', text:'baidu', id:'baidu'}
+            ,{href:'http://bugzilla.gzyf.net/ce-bug/index.cgi', text:'bugzilla', id:'bugzilla'}
+           	*/
+           	,{href:'page2.html', text: '标签事件', id :'b'}
+           	//,{href:'uiwidget-tab-test-tabmenu.html', text: '标签菜单', id:'c'}
+        ]
+        ,onTabChange : function(e, oldItem, newItem, tabHeader, tabContent, tabIframe, tab){
+        	//$.debug('oldItem = '+ oldItem.text);
+        	//$.debug('newItem = '+ newItem.text);
+        	//$.debug(.html());
+        	//tabContent.find('iframe').load(function(){
+        	tabIframe.load(function(){
+        		//var ifm = this;
+        		///$.debug(ifm.contentWindow.document.body.scrollHeight);
+        		//$.debug(ifm.contentWindow.document.body.offsetHeight);
+        		//$.debug(ifm.contentWindow.document.body.clientHeight);
+        		//$.debug(ifm.Document.body.scrollHeight);+200
+        		//var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);
+        		//ifm.height=fdh;
+        		//$.debug(ifm.contentDocument.body.scrollHeight);
+        		//$.debug('fdh = ' + fdh);
+        		//tabContent.height(fdh+100);
+        		//tabContent.height(ifm.contentWindow.document.body.scrollHeight);
+        		//ifm.height = ifm.contentWindow.document.body.scrollHeight;
+        		//dyniframesize();
+        		//resizeIframe(this);
+        		$(this).resizeIframe({offsetHeight:20});
+        	});
+       	}
+       	,onTabClose : function(e, closeItem){
+       		$.debug('onTabClose = ' +  closeItem.text);
+       	}
+	});	
+	
+	function resizeIframe(iframe) {
+		//var iframe = document.getElementById(id);
+		try{
+			//$.debug('resizeIframe');
+			//var bHeight = iframe.contentWindow.document.body.scrollHeight;
+			//var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+			//var height = Math.min(bHeight+15, dHeight+15);
+			var fdh=iframe.Document ? iframe.Document.body.scrollHeight : iframe.contentDocument.body.offsetHeight;
+			//var fdh = $(iframe.Document.body).height();
+			$.debug('fdh = ' + fdh);
+			iframe.height =  fdh+20;
+		} catch (ex) {}
+	}
+	//window.setInterval(resizeIframe, 1000);
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab Iframe</p><p/>
+<div id="tabs"></div>
+</body>
+<script language="JavaScript"> 
+//** iframe自动适应页面 **//
+
+//输入你希望根据页面高度自动调整高度的iframe的名称的列表
+//用逗号把每个iframe的ID分隔. 例如: ["myframe1", "myframe2"]，可以只有一个窗体，则不用逗号。
+
+//定义iframe的ID
+var iframeids=["a,b,c"]
+
+//如果用户的浏览器不支持iframe是否将iframe隐藏 yes 表示隐藏，no表示不隐藏
+var iframehide="yes"
+
+function dyniframesize() 
+{
+	var dyniframe=new Array()
+	for (i=0; i<iframeids.length; i++)
+	{
+		if (document.getElementById)
+		{
+		//自动调整iframe高度
+		dyniframe[dyniframe.length] = document.getElementById(iframeids[i]);
+		if (dyniframe[i] && !window.opera)
+		{
+			dyniframe[i].style.display="block"
+			if (dyniframe[i].contentDocument && dyniframe[i].contentDocument.body.offsetHeight) //如果用户的浏览器是NetScape
+				dyniframe[i].height = dyniframe[i].contentDocument.body.offsetHeight; 
+			else if (dyniframe[i].Document && dyniframe[i].Document.body.scrollHeight) //如果用户的浏览器是IE
+				dyniframe[i].height = dyniframe[i].Document.body.scrollHeight;
+			}
+			//$.debug(1);
+		}
+		//根据设定的参数来处理不支持iframe的浏览器的显示问题
+		if ((document.all || document.getElementById) && iframehide=="no")
+		{
+			var tempobj=document.all? document.all[iframeids[i]] : document.getElementById(iframeids[i])
+			tempobj.style.display="block"
+		}
+	}
+}
+
+if (window.addEventListener)
+	window.addEventListener("load", dyniframesize, false)
+else if (window.attachEvent)
+	window.attachEvent("onload", dyniframesize)
+else
+	window.onload=dyniframesize
+</script>
+
+</html>

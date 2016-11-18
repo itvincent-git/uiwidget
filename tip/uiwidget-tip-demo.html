@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tip </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tip.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tip.min.js"></script>
+<style type="text/css">
+.tips{
+	width:150px;
+	height:30px;
+	background: #B7CAD1;
+}
+</style>
+</head>
+<body>
+<p/><h1> Tip </h1><p/>
+<div id="tip1" class="tips">simple demo</div>
+<br/>
+<div id="tip2" class="tips">height, width</div>
+<br/>
+<div id="tip3" class="tips">traceMouse</div>
+<br/>
+<div id="tip4" class="tips">delay</div>
+</body>
+<script language="javascript">
+	$(function(){
+		$('#tip1').tip('hello world!');
+		$('#tip2').tip({height:'50px', width:'100px', html:'hello world!<br/>hello world!<br/>hello world!<br/>'});
+		$('#tip3').tip({html:'traceMouse!', traceMouse:true});
+		$('#tip4').tip({html:'showDelay,hideDelay!', showDelay: 1000, hideDelay:1000});
+	});
+</script>
+</html>

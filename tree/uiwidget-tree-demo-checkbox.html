@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+选择下一层子节点
+<div id="tree"></div>
+<p>
+选择所有子节点
+<div id="tree2"></div>
+<p>
+选择父节点
+<div id="tree3"></div>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree, tree2, tree3;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力", "checked":"false", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部", "checked":"false", "leaf":true}
+				,{"id":"22","text":"广州程序开发部", "checked":"false", "leaf":true}
+				,{"id":"23","text":"广州管理层", "checked":"false", "leaf":false, children:
+					[{"id":"231","text":"广州管理层1", "checked":"false", "leaf":true}]}
+				]}
+		]}
+		]
+	});
+	tree.expandAll();
+	tree.bind('checkchange',function(e, treeNode, checked){
+		treeNode.eachChild(function(node){
+			node.checkChange(checked, false);
+		});
+	});
+	
+	
+	tree2 = $('#tree2').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","checked":"false","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false","leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false","leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false","leaf":true}]}
+				]}
+		]}
+		]
+	});
+	tree2.expandAll();
+	tree2.bind('checkchange',function(e, treeNode, checked){
+		treeNode.cascade(function(node){
+			node.checkChange(checked, false);
+		});
+	});
+
+	tree3 = $('#tree3').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","checked":"false","leaf":false, children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","checked":"false","leaf":true}
+				,{"id":"22","text":"广州程序开发部","checked":"false","leaf":true}
+				,{"id":"23","text":"广州管理层","checked":"false","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","checked":"false","leaf":true}]}
+				]}
+		]}
+		]
+	});
+	tree3.expandAll();
+	tree3.bind('checkchange',function(e, treeNode, checked){
+		treeNode.parentNode.checkChange(checked, false);
+	});
+});
+</script>
+</HTML>

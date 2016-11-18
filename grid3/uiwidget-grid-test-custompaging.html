@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid</title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+</style>
+<script language="JavaScript"><!--
+var grid;
+$(document).ready(function(){
+	var data = {"totalCount":60, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+
+			,{name:"C15", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C16", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C17", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C18", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C19", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C20", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C21", advance:"3917", allowance:"200"}
+			,{name:"C22", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C23", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C24", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C25", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C26", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C27", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C28", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C29", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+
+			
+			,{name:"C30", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C31", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C32", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C33", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C34", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C35", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C36", advance:"3917", allowance:"200"}
+			,{name:"C37", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C38", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C39", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C40", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C41", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C42", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C43", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C44", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+
+			,{name:"C45", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C46", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C47", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C48", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C49", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C50", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C51", advance:"3917", allowance:"200"}
+			,{name:"C52", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C53", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C54", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C55", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C56", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C57", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C58", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C59", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+
+			,{name:"C60", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C61", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C62", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C63", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C64", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C65", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C66", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C67", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C68", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C69", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C70", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C71", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C72", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C73", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C74", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+
+			,{name:"C75", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C76", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C77", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C78", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C79", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C80", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C81", advance:"3917", allowance:"200"}
+			,{name:"C82", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C83", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C84", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C85", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C86", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C87", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C88", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C89", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+
+			,{name:"C90", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C91", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C92", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C93", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C94", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C95", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C96", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C97", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C98", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C99", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C100", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C101", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C102", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C103", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C104", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			/**/
+		]};
+	var data1 = {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+		]};
+	var data2 = {"totalCount":17, "result":[
+			{name:"C15", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C16", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+		]};	
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [$.uiwidget.PageRowNumberer
+			,{header: "名称", dataIndex: 'name', width:'20%'}	
+			,{header: "基本工资", dataIndex: 'common', width:'20%'}
+			,{header: "绩效工资", dataIndex: 'advance', width:'15%'}
+			,{header: "奖金", dataIndex: 'bonus', width:'15%'}
+			,{header: "数量", dataIndex: 'count', width:'15%'}
+			,{header: "补贴", dataIndex: 'allowance'}
+			]
+		,data : data
+	});
+	
+	/*grid.bind('beforeRender', function(e, grid){
+		//$.debug(grid.pageNumber);
+		if(grid.pageNumber == 1){
+			grid.setData(data1);
+		}else{
+			grid.setData(data2);
+		}
+	});*/
+});
+--></script>
+</head>
+<body>
+<h1>Grid data数据分页</h1>
+<div id="grid" style="height:100%;width:99%;border:1px solid #ccc; "></div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid rowexpander</title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.min.js"></script>
+<style type="text/css">
+.grid-row-expander{
+	background: url(images/ico-plus.gif) no-repeat center;
+	height: 16px;
+	width: 16px;
+}
+.grid-row-expander-minus{
+	background: url(images/ico-minus.gif) no-repeat center;
+	height: 16px;
+	width: 16px;
+}
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [{checkbox : true}
+			,{header: "&nbsp;"
+				,sortable : false
+				,dataIndex: 'gridRowExpander'
+				,width:'25px'
+				,renderer : function(value, data, rowIndex, colIndex, metadata){
+					      if(data.detail){
+		           	    return '<div class="grid-row-expander"></div>';
+		           	}else{
+		           		  return '<div class=""></div>';
+		           	}
+		        }
+		     }
+		  ,{header:"",width:'25px'}
+		  ,{header: "销售状态", dataIndex: 'status', width:'8%'}	
+			,{header: "分期名称", dataIndex: 'name', width:'15%'}	
+			,{header: "房号", dataIndex: 'no', width:'10%'}
+			,{header: "户型", dataIndex: 'roomType', width:'12%'}
+			,{header: "建筑面积(㎡)", dataIndex: 'allSize', width:'12%'}
+			,{header: "套内面积(㎡)", dataIndex: 'inSize', width:'12%'}
+			,{header: "单价(元)", dataIndex: 'price', width:'10%'}
+			,{header: "总价(万元)", dataIndex: 'sumPrice'}
+			]
+		,data : {"totalCount":2, "result":[
+			{id:"1",status:"可", name:"半岛城邦 第1期", no:"1-1101", roomType:"2房1厅1厨1卫", allSize:"200", inSize:"180.5",price:"9,000.00",sumPrice:"100.00"
+			 ,detail:[{id:11,value:"置业计划 创建时间：2009-11-11 14:11 备注：初次来访"
+			 	         ,details:[{value:"付款方案111 付款方式：一次性分期付款 首付总额：200,000元 贷款总额：800,000元"}
+			 	                  ,{value:"付款方案112 付款方式：一次性分期付款 首付总额：200,000元 贷款总额：800,000元"}]}
+			 	       ,{id:12,value:"置业计划 创建时间：2009-12-12 14:12 备注：初次来访"
+			 	        }]
+			}
+			,{id:"2",status:"可", name:"半岛城邦 第1期", no:"1-1102", roomType:"2房1厅1厨1卫", allSize:"200", inSize:"184.6",price:"9,000.00",sumPrice:"100.00"
+				,detail:[{id:21,value:"置业计划创建时间：2009-02-21 14:10备注：初次来访"
+			 	         ,details:[{value:"付款方案211 付款方式：一次性分期付款 首付总额：200,000元 贷款总额：800,000元"}
+			 	                  ,{value:"付款方案212 付款方式：一次性分期付款 首付总额：200,000元 贷款总额：800,000元"}]}
+			 	        ,{id:22,value:"置业计划创建时间：2009-02-22 14:10备注：初次来访"
+			 	         ,details:[{value:"付款方案221 付款方式：一次性分期付款 首付总额：200,000元 贷款总额：800,000元"}
+			 	                  ,{value:"付款方案222 付款方式：一次性分期付款 首付总额：200,000元 贷款总额：800,000元"}]}]
+			}
+			,{id:"3",status:"可", name:"半岛城邦 第1期", no:"1-1103", roomType:"2房1厅1厨1卫", allSize:"200", inSize:"180.5",price:"9,000.00",sumPrice:"100.00"}
+		]}
+		//单选时的菜单
+		,contextMenuSingle : [{text: '新增',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				alert( '新增,选择的ID = ' + selections[0]['id']);
+			}}
+			,{text: '修改',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					alert( '修改的ID = ' + selections[0]['id']);
+			}}
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					alert( '查看的ID = ' + selections[0]['id']);
+			}}
+			]
+		 //多选时的菜单	
+		 ,contextMenuMulti : [{text: '修改',icon: 'images/ico-add.gif'
+			,handler: function(e){
+				var selections = grid.getSelections();
+				alert( '修改,选择的ID = ' + selections[0]['id']);
+			}}
+			,{text: '查看',icon: 'images/ico-add.gif'
+				,handler: function(e){
+					var selections = grid.getSelections();
+					alert( '查看数量 = ' + selections.length);
+			}}
+			]
+		,onRowDblclick : function(e, grid, target){ //双击事件
+			alert('查看,选择的ID = '+grid.getSelections()[0].id);			
+		}
+		,afterRender : function(e, grid){
+			if(grid.getResult().length < 1){
+		    	grid.setHeight(grid.getLineHeight());
+		    	return;
+		    }
+			grid.setHeight(grid.getLineHeight() * grid.getResult().length);
+		}
+		,pageSizeList:[15, 30, 50, 100]	
+		,autoLoad : false
+	});
+	
+	grid.bind('afterRender', function(e, grid){		
+			grid.mainBody.find('.grid-main tbody').each(function(i){
+				if(grid.getData().result[i].detail){						
+					for(var t=0;t<grid.getData().result[i].detail.length;t++){
+						var curDetail = grid.getData().result[i].detail[t];
+						if(curDetail.details){						
+						  var o = $(this).append(['<tr style="display:none" class="grid-level-1"><th>&#160;</th><td>&#160;</td><td width=25><span class="grid-body-inner-span"><div class="grid-row-expander"></span></div></td><td colspan="8">',grid.getData().result[i].detail[t]['value'],'</td></tr>'].join(''));
+						  for(var k=0;k<grid.getData().result[i].detail[t].details.length;k++)
+						    o.append(['<tr style="display:none" class="grid-level-2"><th>&#160;</th><td>&#160;</td><td width=25>&#160;</td><td colspan="8">','&#160;&#160;',grid.getData().result[i].detail[t].details[k]['value'],'</td></tr>'].join(''));				
+			      }else{
+			      	$(this).append(['<tr style="display:none" class="grid-level-1"><th>&#160;</th><td>&#160;</td><td width=25><span class="grid-body-inner-span"><div class=""></span></div></td><td colspan="8">',grid.getData().result[i].detail[t]['value'],'</td></tr>'].join(''));						  
+			      }
+			    }
+			  }
+		  });
+			grid.mainBody.find('.grid-row-expander').click(function(){
+				var el = $(this);
+				if(el.is('.grid-row-expander-minus')){
+					el.removeClass('grid-row-expander-minus');					
+					if(!el.parents('tr').hasClass("grid-level-1"))	{						 
+						 //el.parents('tr').next('tr').find('.grid-row-expander').removeClass('grid-row-expander-minus');			   					
+					   el.parents('tr').parent().find("tr.grid-level-1").each(function(i){
+					      $(this).find('.grid-row-expander').removeClass('grid-row-expander-minus');
+					   });
+					   //alert(el.parents('tr').parent().find("tr.grid-level-1").length);
+					   var gridLevel2Amount = 0;
+					   el.parents('tr').parent().find("tr.grid-level-2").each(function(i){					   	   
+					   	   if(!$(this).is(":hidden")){
+					   	   	  gridLevel2Amount ++;
+					   	   }
+					   });
+					   grid.setHeight(grid.getHeight()-grid.getLineHeight()*(el.parents('tr').parent().find("tr.grid-level-1").length+gridLevel2Amount));
+					   
+					   el.parents('tr').parent().find("tr.grid-level-1").hide();
+					   el.parents('tr').parent().find("tr.grid-level-2:visible").hide();					   
+					}else{
+						 var tt=el.parents('tr');						
+						 while(tt.next('tr').hasClass('grid-level-2')){
+						 	 grid.setHeight(grid.getHeight()-grid.getLineHeight());
+					   
+							 tt.next('tr').hide();
+							 tt= tt.next('tr');
+						 }
+					}			
+				}else{						
+					el.addClass('grid-row-expander-minus');											
+					if(!el.parents('tr').hasClass("grid-level-1")){				   
+					   //el.parents('tr').next('tr').show();
+					   grid.setHeight(grid.getHeight()+grid.getLineHeight()*el.parents('tr').parent().find("tr.grid-level-1").length);
+					   					   
+					   el.parents('tr').parent().find("tr.grid-level-1").show();					
+					}else{						 
+						 var tt=el.parents('tr');									
+						 while(tt.next('tr').hasClass('grid-level-2')){
+						 	 grid.setHeight(grid.getHeight()+grid.getLineHeight());
+							 tt.next('tr').show();
+							 tt= tt.next('tr');
+						 }
+					}
+				}
+			});
+		}
+	);
+	
+	grid.load();
+	
+});
+</script>
+</head>
+<body>
+<h1>Grid rowexpander</h1>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+<br/><br/><br/>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+<!---->
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var grid, grid2;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		pageSize : 15
+		,viewConfig : {horizontalScroll : true}
+		,cm : [{checkbox : true}
+			, {header: "转正类型名称转正类型名称转正类型名称转正类型名称", dataIndex: 'name', width:'100px'}
+			, {header: "时间ab时间ab时间ab时间ab时间ab时间ab时间ab", dataIndex: 'time', width:'100px'}
+			, {header: "remark remark remark remark remark remark r", dataIndex: 'remark', width:'100px'}
+			, {sortable: false, header: "remark remark remark remark k", dataIndex: 'remark', width:'100px'}
+			, {header: "remark", dataIndex: 'remark', width:'100px'}
+			]
+		,data : {"totalCount":14, "result":[{id:"1", name : "张三张三张三张三张三张三张三张三张三张三", time:"23:32:22-23:32:22-23:32:22-", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"23:32:22", remark : "2009-01-02"}, {id:"3", name : "王五", time:"23:32:22", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}]}
+	});
+
+	grid2 = $('#grid2').grid({
+		pageSize : 15		
+		,cm : [{checkbox : true}
+			, {header: "转正类型名称转正类型名称转正类型名称转正类型名称", dataIndex: 'name', width:'20%'}
+			, {header: "时间ab时间ab时间ab时间ab时间ab时间ab时间ab", dataIndex: 'time', width:'20%'}
+			, {header: "remark remark remark remark remark remark r", dataIndex: 'remark', width:'20%'}
+			, {sortable: false, header: "remark remark remark remark k", dataIndex: 'remark', width:'20%'}
+			, {header: "remark", dataIndex: 'remark'}
+			]
+		,data : {"totalCount":14, "result":[{id:"1", name : "张三张三张三张三张三张三张三张三张三张三", time:"23:32:22-23:32:22-23:32:22-", remark : "2009-01-01/2009-01-01/2009-01-01/" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", time:"23:32:22", remark : "2009-01-02"}, {id:"3", name : "王五", time:"23:32:22", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}]}
+	});
+});
+
+</script>
+</head>
+
+<body >
+<p/><h1>Grid ellipsis</h1><p/>
+<div id="grid" style="width:600px;border:1px solid #ccc; "></div>
+<p/><button onclick='grid.replaceRow(0, {id:"2$$$", name : "李四李四李四李四李四李四李四李四李四李四李四李四李四李四", remark : "2009-01-022009-01-022009-01-022009-01-022009-01-022009-01-02"})'>覆盖第1行数据</button>
+<div id="grid2" style="width:600px;border:1px solid #ccc; "></div>
+</body>
+</html>

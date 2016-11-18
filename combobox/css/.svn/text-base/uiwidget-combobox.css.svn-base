@@ -1,0 +1,10 @@
+.f-combobox-wrap input::-moz-focus-inner{border-color:transparent!important;}    
+.f-combobox{font-size:12px;height:21px;line-height:21px;padding:1px 3px;border:1px solid #aaa;vertical-align: middle;margin: 0;}
+.f-arrow-trigger{border:0;width:17px;height:25px; background: url(../images/trigger.gif) 0 0;vertical-align: middle;}
+.f-arrow-trigger:active {-ms-background-position-x: 1px;-ms-background-position-y: 1px;}
+
+.f-combobox-list {display:none; position:absolute;font-size:12px;border:1px solid #ccc;zoom:1;overflow:auto;overflow-x:hidden;}
+.f-combobox-list ul{padding: 0;margin: 0;}
+.f-combobox-list-inner {background:#fff; overflow:hidden;zoom:1;position: relative !important;position: fixed;}
+.f-combobox-list-item {height:13px;padding:4px;border:1px solid #fff;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;cursor: pointer;}
+.f-combobox-list-item-selected {border:1px dotted #777777; background: #F0F0F0;}

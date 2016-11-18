@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid custompaging</title>
+<link style="text/css" rel="stylesheet" href="../grid/css/uiwidget-grid.css"/>
+<link style="text/css" rel="stylesheet" href="css/res-pagetoolbar.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../grid/uiwidget-grid.js"></script>
+<script type="text/javascript" src="res-pagetoolbar.min.js"></script>
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+	var data = {"totalCount":17, "result":[
+			{name:"C0", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C1", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+			,{name:"C2", common:"1904", advance:"4343", bonus:"400", allowance:"100"}
+			,{name:"C3", common:"1700", advance:"3917", bonus:"900", allowance:"100"}
+			,{name:"C4", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C5", common:"3200", advance:"2213.66", allowance:"200"}
+			,{name:"C6", common:"1904", advance:"4343.34", allowance:"200"}
+			,{name:"C7", common:"1700", advance:"3917.34", allowance:"200"}
+			,{name:"C8", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C9", common:"3200", advance:"2213", bonus:"100", allowance:"100"}
+			,{name:"C10", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C11", advance:"3917", allowance:"200"}
+			,{name:"C12", common:"1064", advance:"2363", allowance:"200"}
+			,{name:"C13", common:"3200", advance:"2213", bonus:"600", allowance:"100"}
+			,{name:"C14", common:"1904", advance:"4343", allowance:"200"}
+			,{name:"C15", common:"1200", advance:"3831", bonus:"200", allowance:"100"}
+			,{name:"C16", common:"3200", advance:"2213", bonus:"200", allowance:"100"}
+		]};
+
+	
+	
+	grid = $('#grid').grid({
+		pageSize : 15
+		,cm : [$.uiwidget.RowNumberer
+			,{header: "名称", dataIndex: 'name', width:'20%'}	
+			,{header: "基本工资sum", dataIndex: 'common', width:'20%'}
+			,{header: "绩效工资max", dataIndex: 'advance', width:'15%'}
+			,{header: "奖金min", dataIndex: 'bonus', width:'15%'}
+			,{header: "数量count", dataIndex: 'count', width:'15%'}
+			,{header: "补贴average", dataIndex: 'allowance', width:'15%'}
+			]
+		,data : data
+	});
+	
+});
+</script>
+</head>
+<body>
+<h1>res pagetoolbar</h1>
+<div id="grid" style="height:100%;width:80%;border:1px solid #ccc; "></div>
+</body>
+</html>

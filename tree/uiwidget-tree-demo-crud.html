@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="uiwidget-tree.min.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<table width="100%" height="50%" border="0">
+<tr>
+<td width="30%" valign=top>
+<div id="tree"></div>
+<p>
+</td>
+</tr>
+</table>
+<button onclick="append()">appendNode()</button><br/>
+<button onclick="remove()">remove()</button><br/>
+<button onclick="edit()">edit()</button>
+<button onclick="reloadRoot()">tree reloadRoot</button>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力", children : [
+			{"id":"2","text":"中企动力广州分公司",  "leaf":false, children:
+				[{"id":"21","text":"广州系统设计部","leaf":true}
+				,{"id":"22","text":"广州程序开发部","leaf":true}
+				,{"id":"23","text":"广州管理层","leaf":false, children:
+					[{"id":"231","text":"广州管理层1","leaf":true}]}
+				]}
+			,{id:"3", text:"半岛城邦", leaf:true}
+		]}
+		]		
+	});
+	tree.expandAll();
+});
+
+function append(){
+	tree.getRootNode()[0].appendChild({id:"4", text:"大地影院", leaf:true});
+}
+
+function remove(){
+	tree.getRootNode()[0].childNodes[1].remove();
+}
+
+function edit(){
+	tree.getRootNode()[0].childNodes[1].setText("改变了名称");
+}
+function reloadRoot(){
+	tree.reload();
+}
+</script>
+</HTML>

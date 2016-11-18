@@ -1,0 +1,15 @@
+1.2.1	2011-05-09
+M 修改startEdit方法，在第三个参数对象中支持top, left, width, height来定位编辑框的位置
+
+1.2.0    2010-09-10
+M 绑定事件的方法实现修改
+M 触发的事件传递入event作为参数
+
+1.1.1    2009-09-11
+修改
+	M beforecomplete 现在有了返回值，return false则不能进入修改状态
+	M 失去焦点的判断
+	M completeEdit改变了算法
+	M 编辑完后清空editEl
+	
+	

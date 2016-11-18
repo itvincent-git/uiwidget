@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>nestedheader-toomany</title>
+<link href="css/uiwidget-grid.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<!--  
+<script type="text/javascript" src="e:/ajax/firebug-lite-compressed.js"></script>
+-->
+<style type="text/css">
+
+#grid .grid-cm-period1, #grid .grid-cm-period2, #grid .grid-cm-period3, #grid .grid-cm-wage1311, #grid .grid-cm-wage1312, #grid .grid-cm-wage1313, #grid .grid-cm-wage1321, #grid .grid-cm-wage1322, #grid .grid-cm-wage1323, #grid .grid-cm-wage1331, #grid .grid-cm-wage1332, #grid .grid-cm-wage1333, #grid .grid-cm-wage1341, #grid .grid-cm-wage1342, #grid .grid-cm-wage1343, #grid .grid-cm-wage1351, #grid .grid-cm-wage1352, #grid .grid-cm-wage1353, #grid .grid-cm-wage1361, #grid .grid-cm-wage1362, #grid .grid-cm-wage1363, #grid .grid-cm-wage1371, #grid .grid-cm-wage1372, #grid .grid-cm-wage1373, #grid .grid-cm-wage1381, #grid .grid-cm-wage1382, #grid .grid-cm-wage1383, #grid .grid-cm-current1311, #grid .grid-cm-current1312, #grid .grid-cm-current1313, #grid .grid-cm-current1321, #grid .grid-cm-current1322, #grid .grid-cm-current1323, #grid .grid-cm-current1331, #grid .grid-cm-current1332, #grid .grid-cm-current1333, #grid .grid-cm-current1341, #grid .grid-cm-current1342, #grid .grid-cm-current1343, #grid .grid-cm-current1351, #grid .grid-cm-current1352, #grid .grid-cm-current1353, #grid .grid-cm-current1361, #grid .grid-cm-current1363, #grid .grid-cm-current1363, #grid .grid-cm-current1371, #grid .grid-cm-current1373, #grid .grid-cm-current1373, #grid .grid-cm-current1381, #grid .grid-cm-current1382, #grid .grid-cm-current1383, #grid .grid-cm-current1391, #grid .grid-cm-current1392, #grid .grid-cm-current1393, #grid .grid-cm-balance1, #grid .grid-cm-balance2, #grid .grid-cm-current1, #grid .grid-cm-current2  {text-align: right;}
+
+#grid .grid-header-period, #grid .grid-header-wage111, #grid .grid-header-current111, #grid .grid-header-balance, #grid .grid-header-current, #grid .grid-header-wage121, #grid .grid-header-wage122, #grid .grid-header-wage123, #grid .grid-header-wage124, #grid .grid-header-wage125, #grid .grid-header-wage126, #grid .grid-header-wage127, #grid .grid-header-wage128, #grid .grid-header-current121, #grid .grid-header-current122, #grid .grid-header-current123, #grid .grid-header-current124, #grid .grid-header-current125, #grid .grid-header-current126, #grid .grid-header-current127, #grid .grid-header-current128, #grid .grid-header-current129 {text-align: center;}
+
+#grid .grid-summary-bar-unit, #grid .grid-summary-bar-period1, #grid .grid-summary-bar-period3, #grid .grid-summary-bar-wage1311, #grid .grid-summary-bar-wage1313, #grid .grid-summary-bar-wage1321, #grid .grid-summary-bar-wage1323, #grid .grid-summary-bar-wage1331, #grid .grid-summary-bar-wage1333, #grid .grid-summary-bar-wage1341, #grid .grid-summary-bar-wage1343, #grid .grid-summary-bar-wage1351, #grid .grid-summary-bar-wage1353, #grid .grid-summary-bar-wage1361, #grid .grid-summary-bar-wage1363, #grid .grid-summary-bar-wage1371, #grid .grid-summary-bar-wage1373, #grid .grid-summary-bar-wage1381, #grid .grid-summary-bar-wage1383, #grid .grid-summary-bar-current1311, #grid .grid-summary-bar-current1313, #grid .grid-summary-bar-current1321, #grid .grid-summary-bar-current1323, #grid .grid-summary-bar-current1331, #grid .grid-summary-bar-current1333, #grid .grid-summary-bar-current1341, #grid .grid-summary-bar-current1343, #grid .grid-summary-bar-current1351, #grid .grid-summary-bar-current1353, #grid .grid-summary-bar-current1361, #grid .grid-summary-bar-current1363, #grid .grid-summary-bar-current1371, #grid .grid-summary-bar-current1373, #grid .grid-summary-bar-current1381, #grid .grid-summary-bar-current1383, #grid .grid-summary-bar-current1391, #grid .grid-summary-bar-current1393, #grid .grid-summary-bar-balance1, #grid .grid-summary-bar-balance2, #grid .grid-summary-bar-current1, #grid .grid-summary-bar-current2 {text-align: right;}
+/**/
+</style>
+</head>
+<body>
+<!--列表-->
+<div id="grid" style="border:1px solid #ccc;width:900px;"></div>
+<script language="javascript">
+var grid;
+$(document).ready(function(){
+	grid = $('#grid').grid({
+		showSummaryBar : true
+		,height: 100
+		,pageSize : 15
+        ,customHeader : [
+			[{header: "月度", dataIndex: 'monthly', width:'120px', row : 3}
+			,{header: "序号", dataIndex: 'number', width:'60px', row : 3}
+			,{header: "商品条码", dataIndex: 'barcode', width:'120px', row : 3}
+			,{header: "店内码", dataIndex: 'storecode', width:'120px', row : 3}
+			,{header: "商品名称", dataIndex: 'tradenames', width:'140px', row : 3}
+			,{header: "单位", dataIndex: 'unit', width:'100px', row : 3}
+			,{header: "期初", dataIndex: 'period', width:'240px', row : 2,col: 3, sortable: false}
+			,{header: "本期收入", dataIndex: 'wage111', col: 24, sortable: false}
+			,{header: "本期发出", dataIndex: 'current111', col: 27, sortable: false}
+			,{header: "末期结存", dataIndex: 'balance',  row : 2,col: 2, sortable: false}
+			,{header: "当前库存", dataIndex: 'current',  row : 2,col: 2, sortable: false}
+			/**/
+			]
+
+			,[{checkbox : true, hidden : true}
+			,{header: "进货入库", dataIndex: 'wage121', col: 3, sortable: false}
+			,{header: "POS退货", dataIndex: 'wage122',  col: 3, sortable: false}
+			,{header: "外调入库", dataIndex: 'wage123',col: 3, sortable: false}
+			,{header: "赠送入库", dataIndex: 'wage124',  col: 3, sortable: false}
+			,{header: "调拨入库", dataIndex: 'wage125',  col: 3, sortable: false}
+			,{header: "领用退回", dataIndex: 'wage126', col: 3, sortable: false}
+			,{header: "其它入库", dataIndex: 'wage127',  col: 3, sortable: false}
+			,{header: "收入合计", dataIndex: 'wage128',  col: 3, sortable: false}
+
+
+			,{header: "POS销售", dataIndex: 'current121', col: 3, sortable: false}
+			,{header: "进货退货", dataIndex: 'current122', col: 3, sortable: false}
+			,{header: "外调出库", dataIndex: 'current123',col: 3, sortable: false}
+			,{header: "销售领用", dataIndex: 'current124',  col: 3, sortable: false}
+			,{header: "领用", dataIndex: 'current125',  col: 3, sortable: false}
+			,{header: "报损", dataIndex: 'current126',  col: 3, sortable: false}
+			,{header: "调拨出库", dataIndex: 'current127', col: 3, sortable: false}
+			,{header: "其它出库", dataIndex: 'current128', col: 3, sortable: false}
+			,{header: "发出合计", dataIndex: 'current129', col: 3, sortable: false}
+			]/**/
+
+			,[{checkbox : true, hidden : true}
+			,{header: "数量", dataIndex: 'period1', width:'150px'}
+			,{header: "单价(元)", dataIndex: 'period2', width:'40px'}
+			,{header: "金额(元)", dataIndex: 'period3', width:'50px'}
+
+
+			,{header: "数量", dataIndex: 'wage1311', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1312', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1313', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1321', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1322', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1323', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1331', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1332', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1333', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1341', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1342', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1343', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1351', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1352', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1353', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1361', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1362', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1363', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1371', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1372', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1373', width:'80px'}
+			,{header: "数量", dataIndex: 'wage1381', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'wage1382', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1383', width:'80px'}
+
+
+			,{header: "数量", dataIndex: 'current1311', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1312', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1313', width:'80px'}
+			,{header: "数量", dataIndex: 'current1321', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1322', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1323', width:'80px'}
+			,{header: "数量", dataIndex: 'current1331', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1332', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1333', width:'80px'}
+			,{header: "数量", dataIndex: 'current1341', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1342', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1343', width:'80px'}
+			,{header: "数量", dataIndex: 'current1351', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1352', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1353', width:'80px'}
+			,{header: "数量", dataIndex: 'current1361', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1362', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1363', width:'80px'}
+			,{header: "数量", dataIndex: 'current1371', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1372', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1373', width:'80px'}
+			,{header: "数量", dataIndex: 'current1381', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1382', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1383', width:'80px'}
+			,{header: "数量", dataIndex: 'current1391', width:'80px'}
+			,{header: "单价(元)", dataIndex: 'current1392', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1393', width:'80px'}
+
+
+			,{header: "数量", dataIndex: 'balance1', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'balance2', width:'80px'}
+
+			,{header: "数量", dataIndex: 'current1', width:'80px'}
+			,{header: "金额((元)", dataIndex: 'current2', width:'80px'}
+			]
+			]
+		,cm : [{header: "月度", dataIndex: 'monthly', width:'120px'}
+		    ,{header: "序号", dataIndex: 'number', width:'60px'}
+			,{header: "商品条码", dataIndex: 'barcode', width:'120px'}
+			,{header: "店内码", dataIndex: 'storecode', width:'120px'}
+			,{header: "商品名称", dataIndex: 'tradenames', width:'140px'}
+			,{header: "单位", dataIndex: 'unit', width:'100px',summaryConfig:{html: "合计："}}
+
+			,{header: "数量", dataIndex: 'period1', width:'250px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'period2', width:'40px'}
+			,{header: "金额(元)", dataIndex: 'period3', width:'50px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1311', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1312', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1313', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1321', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1322', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1323', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1331', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1332', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1333', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1341', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1342', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1343', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1351', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1352', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1353', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1361', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1362', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1363', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1371', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1372', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1373', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'wage1381', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'wage1382', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'wage1383', width:'80px',summaryConfig:{calculation:'sum'}}
+
+			,{header: "数量", dataIndex: 'current1311', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1312', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1313', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1321', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1322', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1323', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1331', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1332', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1333', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1341', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1342', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1343', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1351', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1352', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1353', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1361', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1362', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1363', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1371', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1372', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1373', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1381', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1382', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1383', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "数量", dataIndex: 'current1391', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "单价(元)", dataIndex: 'current1392', width:'80px'}
+			,{header: "金额(元)", dataIndex: 'current1393', width:'80px',summaryConfig:{calculation:'sum'}}
+
+			,{header: "数量", dataIndex: 'balance1', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "金额(元)", dataIndex: 'balance2', width:'80px',summaryConfig:{calculation:'sum'}}
+
+			,{header: "数量", dataIndex: 'current1', width:'80px',summaryConfig:{calculation:'sum'}}
+			,{header: "金额((元)", dataIndex: 'current2', width:'80px',summaryConfig:{calculation:'sum'}}
+			]
+		,data : {"totalCount":15, "result":[
+			{monthly:"2008年7月", number:"1", barcode:"9841543515", storecode:"52441", tradenames:"剑客薯条",unit:"包", period1:"15.00", period2:"10.00", period3:"150.00", wage1311:"3.00", wage1312:"2.00", wage1313:"6.00", wage1321:"3.00", wage1322:"5.00", wage1323:"15.00", wage1331:"15.00", wage1332:"1.30", wage1333:"19.50", wage1341:"0.00", wage1342:"0.00", wage1343:"0.00", wage1351:"0.00", wage1352:"0.00", wage1353:"0.00", wage1361:"0.00", wage1362:"0.00", wage1363:"0.00", wage1371:"0.00", wage1372:"0.00", wage1373:"0.00", wage1381:"0.00", wage1382:"0.00", wage1383:"0.00", current1311:"0.00", current1312:"0.00", current1313:"0.00", current1321:"0.00", current1322:"0.00", current1323:"0.00", current1331:"15.00", current1332:"1.30", current1333:"19.50", current1341:"0.00", current1342:"0.00", current1343:"0.00", current1351:"0.00", current1352:"0.00", current1353:"0.00", current1361:"0.00", current1362:"0.00", current1363:"0.00", current1371:"0.00", current1372:"0.00", current1373:"0.00", current1381:"0.00", current1382:"0.00", current1383:"0.00", current1391:"0.00", current1392:"0.00", current1393:"0.00"
+			, balance1:"0.00", balance2:"0.00", current1:"0.00", current2:"0.00"}
+			,{monthly:"", number:"2", barcode:"9841543515", storecode:"52441", tradenames:"百事可乐",unit:"罐", period1:"15.00", period2:"10.00", period3:"150.00", wage1311:"0.00", wage1312:"0.00", wage1313:"0.00", wage1321:"0.00", wage1322:"0.00", wage1323:"0.00", wage1331:"15.00", wage1332:"1.30", wage1333:"19.50", wage1341:"0.00", wage1342:"0.00", wage1343:"0.00", wage1351:"0.00", wage1352:"0.00", wage1353:"0.00", wage1361:"0.00", wage1362:"0.00", wage1363:"0.00", wage1371:"0.00", wage1372:"0.00", wage1373:"0.00", wage1381:"0.00", wage1382:"0.00", wage1383:"0.00", current1311:"0.00", current1312:"0.00", current1313:"0.00", current1321:"0.00", current1322:"0.00", current1323:"0.00", current1331:"15.00", current1332:"1.30", current1333:"19.50", current1341:"0.00", current1342:"0.00", current1343:"0.00", current1351:"0.00", current1352:"0.00", current1353:"0.00", current1361:"0.00", current1362:"0.00", current1363:"0.00", current1371:"0.00", current1372:"0.00", current1373:"0.00", current1381:"0.00", current1382:"0.00", current1383:"0.00", current1391:"0.00", current1392:"0.00", current1393:"0.00"
+			, balance1:"0.00", balance2:"0.00", current1:"0.00", current2:"0.00"}
+			,{monthly:"", number:"3", barcode:"9841543515", storecode:"52441", tradenames:"多乐士",unit:"包", period1:"15.00", period2:"10.00", period3:"150.00", wage1311:"0.00", wage1312:"0.00", wage1313:"0.00", wage1321:"0.00", wage1322:"0.00", wage1323:"0.00", wage1331:"15.00", wage1332:"1.30", wage1333:"19.50", wage1341:"0.00", wage1342:"0.00", wage1343:"0.00", wage1351:"0.00", wage1352:"0.00", wage1353:"0.00", wage1361:"0.00", wage1362:"0.00", wage1363:"0.00", wage1371:"0.00", wage1372:"0.00", wage1373:"0.00", wage1381:"0.00", wage1382:"0.00", wage1383:"0.00", current1311:"0.00", current1312:"0.00", current1313:"0.00", current1321:"0.00", current1322:"0.00", current1323:"0.00", current1331:"15.00", current1332:"1.30", current1333:"19.50", current1341:"0.00", current1342:"0.00", current1343:"0.00", current1351:"0.00", current1352:"0.00", current1353:"0.00", current1361:"0.00", current1362:"0.00", current1363:"0.00", current1371:"0.00", current1372:"0.00", current1373:"0.00", current1381:"0.00", current1382:"0.00", current1383:"0.00", current1391:"0.00", current1392:"0.00", current1393:"0.00"
+			, balance1:"0.00", balance2:"0.00", current1:"0.00", current2:"0.00"}
+			,{monthly:"2008年7月", number:"4", barcode:"9841543515", storecode:"52441", tradenames:"美丽宝",unit:"包", period1:"15.00", period2:"10.00", period3:"150.00", wage1311:"0.00", wage1312:"0.00", wage1313:"0.00", wage1321:"0.00", wage1322:"0.00", wage1323:"0.00", wage1331:"15.00", wage1332:"1.30", wage1333:"19.50", wage1341:"0.00", wage1342:"0.00", wage1343:"0.00", wage1351:"0.00", wage1352:"0.00", wage1353:"0.00", wage1361:"0.00", wage1362:"0.00", wage1363:"0.00", wage1371:"0.00", wage1372:"0.00", wage1373:"0.00", wage1381:"0.00", wage1382:"0.00", wage1383:"0.00", current1311:"0.00", current1312:"0.00", current1313:"0.00", current1321:"0.00", current1322:"0.00", current1323:"0.00", current1331:"15.00", current1332:"1.30", current1333:"19.50", current1341:"0.00", current1342:"0.00", current1343:"0.00", current1351:"0.00", current1352:"0.00", current1353:"0.00", current1361:"0.00", current1362:"0.00", current1363:"0.00", current1371:"0.00", current1372:"0.00", current1373:"0.00", current1381:"0.00", current1382:"0.00", current1383:"0.00", current1391:"0.00", current1392:"0.00", current1393:"0.00"
+			, balance1:"0.00", balance2:"0.00", current1:"0.00", current2:"0.00"}
+			,{monthly:"", number:"5", barcode:"9841543515", storecode:"52441", tradenames:"太子奶",unit:"包", period1:"15.00", period2:"10.00", period3:"150.00", wage1311:"0.00", wage1312:"0.00", wage1313:"0.00", wage1321:"0.00", wage1322:"0.00", wage1323:"0.00", wage1331:"15.00", wage1332:"1.30", wage1333:"19.50", wage1341:"0.00", wage1342:"0.00", wage1343:"0.00", wage1351:"0.00", wage1352:"0.00", wage1353:"0.00", wage1361:"0.00", wage1362:"0.00", wage1363:"0.00", wage1371:"0.00", wage1372:"0.00", wage1373:"0.00", wage1381:"0.00", wage1382:"0.00", wage1383:"0.00", current1311:"0.00", current1312:"0.00", current1313:"0.00", current1321:"0.00", current1322:"0.00", current1323:"0.00", current1331:"15.00", current1332:"1.30", current1333:"19.50", current1341:"0.00", current1342:"0.00", current1343:"0.00", current1351:"0.00", current1352:"0.00", current1353:"0.00", current1361:"0.00", current1362:"0.00", current1363:"0.00", current1371:"0.00", current1372:"0.00", current1373:"0.00", current1381:"0.00", current1382:"0.00", current1383:"0.00", current1391:"0.00", current1392:"0.00", current1393:"0.00"
+			, balance1:"0.00", balance2:"0.00", current1:"0.00", current2:"0.00"}
+		
+		]}
+	});
+});
+
+
+
+</script>
+<!--结束-->
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>navigator4</title>
+<link style="text/css" rel="stylesheet"	href="css/uiwidget-navigator4.css" />
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../page/uiwidget-page.min.js"></script>
+<script type="text/javascript" src="uiwidget-navigator4.js"></script>
+<script language="JavaScript">
+	var nav;
+	$(document).ready(function() {
+		nav = $('#nav').navigator4({
+				autoMax: true
+				,hrefTarget: "page-content"
+				,data: [
+						{id : 1, text : "工作台", href : "nav-first.html", iconClass: "worktable", minIconClass : "worktable"}
+						,{id : 2, text : "销售", href : "nav-first.html", iconClass: "worktable", minIconClass : "worktable"}
+						,{id : 3, text : "库存", iconClass: "worktable", minIconClass : "worktable", menu : true, children : [
+							{id : 31, text : "仓库管理", href : "nav-1.html", iconClass : "quick", minIconClass : "quick"}]}
+						,{id : 4, text : "客户", href : "nav-first.html", iconClass: "worktable", minIconClass : "worktable", children : [
+							{id : 41, text : "中国客户", href : "nav-2.html", iconClass : "quick", minIconClass : "quick"}
+							,{id : 42, text : "外国客户", href : "nav-3.html", iconClass : "quick", minIconClass : "quick"}
+						]}
+						]
+				//,url: "/navigator4/navData"
+				//,loadParas: "id=1&name=abc"
+			});
+			nav.bind("itemclick", function(e, item) {
+				alert(item.id);
+			});
+			nav.bind("navresize", function(e) {
+				alert("abc");
+			})
+	});
+
+</script>
+<style type="text/css">
+.aaa {width:100px}
+</style>
+</head>
+
+<body style="background: gray">
+<p />
+<p align="left" style="font-size: large">UI4.0 导航</p>
+<p />
+
+
+
+<div id="nav" >
+<!--<div class="nav4">
+	<div class="nav-max">
+		<input type="button" title="收起菜单" class="fold-button-left" hideFocus="true"/>
+		<ul>
+			<li class="nav-item nav-item-on"><input type="button" title="工作台" class="nav-item-icon worktable" hideFocus="true"/><span class="nav-item-text">工作台</span></li>
+			<li class="nav-item quick-menu"><input type="button" title="快速新建" class="nav-item-icon quick" hideFocus="true"/><span class="nav-item-text">快速新建</span><input type="button" class="quick-menu-icon" hideFocus="true"/></li>
+			<li class="nav-item-group">票券定义
+				<ul>
+					<li class="nav-item nav-item-on"><input type="button" title="票务定义" class="nav-item-icon worktable" hideFocus="true"/><span class="nav-item-text">票务定义</span></li>
+					<li class="nav-item"><input type="button" title="小卖票券定义" class="nav-item-icon worktable" hideFocus="true"/><span class="nav-item-text">小卖票券定义</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="nav-min">
+		<input type="button" title="展开菜单" class="fold-button-right" hideFocus="true"/>
+		<ul>
+			<li class="nav-item nav-item-on"><input type="button" title="工作台" class="nav-item-icon worktable" hideFocus="true"/></li>
+			<li class="nav-item quick-menu"><input type="button" title="快速新建" class="nav-item-icon quick" hideFocus="true"/><input type="button" class="quick-menu-icon" hideFocus="true"/></li>
+			<li class="nav-item"><input type="button" title="票务定义" class="nav-item-icon worktable" hideFocus="true"/></li>
+			<li class="nav-item"><input type="button" title="小卖票券定义" class="nav-item-icon worktable" hideFocus="true"/></li>
+		</ul>
+	</div>
+</div>-->
+</div>
+
+<div id="page-content"></div>
+</body>
+</html>

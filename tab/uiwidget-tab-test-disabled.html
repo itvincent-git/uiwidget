@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<!--<script type="text/javascript" src="E:/AJAX/firebug-lite-compressed.js"></script>
+-->
+<style type="text/css">
+</style>
+<script language="JavaScript">
+var tab;
+$(document).ready(function(){
+
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height : 300
+        ,items:[
+            {href:'page.html?name=tab1', text: '房屋信息', id:'a'}
+            ,{href:'page.html?name=tab2', text: '客户信息', id:'b',
+                //标签禁用
+                disabled : true,
+                closeable : true
+        	}
+            ,{href:'page.html?name=tab3', text: '其它信息', id:'c',
+            	disabled : true, closeable : true            	
+            }
+            ,{href:'page.html?name=tab4', text: '详细信息', id:'d'}
+            ,{href:'page.html?name=tab5', text: '补充资料', id:'e'}
+            ,{href:'page.html?name=tab6', text: '分类信息', id:'f'}
+        ]
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab 标签禁用</p><p/>
+<div id="tabs"></div>
+<button onclick="tab.disableTab('d')">禁用'详细信息'</button>
+<button onclick="tab.enableTab('d')">解除禁用'详细信息'</button>
+<button onclick="$.debug(tab.isDisabledTab('d'))">是否禁用'详细信息'</button>
+</body>
+</html>

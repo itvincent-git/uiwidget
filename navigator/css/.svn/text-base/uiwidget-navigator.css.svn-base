@@ -1,0 +1,213 @@
+@charset "utf-8";
+/*************************************
+*文件名称：uiwidget-navigator.css
+*作者：
+*制造日期：09-01
+*联系方式：
+*文件版本：V3.0
+*内容概要：页头、页脚
+*************************************/
+
+/*全局菜单*/
+.uiwidget-navigator-nav-allmenu {
+	position: absolute; 
+	top: 66px;
+	left: 5px; 
+	z-index: 2009;
+}
+.uiwidget-navigator-nav-allmenu ul {
+	clear: both;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.uiwidget-navigator-nav-allmenu li {
+	list-style-type: none;
+}
+.uiwidget-navigator-nav-allmenu ul.uiwidget-navigator-nav-allmenu-top {
+	width: 100%;
+	height: 45px;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-top .uiwidget-navigator-left {
+	float: left;
+	width: 122px;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-top-left.png');
+	background: url('../images/default/background/bg-allmenu-top-left.png') no-repeat left top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-top .uiwidget-navigator-center {
+	float: left;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-top-middle.png');
+	background: url('../images/default/background/bg-allmenu-top-middle.png') no-repeat left top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-top .uiwidget-navigator-right {
+	float: left;
+	width: 13px;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-top-right.png');
+	background: url('../images/default/background/bg-allmenu-top-right.png') no-repeat right top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu ul.uiwidget-navigator-nav-allmenu-middle {
+	width: 100%;
+	height: 100%;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-middle .uiwidget-navigator-left {
+	float: left;
+	width: 13px;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-middle-left.png');
+	background: url('../images/default/background/bg-allmenu-middle-left.png') no-repeat left top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-center {
+	float: left;
+	height: 100%;
+	background-color: #FFE777;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-content {
+	*position: static !important;
+	_position: relative;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-menu-first {
+	font-size: 14px;
+	font-weight: bold;
+	padding-left: 1px;
+	margin-top: 7px;
+	color: #A11;
+	clear: both;
+	background-image: url(../images/default/others/img-allmenu-line.gif);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-menu-second {
+	padding-left: 15px;
+	padding-top: 5px;
+	padding-bottom: 11px;
+	background-image: url(../images/default/background/bg-allmenu-foldline.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	font-weight: normal;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-menu-second a {
+	font-size: 12px;
+	color: #111111;
+	text-decoration: none;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-menu-second a:hover {
+	font-size: 12px;
+	color: #222222;
+	text-decoration: underline;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-menu-second li {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 3px;
+	width: 75px;
+	height: 28px;
+	overflow: hidden;
+	display: block;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-middle .uiwidget-navigator-right {
+	float: left;
+	width: 13px;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-middle-right.png');
+	background: url('../images/default/background/bg-allmenu-middle-right.png') no-repeat right top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu ul.uiwidget-navigator-nav-allmenu-footer {
+	width: 100%;
+	height: 35px;
+	font-size: 12px;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-footer .uiwidget-navigator-left {
+	float: left;
+	width: 13px;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-footer-left.png');
+	background: url('../images/default/background/bg-allmenu-footer-left.png') no-repeat left top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-footer .uiwidget-navigator-center {
+	float: left;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-footer-middle.png');
+	background: url('../images/default/background/bg-allmenu-footer-middle.png') no-repeat left top;
+	_background: none;
+	text-align: right;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-footer .uiwidget-navigator-right {
+	float: right;
+	width: 41px;
+	height: 100%;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='images/default/background/bg-allmenu-footer-right.png', align=right);
+	background: url('../images/default/background/bg-allmenu-footer-right.png') no-repeat right top;
+	_background: none;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-footer .uiwidget-navigator-flow-chart {
+	float: left; 
+	height: 16px;
+	background-image: url(../images/public/ico16/ico-flowchart.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-left: 20px;
+	padding-top: 3px;
+	margin-top: 7px;
+	position: relative;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-footer .uiwidget-navigator-quit {
+	float: right; 
+	height: 16px;
+	background-image: url(../images/public/ico16/ico-quit.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-left: 5px;
+	padding-top: 3px;
+	margin-top: 7px;
+	margin-right: 70px !important;
+	margin-right: 35px;
+	position: relative;
+}
+.uiwidget-navigator-nav-allmenu .uiwidget-navigator-nav-allmenu-footer .uiwidget-navigator-line {
+	float: right;
+	width: 2px;
+	height: 21px;
+	margin-top: 5px;
+	margin-right: 5px;
+	background-image: url(../images/default/others/nav-allmenu-footer-line.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.uiwidget-navigator-nav-allmenu iframe {
+	width: 100%;
+	height: 130%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	border: 0;
+	filter:alpha(opacity=0);
+	-moz-opacity:0.0;
+	opacity: 0.0;
+}
+
+/*退出*/
+.uiwidget-navigator-quit {
+	width: 60px;
+	height: 16px !important;
+	*height: 17px !important;
+	height: 17px;
+	padding-top: 2px !important;
+	*padding-top: 3px !important;
+	padding-top: 3px;
+	text-align: center;
+	background: url(../images/public/background/bg-quit.gif) no-repeat center top;
+}

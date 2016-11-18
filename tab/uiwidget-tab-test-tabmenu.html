@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Tab </title>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-tab.css"/>
+<link style="text/css" rel="stylesheet" href="../menu/css/uiwidget-menu.css"/>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.min.js"></script>
+<script type="text/javascript" src="uiwidget-tab.js"></script>
+<script type="text/javascript" src="../menu/uiwidget-menu.js"></script>
+<style type="text/css">
+.tab-header2 {
+	background: url(images/default/background/bg-tab-red.gif) repeat-x left bottom;
+}
+</style>
+<script LANGUAGE="JavaScript">
+var tab, menu, tc;
+$(document).ready(function(){
+	menu = $.menu({
+		items : [
+			{text: '新增'
+			,handler: function(e){
+				tab.hideContent();
+        		tc.show();
+				window.frames['other'].location.href = 'page.html?name=add';
+			}}
+			,{text: '修改'
+			,handler: function(e){
+				tab.hideContent();
+        		tc.show();
+				window.frames['other'].location.href = 'page.html?name=edit';
+			}}
+			]
+		
+	});
+	
+	tab = $('#tabs').tab({
+        initActiveTab: 0
+        ,height : 300
+        ,items:[
+            {href:'page.html?name=tab1',text: '房屋信息', id:'tab1'}
+            ,{href:'page.html?name=tab2', text: '客户信息'}
+            ,{text: '菜单', href:'#', id:'other'
+            	,beforeActivate : function(e, tab, activateItem, tabHeader, tabContent){
+        			menu.showAlignTo(tabHeader);
+        			tc = tabContent;
+        			return false;
+        		}
+            }
+        ]
+	});	
+});
+
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Tab</p><p/>
+<div id="tabs"></div>
+</body>
+</HTML>

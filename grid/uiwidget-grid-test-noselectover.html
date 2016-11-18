@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid </title>
+
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+/*没划过时的图片*/
+#grid .delButton{
+	background: url(images/s.gif);
+	border: 0;
+	width: 10px;
+	height: 15px;
+}
+/*划过时的图片*/
+#grid .grid-row-over .grid-cm-name .delButton{
+	background: url(images/ico-page-next.gif);
+}
+/*没有间隔线*/
+#grid .grid-main tbody td{
+	border-bottom:1px solid #fff;
+}
+</style>
+<script language="JavaScript">
+var grid;
+$(document).ready(function(){
+
+	grid = $('#grid').grid({
+		sm : new $.uiwidget.NoSelectionModel()
+		,displayHeader : false
+		,cm : [
+			{header: "名称", dataIndex: 'name', width:'50%'
+			,renderer : function(value, data, rowIndex, colIndex, metadata){
+				$.info(rowIndex);
+       			return value + data['remark'] + '<input type="button" class="delButton" onclick="alert(\''+ rowIndex + '\')"/>';
+       		}}
+       	]		
+		,data : {"totalCount":5, "result":[{id:"1", name : "张三", remark : "2009-01-01"}
+		, {id:"2", name : "甲", remark : "2009-01-22"}, {id:"3", name : "乙", remark : "2009-01-23"}
+		, {id:"4", name : "丙", remark : "2009-01-04"}, {id:"5", name : "丁", remark : "2009-01-12"}]}		
+	});	
+
+	grid.bind('rowMouseOver', function(e, grid, rowEl){
+		//$.info("rowMouseOver");
+		//rowEl.css('background', 'red');	
+	});
+	grid.bind('rowMouseOut', function(e, grid, rowEl){
+		//$.info("rowMouseOut");
+		//rowEl.css('background', 'white');	
+	});
+	grid.bind('rowClick', function(e, grid, rowEl){
+		//$.info("rowClick");
+	});
+});
+//,{id:'a2', name : 'aa2', remark:'aaa2'}
+</script>
+</head>
+
+<body>
+<p/><p align="left" style="font-size: large">Grid</p><p/>
+<div id="grid" style="width:80%;border:1px solid #ccc"></div>
+<input type="button" onclick="grid.appendRow([{id:'a', name : 'aa', remark:'aaa'}])" value="appendRow"/>
+</body>
+</html>

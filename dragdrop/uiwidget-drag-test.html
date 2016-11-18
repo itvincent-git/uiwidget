@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> drag </TITLE>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<script type="text/javascript" src="uiwidget-drag.js"></script>
+
+<style type="text/css">
+#drag{
+    height: 150px;
+    width: 150px;
+	background-color: #ddd;
+	border: 1px solid #4090af;
+}
+#drag2{
+    height: 150px;
+    width: 150px;
+	background-color: #aabbcc;
+	border: 1px solid #4090af;
+}
+#drag2 .drag-handler{
+    height: 50px;
+    width: 100%;
+	background-color: #aa45cc;
+	border-bottom: 1px solid #4090af;
+}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+var drag, drag2;
+$(document).ready(function(){
+
+	drag = $('#drag').drag();
+	drag2 = $('#drag2').drag({handler : $('.drag-handler')});
+});
+</script>
+</HEAD>
+<body>
+<div id="drag"></div>
+
+<div id="drag2" style="top:200px;"><div class="drag-handler"></div></div>
+</body>
+</HTML>

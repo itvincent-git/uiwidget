@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Grid</title>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<!--  
+<script type="text/javascript" src="../base/uiwidget-base.min.js"></script>
+<script type="text/javascript" src="e:/ajax/firebug-lite-compressed.js"></script>
+<link href="css/gt_grid_a.css" type="text/css" rel="stylesheet"/>
+-->
+<script language="JavaScript">
+	$(function() {
+		var head = $('.gt-head-div');
+		$('.gt-body-div').scroll(function(e) {
+			var sl = $(this).scrollLeft();
+			head.scrollLeft(sl);
+		});
+	});
+</script>
+<style type="text/css">
+
+body { 	font-size:12px;	}
+form { 	padding: 0px; 	margin: 0px; }
+div { 	font-size:12px;		padding: 0px; 	margin: 0px; }
+td {	font-size:12px;	}
+.gt-grid {
+	position: relative;
+	width:100%;
+}
+.gt-viewport {
+	position: relative;
+	left:0px; 
+	top: 0px;
+	width: 100%;
+	overflow: hidden;
+	background: #ffffff;
+	border:1px solid #cccccc;
+}
+.gt-simple-scrollbar {
+	scrollbar-3dlight-color:#C0C0C0;
+	scrollbar-darkshadow-color:#C0C0C0;
+	scrollbar-arrow-color:#999999;
+	scrollbar-face-color:#DDDDDD;
+	scrollbar-highlight-color:#DDDDDD;
+	scrollbar-shadow-color:#DDDDDD;
+	scrollbar-track-color:#E9E9E9;
+}
+.gt-body-div {
+	position: relative;
+	overflow: auto;
+	text-align:left;
+	width:100%;
+	height:100%;
+}
+.gt-head-div  {
+	position: relative;
+	z-index:2;
+	overflow:hidden;
+	text-align:left;
+	width:100%;
+	padding-left:0px;
+	-background: #ebeadb url(./skin/default/images/hd_row_over_bg.gif) repeat-x;
+}
+.gt-head-wrap {
+	float:left;
+	width:10000px;
+}
+.gt-head-table  , .gt-table {
+  margin-left:0px;
+  table-layout: fixed;
+}
+
+.gt-row {
+	background-color:#ffffff;
+}
+.gt-hd-row .gt-hd-row-over {
+	background: #ebeadb url(./skin/default/images/hd_row_over_bg.gif) repeat-x;
+}
+.gt-hd-row td ,.gt-row td {
+	font: normal 12px arial, tahoma, helvetica, sans-serif;	
+	height:21px;
+	vertical-align: top;
+
+	white-space:nowrap;
+
+	border-right: 1px solid #d6d6d6;
+	border-bottom: 1px solid #d6d6d6;
+
+	word-break:keep-all;
+	word-wrap:normal;
+
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+
+	-moz-outline: none;
+	-moz-user-focus: normal;
+}
+.gt-row-empty td {
+	border-right: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+.gt-hd-row td {
+	height:22px;
+	border-right: 1px solid #778899;
+	border-bottom: 1px solid #778899;
+	background: #ebeadb url(./skin/default/images/hd_row_bg.gif) repeat-x;
+}
+
+
+.gt-inner {
+	qdisplay: block;
+	padding : 1px 2px 1px 2px;
+	height:19px;
+	line-height:16px;
+	overflow: hidden;
+	white-space:nowrap;
+	word-break:keep-all;
+	word-wrap:normal;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+.gt-hd-row td .gt-inner {
+	position: relative;
+	cursor: default;
+	padding : 3px 1px 0px 3px;
+	font-weight:bold ;
+	color : #333333 ;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+.gt-b-ie .gt-hd-row td .gt-inner , .gt-b-ie .gt-inner {
+	width: 100%;
+}
+.gt-b-ie .gt-row td .gt-inner {
+	margin-top : 2px;
+	padding-top : 0px;
+	padding-bottom : 0px;
+}
+.gt-b-ie .gt-hd-row td .gt-inner {
+	height:22px;
+}
+.gt-b-ie .gt-hd-row td .gt-inner input {
+	position:absolute;
+	top:0px;
+}
+.gt-inner-tall2 {
+margin-top:10px;
+}
+.gt-row td.gt-index-col .gt-inner {
+	padding : 1px 2px 1px 2px;
+}
+.gt-hd-hidden td .gt-inner{
+	display:none;
+}
+/**/
+
+/*=======================*/
+.gt-grid .gt-col-mygrid1-no { width:160px; } 
+.gt-grid .gt-col-mygrid1-no .gt-inner { width:156px; } 
+.gt-grid .gt-col-mygrid1-employee { width:180px; } 
+.gt-grid .gt-col-mygrid1-employee .gt-inner { width:176px; } 
+.gt-grid .gt-col-mygrid1-country { width:170px; } 
+.gt-grid .gt-col-mygrid1-country .gt-inner { width:166px; } 
+.gt-grid .gt-col-mygrid1-customer { width:180px; } 
+.gt-grid .gt-col-mygrid1-customer .gt-inner { width:176px; } 
+.gt-grid .gt-col-mygrid1-bill2005 { width:160px; } 
+.gt-grid .gt-col-mygrid1-bill2005 .gt-inner { width:156px; } 
+.gt-grid .gt-col-mygrid1-bill2006 { width:160px; } 
+.gt-grid .gt-col-mygrid1-bill2006 .gt-inner { width:156px; } 
+.gt-grid .gt-col-mygrid1-bill2007 { width:160px; } 
+.gt-grid .gt-col-mygrid1-bill2007 .gt-inner { width:156px; } 
+.gt-grid .gt-col-mygrid1-bill2008 { width:160px; } 
+.gt-grid .gt-col-mygrid1-bill2008 .gt-inner { width:156px; } 
+.gt-grid .gt-col-mygrid1-orderdate { width:150px; } 
+.gt-grid .gt-col-mygrid1-orderdate .gt-inner { width:146px; }
+</style>
+</head>
+<body>
+<div style="font-size: 24px;">Grid Nested Header Design</div>
+<div class="gt-grid"  style="width: 700px; height: 200px;">
+	<div class="gt-viewport gt-simple-scrollbar" id="myGrid1_viewport">
+		<div class="gt-head-div" style="height: 45px;">
+			<div class="gt-head-wrap">
+				<table class="gt-head-table" cellspacing="0" cellpadding="0" border="0" style="margin-right: 100px;">
+					<tbody>
+						<tr class="gt-hd-row gt-hd-hidden">
+							<td class="gt-col-mygrid1-no" style="height: 0px;">
+								<div title="Order No" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left">
+									<span>Order No</span></div>
+							</td>
+							<td class="gt-col-mygrid1-employee" style="height: 0px;">
+								<div title="Employee" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left">
+									<span>Employee</span></div>
+								</td>
+							<td class="gt-col-mygrid1-country" style="height: 0px;">
+								<div title="Country" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left">
+								<span>Country</span></div>
+							</td>
+							<td class="gt-col-mygrid1-customer" style="height: 0px;">
+								<div title="Customer" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left">
+								<span>Customer</span></div>
+							</td>
+							<td class="gt-col-mygrid1-bill2005" style="height: 0px;">
+								<div title="2005" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left">
+								<span>2005</span></div>
+							</td>
+							<td class="gt-col-mygrid1-bill2006" style="height: 0px;">
+								<div title="2006" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left"><span>2006</span></div></td>
+							<td class="gt-col-mygrid1-bill2007" style="height: 0px;"><div title="2007" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left"><span>2007</span></div></td>
+							<td class="gt-col-mygrid1-bill2008" style="height: 0px;"><div title="2008" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left"><span>2008</span></div></td>
+							<td class="gt-col-mygrid1-orderdate" style="height: 0px;"><div title="Delivery Date" unselectable="on" style="padding-top: 0px; padding-bottom: 0px; height: 1px;" class="gt-inner gt-inner-left"><span>Delivery Date</span></div></td>
+						</tr>
+						<tr class="gt-hd-row">
+							<td resizable="false" columnid="no" rowspan="2" class="gt-col-mygrid1-no">
+								<div unselectable="on" class="gt-inner gt-inner-tall2">
+									<span>Order No</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="display: none;"/></div>
+								</div>
+							</td>
+							<td resizable="false" columnid="employee" rowspan="2" class="gt-col-mygrid1-employee">
+								<div unselectable="on" class="gt-inner gt-inner-tall2">
+									<span>Employee</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="display: none;"/></div>
+								</div>
+							</td>
+  							<td colspan="7" class="">
+  								<div unselectable="on" class="gt-inner"><span>Order Info</span>
+  								</div>
+  							</td>
+						</tr>
+						<tr class="gt-hd-row">
+							<td columnid="country" class="gt-col-mygrid1-country gt-hd-row-over"><div unselectable="on" class="gt-inner"><span>Country</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+							<td columnid="customer" class="gt-col-mygrid1-customer"><div unselectable="on" class="gt-inner"><span>Customer</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+							<td columnid="bill2005" class="gt-col-mygrid1-bill2005"><div unselectable="on" class="gt-inner"><span>2005</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+							<td columnid="bill2006" class="gt-col-mygrid1-bill2006"><div unselectable="on" class="gt-inner"><span>2006</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+							<td columnid="bill2007" class="gt-col-mygrid1-bill2007"><div unselectable="on" class="gt-inner"><span>2007</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+							<td columnid="bill2008" class="gt-col-mygrid1-bill2008"><div unselectable="on" class="gt-inner"><span>2008</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+							<td columnid="orderDate" class="gt-col-mygrid1-orderdate"><div unselectable="on" class="gt-inner"><span>Ship Date</span><div class="gt-hd-tool"><span class="gt-hd-icon"/><span class="gt-hd-button"/><span class="gt-hd-split" style="cursor: col-resize;"/></div></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="gt-body-div" id="myGrid1_bodyDiv" style="height: 128px;display: block;">
+			<table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px;" class="gt-table">
+				<tbody>
+					<tr id="__gt_myGrid1_r_120" __gt_ds_index__="0" class="gt-row gt-row-even gt-row-selected">
+						<td class="gt-col-mygrid1-no"><div class="gt-inner  gt-inner-left ">010-0</div></td>
+						<td class="gt-col-mygrid1-employee"><div class="gt-inner  gt-inner-left ">Keith</div></td>
+						<td class="gt-col-mygrid1-country"><div class="gt-inner  gt-inner-left ">MA</div></td>
+						<td class="gt-col-mygrid1-customer"><div class="gt-inner  gt-inner-left ">Jerry</div></td>
+						<td class="gt-col-mygrid1-bill2005"><div class="gt-inner  gt-inner-left ">50</div></td>
+						<td class="gt-col-mygrid1-bill2006"><div class="gt-inner  gt-inner-left ">57</div></td>
+						<td class="gt-col-mygrid1-bill2007"><div class="gt-inner  gt-inner-left ">80</div></td>
+						<td class="gt-col-mygrid1-bill2008"><div class="gt-inner  gt-inner-left ">46</div></td>
+						<td class="gt-col-mygrid1-orderdate"><div class="gt-inner  gt-inner-left ">2008-10-02</div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

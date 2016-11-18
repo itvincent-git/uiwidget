@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE> Tree </TITLE>
+<link rel="stylesheet" type="text/css" href="css/uiwidget-tree.css">
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="uiwidget-tree.js"></script>
+<style type="text/css">
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+</HEAD>
+<body>
+<div id="tree" style="width:200px;"></div>
+<iframe id="content" name="content" src="" height="100%" width="100%" frameborder="1"></iframe>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+var tree;
+$(document).ready(function(){
+	
+	tree = $('#tree').tree({
+		data : 
+		[
+		{"id":"1", "text":"中企动力","leaf":false,"href":"list1.html?id=1", children : [
+			{"id":"2","text":"中企动力广州分公司", "checked":"false", "leaf":false,"href":"list1.html?id=2", children:
+				[{"id":"21","text":"广州系统设计部","leaf":true,"href":"list1.html?id=21"}
+				,{"id":"22","text":"广州程序开发部","leaf":true,"href":"list1.html?id=22"}
+				,{"id":"23","text":"广州管理层","leaf":false,"href":"list1.html?id=23", children:
+					[{"id":"231","text":"广州管理层1","leaf":true,"href":"list1.html?id=231"}]}
+				]}
+			,{"id":"3","text":"中企动力深圳分公司", "checked":"true", "leaf":false,"href":"list1.html?id=3", children:
+				[{"id":"31","text":"深圳测试部","leaf":true,"href":"list1.html?id=31"}
+				,{"id":"32","text":"深圳互联网开发部","leaf":false,"href":"list1.html?id=32", children:
+					[{"id":"321","text":"深圳互联网开发1部","leaf":true,"href":"list1.html?id=321"}
+					]}
+				,{"id":"33","text":"深圳管理层","leaf":true,"href":"list1.html?id=33"}
+				]}
+			,{"id":"4","text":"中国大地院线公司","leaf":false,"href":"list1.html?id=4", children:
+				[{"id":"41","text":"广州大地","leaf":true,"href":"list1.html?id=41"}
+				]}
+		
+		]}
+		]
+		,hrefTarget : 'content'
+		,height: 100
+	});
+	
+});
+</script>
+</HTML>

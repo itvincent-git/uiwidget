@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Grid Test </title>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../base/uiwidget-base.js"></script>
+<link style="text/css" rel="stylesheet" href="css/uiwidget-grid.css"/>
+<script type="text/javascript" src="uiwidget-grid.js"></script>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+
+var grid, grid2;
+$(document).ready(function(){
+	
+	grid = $('#grid').grid({
+		pageSize : 15		
+		,cm : [{checkbox : true}
+			,{header: "转正类型名称", dataIndex: 'name', width:'20%',sortable:false}
+			,{header: "remark", dataIndex: 'remark', title: ''}]		
+		,data : {"totalCount":14, "result":[{id:"1", name : "张三张三张三张三张三张三张三张三张三张三张三张三张三", remark : "2009-01-01" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", remark : "2009-01-02"}, {id:"3", name : "王五", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "ddd", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六'123'", remark : "0"}, {id:"4", name : "周六\"12312\"dd", remark : 123}]}		
+	});	
+	
+	grid2 = $('#grid2').grid({
+		pageSize : 15		
+		,cm : [{checkbox : true}
+			,{header: "转正类型名称", dataIndex: 'name', width:'300px',sortable:false}
+			,{header: "remark", dataIndex: 'remark', width:'400px'}]		
+		,data : {"totalCount":14, "result":[{id:"1", name : "张三张三张三张三张三张三张三张三张三张三张三张三张三", remark : "2009-01-01" , effectiveDate:"2009-02-21"}, {id:"2", name : "李四", remark : "2009-01-02"}, {id:"3", name : "王五", remark : "2009-01-02"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "ddd", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六", remark : "0"}, {id:"4", name : "周六'123'", remark : "0"}, {id:"4", name : "周六\"12312\"dd", remark : 123}]}
+		
+	});	
+	
+});
+
+</script>
+</head>
+
+<body >
+<p/><p align="left" style="font-size: large">Grid宽度测试</p><p/>
+<div id="grid" style="width:99%;"></div>
+<br/>
+<div id="grid2" style="width:99%;"></div>
+<br/><button onclick="grid.reload();">reload</button>
+
+</body>
+</html>
